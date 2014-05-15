@@ -1,0 +1,42 @@
+h1{
+	font-size: 50px;
+}
+
+h2{
+	font-size: 30px;
+}
+
+h3{
+	font-size: 20px;
+}
+
+body{
+	background-color: #FFE4E1;
+
+p.moderate{
+	font-size: 20px;
+}
+
+div.homeslide{
+	width: 500px;
+	height: 500px;
+	display: block;
+	float: left;
+}
+
+.footerb{
+	font-weight:bold;
+	font-weight:5px;
+}
+
+.footer{
+	font-size:15px;
+}
+
+#home_slider{
+	overflow: hidden;
+}
+
+div.footer{
+	background-color:aqua;
+}
