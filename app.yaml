@@ -4,6 +4,17 @@ runtime: python27
 api_version: 1
 threadsafe: true
 
+libraries: 
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+- name: matplotlib
+  version: latest
+- name: pycrypto
+  version: latest
+
+
 handlers:
 - url: /.*
-  script: crsCrowdSourcingReport.application
+  script: homepage.application
