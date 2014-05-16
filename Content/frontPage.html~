@@ -25,7 +25,7 @@
 
 	<!-- Body Begin -->
   	<body>
-		<div id="navbar" onload="LoadNavbar('Home');"></div>
+		<div id="navbar"></div>
 		<!-- navbar ends -->		
 
 		<!-- Content Begins -->		
@@ -164,7 +164,7 @@
 		
 		<!-- Other Custom JavaScripts with description -->
 			<script>
-  
+  			$(function()({
 					// home slider configuration
 					$("#home_slider").carouFredSel({
 						circular	: true,
