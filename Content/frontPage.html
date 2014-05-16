@@ -25,22 +25,7 @@
 
 	<!-- Body Begin -->
   	<body>
-		<!-- This is navbar -->		
-		<nav class="navbar navbar-inverse" role="navigation" height = "10">
-			<div>	
-				<a class="navbar-brand" href="#">Cloud Sourcing Report</a>		
-				<ul class="nav navbar-nav navbar-left">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Projects</a></li>
-					<li><a href="#">Services</a></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">Contact Us</a></li>
-					
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="text-right"><a href="#" data-toggle="modal" data-target="#SignInModal">Sign In</a></li>
-			</div>
-		</nav>
+		<div id="navbar"></div>
 		<!-- navbar ends -->		
 
 		<!-- Content Begins -->		
@@ -174,9 +159,11 @@
 		<!-- JavaScript to load Sign In Modal -->
 			<script type="text/javascript" language="javascript" src="/Content/js/SignInModalLoader.js"></script>
 		
+		<!-- JavaScript to load Navbar -->
+			<script type="text/javascript" language="javascript" src="/Content/js/NavbarLoader.js"></script>
+		
 		<!-- Other Custom JavaScripts with description -->
 			<script>
-				$(function() {
   
 					// home slider configuration
 					$("#home_slider").carouFredSel({

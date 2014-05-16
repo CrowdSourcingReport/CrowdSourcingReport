@@ -8,7 +8,7 @@
     		<title>Crowd Sourcing Report</title>
 
     		<!-- Bootstrap CSS -->
-    			<link href="./css/bootstrap.min.css" rel="stylesheet">
+    			<link href="/Content/css/bootstrap.min.css" rel="stylesheet">
     			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     			<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     			<!--[if lt IE 9]>
@@ -25,22 +25,7 @@
 
 	<!-- Body Begin -->
   	<body>
-		<!-- This is navbar -->		
-		<nav class="navbar navbar-inverse" role="navigation" height = "10">
-			<div>	
-				<a class="navbar-brand" href="#">Cloud Sourcing Report</a>		
-				<ul class="nav navbar-nav navbar-left">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Projects</a></li>
-					<li><a href="#">Services</a></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">Contact Us</a></li>
-					
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="text-right"><a href="#" data-toggle="modal" data-target="#SignInModal">Sign In</a></li>
-			</div>
-		</nav>
+		<div id="navbar" onload="LoadNavbar('Home');"></div>
 		<!-- navbar ends -->		
 
 		<!-- Content Begins -->		
@@ -174,9 +159,11 @@
 		<!-- JavaScript to load Sign In Modal -->
 			<script type="text/javascript" language="javascript" src="/Content/js/SignInModalLoader.js"></script>
 		
+		<!-- JavaScript to load Navbar -->
+			<script type="text/javascript" language="javascript" src="/Content/js/NavbarLoader.js"></script>
+		
 		<!-- Other Custom JavaScripts with description -->
 			<script>
-				$(function() {
   
 					// home slider configuration
 					$("#home_slider").carouFredSel({

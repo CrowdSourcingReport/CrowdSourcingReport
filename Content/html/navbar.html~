@@ -1,0 +1,17 @@
+<!-- This is navbar -->		
+		<nav class="navbar navbar-inverse" role="navigation" height = "10">
+			<div>	
+				<a class="navbar-brand" href="#">Cloud Sourcing Report</a>		
+				<ul class="nav navbar-nav navbar-left">
+					<li id="Home" class="active"><a href="#">Home</a></li>
+					<li id="Projects" class=""><a href="#">Projects</a></li>
+					<li id="Services" class=""><a href="#">Services</a></li>
+					<li id="About_Us" class=""><a href="#">About Us</a></li>
+					<li id="Contact_Us" class=""><a href="#">Contact Us</a></li>
+					
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="text-right"><a href="#" data-toggle="modal" data-target="#SignInModal">Sign In</a></li>
+			</div>
+		</nav>
+
