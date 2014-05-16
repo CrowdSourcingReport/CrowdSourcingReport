@@ -16,6 +16,8 @@ libraries:
 
 
 handlers:
+- url: /.*
+  script: homepage.application
 - url: /Content/js
   static_dir: Content/js
 - url: /Content/html
@@ -26,5 +28,3 @@ handlers:
   static_dir: Content/css
 - url: /Content/carousal
   static_dir: Content/carousal
-- url: /.*
-  script: homepage.application
