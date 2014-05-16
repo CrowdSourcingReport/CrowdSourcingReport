@@ -16,6 +16,8 @@ libraries:
 
 
 handlers:
+- url: /signup
+  script: signup.application
 - url: /Content/js
   static_dir: Content/js
 - url: /Content/html
