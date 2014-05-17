@@ -94,7 +94,7 @@
 						<div id="#Sample1">
 							<div class="panel panel-default">
 								<div class="panel-body">
-									<p>Sample 1</p>
+									<p><a href="/Content/html/project_page.html">Sample 1</a></p>
 								</div>
 							</div>
 						</div>

@@ -20,7 +20,7 @@ a:visited{
 
 a:hover{
 	font-weight:bold;
-	color:#CD853F;
+	color:#8B0000;
 	text-decoration: none;
 }
 

@@ -28,5 +28,7 @@ handlers:
   static_dir: Content/css
 - url: /Content/carousal
   static_dir: Content/carousal
+- url: /Content/img
+  static_dir: Content/img
 - url: /.*
   script: homepage.application
