@@ -46,35 +46,35 @@
 				<div class="row">
 					<div class="form-group col-md-4">
 						<label for="name">Full Name</label>
-						<input type="text" class="form-control" id="name" placeholder="Name" >
+						<input type="text" class="form-control" name="name" placeholder="Name" >
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-4">
 						<label for="name">Username</label>
-						<input type="text" class="form-control" id="username" placeholder="Username">
-						<p>{{usernameAlertMessage}}</p>
+						<input type="text" class="form-control" name="username" id="{{inputWarningUsername}}" placeholder="Username">
+						<span class="help-inline">{{usernameAlertMessage}}</span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-4">
 						<label for="name">Email-Id</label>
-						<input type="email" class="form-control" id="emailId" placeholder="example@xyz.com">
-						<p>{{emailAlertMessage}}</p>
+						<input type="email" class="form-control" name="emailId" placeholder="example@xyz.com">
+						<span class="help-inline">{{emailAlertMessage}}</span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-4">
-						<label for="name">Password</label>
-						<input type="password" class="form-control" id="password" placeholder="Password">
-						<p>{{passwordAlertMessage}}</p>
+						<label for="name" id="{{inputWarning}}">Password</label>
+						<input type="password" class="form-control" name="password" placeholder="Password">
+						<span class="help-inline">{{passwordAlertMessage}}</span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-4">
 						<label for="name">Confirm Password</label>
-						<input type="password" class="form-control" id="confirmPassword" placeholder="Password">
-						<p>{{confirmPasswordAlertMessage}}</p>
+						<input type="password" class="form-control" name="confirmPassword" placeholder="Password">
+						<span class="help-inline">{{confirmPasswordAlertMessage}}</span>
 					</div>
 				</div>
 

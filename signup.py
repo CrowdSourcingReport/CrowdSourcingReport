@@ -19,6 +19,8 @@ emailAlertMessage="Kindly Enter a valid email!"
 passwordAlertMessage="Password can cointain a-z, A-Z, 0-9, _ and - only, and a length in between 6 and 20"
 usernameAlertMessage="Username can cointain a-z, A-Z, 0-9, _ and - only, and a length in between 6 and 20"
 confirmPasswordAlertMessage="Password Dint Match!"
+usernameAvailibilityAlertMessage="Username wasnt available"
+inputWarning="inputWarning"
 
 #initializing regular expression checker for email,password and username
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{6,20}$")
@@ -52,12 +54,15 @@ def valid_username(username):
 #implementing check for validity of email
 def valid_email(email):
         ret= EMAIL_RE.match(email)
-	if email=='':
-		return True
 	if ret==None:
                 return False
         else:
                 return True
+
+#checking availibility of username
+def username_availibility(username):
+	#implementation left to Onuja :-}(a simple query!)
+	return True
 
 #data model for storing user data
 class User(ndb.Model):
@@ -83,7 +88,9 @@ class SignUp(webapp2.RequestHandler):
 		passwordValidity=valid_password(password)
 		usernameValidity=valid_username(username)
 		confirmPasswordValidity=verify_password(password,confirmPassword)
-		if emailValidity and passwordValidity and usernameValidity and confirmPasswordValidity:
+		usernameAvailibility=username_availibility(username)
+		#if all the validity condition are passed then move on to storing data 
+		if emailValidity and passwordValidity and usernameValidity and confirmPasswordValidity and usernameAvailibility:
 			user=User()
 			user.name=name
 			user.username=username
@@ -92,23 +99,19 @@ class SignUp(webapp2.RequestHandler):
 			user.put()
 			self.response.write("success!")
 		else:
+		#otherwise generate appropriate error message to help user through registration process
 			alertMessage={}
 			if not emailValidity:
 				alertMessage["emailAlertMessage"]=emailAlertMessage
-			else:
-				alertMessage["emailAlertMessage"]=""
 			if not usernameValidity:
 				alertMessage["usernameAlertMessage"]=usernameAlertMessage
-			else:
-				alertMessage["usernameAlertMessage"]=""
+			elif not usernameAvailibility:
+				alertMessage["usernameAlertMessage"]=usernameAvailibilityAlertMessage
 			if not passwordValidity:
 				alertMessage["passwordAlertMessage"]=passwordAlertMessage
-			else:
-				alertMessage["passwordAlertMessage"]=""
 			if not confirmPasswordValidity:
 				alertMessage["confirmPasswordAlertMessage"]=confirmPasswordAlertMessage
-			else:
-				alertMessage["confirmPasswordAlertMessage"]=""
+			alertMessage["inputWarningPassword"]=inputWarning	
 			self.response.write(template.render(alertMessage))	
 
 application=webapp2.WSGIApplication([('/signup',SignUp)],debug=True)	
