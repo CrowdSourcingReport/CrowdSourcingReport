@@ -4,7 +4,6 @@ runtime: python27
 api_version: 1
 threadsafe: true
 
-<<<<<<< HEAD
 libraries: 
 - name: webapp2
   version: latest
@@ -31,8 +30,3 @@ handlers:
   static_dir: Content/carousal
 - url: /.*
   script: homepage.application
-=======
-handlers:
-- url: /.*
-  script: crsCrowdSourcingReport.application
->>>>>>> upstream/master
