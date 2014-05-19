@@ -1,0 +1,69 @@
+h1{
+	font-size: 50px;
+	color: white;
+}
+
+h2{
+	font-size: 30px;
+}
+
+.logo{
+	font-weight:bold;
+	color: white;
+}
+
+h4.fbold{
+	font-weight:bold;
+	color: white;
+}
+
+h3{
+	font-size: 20px;
+}
+
+a.fhypertext:link{
+	color: white;
+	text-decoration:none;
+}
+
+a.fhypertext:visited {
+	color:white;
+	text-decoration:none;
+}
+a.fhypertext:hover 
+{
+	color:#FFCC99;
+	font-weight:bold;
+	text-decoration:none;
+}
+a.fhypertext:active {
+	color:white;
+	text-decoration:none;
+}
+div.footer{
+	background-color: #333333;
+}
+
+body{
+	background-color: #CCFFCC;
+
+p.moderate{
+	font-size: 20px;
+}
+
+div.homeslide{
+	width: 500px;
+	height: 500px;
+	display: block;
+	float: left;
+}
+
+.footer{
+	font-size:15px;
+}
+
+#home_slider{
+	overflow: hidden;
+}
+
+
