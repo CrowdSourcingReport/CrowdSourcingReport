@@ -14,13 +14,22 @@ from google.appengine.ext import ndb
 #initializing jinja2 template 	
 env=jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),extensions=['jinja2.ext.autoescape'],autoescape=True)
 
+#standard string definition
+emailAlertMessage="Kindly Enter a valid email!"	
+passwordAlertMessage="Password can cointain a-z, A-Z, 0-9, _ and - only, and a length in between 6 and 20"
+usernameAlertMessage="Username can cointain a-z, A-Z, 0-9, _ and - only, and a length in between 6 and 20"
+confirmPasswordAlertMessage="Password Dint Match!"
+usernameAvailibilityAlertMessage="Username wasnt available"
+inputWarning="inputWarning"
+
 #initializing regular expression checker for email,password and username
-USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
-PASS_RE=re.compile(r"^.{3,20}$")
+USER_RE = re.compile(r"^[a-zA-Z0-9_-]{6,20}$")
+PASS_RE=re.compile(r"^[a-zA-Z0-9_-]{6,20}$")
 EMAIL_RE=re.compile(r"^[\S]+@[\S]+\.[\S]+$")
 
+
 #implementing password confirmation check
-def verify_this(password,verify):
+def verify_password(password,verify):
 	if password==verify:
 		return True
 	else:
@@ -45,12 +54,15 @@ def valid_username(username):
 #implementing check for validity of email
 def valid_email(email):
         ret= EMAIL_RE.match(email)
-	if email=='':
-		return True
 	if ret==None:
                 return False
         else:
                 return True
+
+#checking availibility of username
+def username_availibility(username):
+	#implementation left to Onuja :-}(a simple query!)
+	return True
 
 #data model for storing user data
 class User(ndb.Model):
@@ -65,6 +77,7 @@ class SignUp(webapp2.RequestHandler):
 		template=env.get_template("Content/signup.html")	
 		self.response.write(template.render())
 	def post(self):
+		template=env.get_template("Content/signup.html")	
 		name=self.request.get("name")
 		username=self.request.get("username")
 		password=self.request.get("password")
@@ -74,7 +87,32 @@ class SignUp(webapp2.RequestHandler):
 		emailValidity=valid_email(emailId)
 		passwordValidity=valid_password(password)
 		usernameValidity=valid_username(username)
-		self.redirect("https://www.google.co.in/search?q=Election+Results&oi=ddle&ct=india-counting-day-2014-6044861157343232-hp&hl=en")
+		confirmPasswordValidity=verify_password(password,confirmPassword)
+		usernameAvailibility=username_availibility(username)
+		#if all the validity condition are passed then move on to storing data 
+		if emailValidity and passwordValidity and usernameValidity and confirmPasswordValidity and usernameAvailibility:
+			user=User()
+			user.name=name
+			user.username=username
+			user.password=password
+			user.email=emailId
+			user.put()
+			self.response.write("success!")
+		else:
+		#otherwise generate appropriate error message to help user through registration process
+			alertMessage={}
+			if not emailValidity:
+				alertMessage["emailAlertMessage"]=emailAlertMessage
+			if not usernameValidity:
+				alertMessage["usernameAlertMessage"]=usernameAlertMessage
+			elif not usernameAvailibility:
+				alertMessage["usernameAlertMessage"]=usernameAvailibilityAlertMessage
+			if not passwordValidity:
+				alertMessage["passwordAlertMessage"]=passwordAlertMessage
+			if not confirmPasswordValidity:
+				alertMessage["confirmPasswordAlertMessage"]=confirmPasswordAlertMessage
+			alertMessage["inputWarningPassword"]=inputWarning	
+			self.response.write(template.render(alertMessage))	
 
 application=webapp2.WSGIApplication([('/signup',SignUp)],debug=True)	
 
