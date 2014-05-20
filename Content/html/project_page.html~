@@ -75,7 +75,7 @@ Vivamus vel orci tristique, auctor diam in, commodo massa. Quisque ornare congue
 				<div class="col-md-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<p class="subheading">Projects you might be interested in"</p>
+							<h4>Projects you might be interested in</h4>
 						</div>
 					</div>
 				</div>
