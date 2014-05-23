@@ -83,17 +83,19 @@ div.footer{
 }
 
 body{
-	background-color: #CCFFCC;
+	background-color: #E0FFFF;
 
 p.moderate{
 	font-size: 20px;
 }
 
-div.homeslide{
-	width: 500px;
-	height: 500px;
+img.homeslide{
 	display: block;
-	float: left;
+	margin-left: auto;
+	margin-right: auto;
+
+div.homeslide{
+	text-align:center;
 }
 
 .footer{

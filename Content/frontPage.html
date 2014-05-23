@@ -30,25 +30,31 @@
 
 		<!-- Content Begins -->		
 		<div class="container">
+			
 		
+			<div class="row">
+				<div class="col-md-12">
+				<form class="form-signin form-inline navbar-form navbar-right" role="form">
+        					<input type="email" class="form-control" placeholder="Email address" required="" autofocus="" name="username">
+        					<input type="password" class="form-control" placeholder="Password" required="">  							<!--<label class="checkbox" name="password">
+       							<input type="checkbox" value="remember-me" name="remember_me"> Remember me
+        					</label>-->
+						<button class="btn btn-primary" type="submit">Sign in</button>
+						<p class="text-right"><a href="/forgot">Forgot Password</a></p>
+      				</form>
+			</div>
+			
+			<br />
 			<!-- Carousel for Home Page -->
-			<div id="home_slider" class="row homeslide">
-				<div class="homeslide" id="#1">
-					<h2 class="text-center">Stop Donating Start Investing!</h2>
-					<p class="moderate text-center">Difficulty in maintaining your social causes? No more overhead of keeping track of your social investments. Invest in projects and we shall keep track of your investments!</p>
-					<br>
-					<p class="text-center">
-						<button class="btn btn-lg btn-success" href="/Content/register.html" role="button">Register Now!</button>
-					</p>
+			<div id="home_slider" style="background-color: black;">
+				<div class="homeslide">
+					<img id="#1" class="homeslide" src="/Content/img/homeslide1.jpg" width="1200px" />
 				</div>
-				<div class="homeslide" id="#2">
-					<h2 class="text-center">Finding Investors Was Never So Easy!</h2>
-					<p class="moderate text-center">Run an NGO? In need of capital? Want to demonstrate your projects to the world? Get your project listed on our website and make your existence felt in corporate world!</p>
-					<br>
-					<p class="text-center">
-						<button class="btn btn-lg btn-success" href="/Content/register.html" role="button">Register Now!</button>
-					</p>
-
+				<div class="homeslide">
+					<img id="#2" class="homeslide" src="/Content/img/homeslide2.jpg" width="1200px"/>
+				</div>
+				<div class="homeslide">				
+					<img id="#3" class="homeslide" src="/Content/img/homeslide3.jpg" width="1200px" />
 				</div>
 			</div>
 			<div></div>
@@ -168,17 +174,21 @@
 					// home slider configuration
 					$("#home_slider").carouFredSel({
 						circular	: true,
-						height		: 175,
+						height		: 500,
 						items		: {
 									visible: 1
 						},
 						direction	: "left",
 						responsive	: true,
-						auto		: true,
+						auto		: {
+									timeoutDuration: 5000
+								  },
 						scroll 		: {
 									items: 1,
-									duration: 500,                         
-									pauseOnHover: true
+									duration: 1000,                         
+									pauseOnHover: true,
+									easing: "linear",
+									fx: "fade"
 								  },
 						pagination	: {
 									items: 1
