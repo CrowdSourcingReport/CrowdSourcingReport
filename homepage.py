@@ -17,6 +17,6 @@ class MainPage(BaseHandler):
 	def get(self):
 #		template=env.get_template("Content/html/frontPage.html")	
 #		self.response.write(template.render())
-                self.render_template('frontpage.html')        
+            self.render_template('frontPage.html')        
         
 application=webapp2.WSGIApplication([('/',MainPage)],debug=True)	
