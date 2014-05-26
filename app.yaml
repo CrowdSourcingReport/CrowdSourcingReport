@@ -17,7 +17,14 @@ libraries:
 
 handlers:
 - url: /signup
-  script: signup.application
+  script: main.app
+  secure: always
+- url: /login
+  script: main.app
+  secure: always
+- url: /forgot
+  script: main.app
+  secure: always
 - url: /Content/js
   static_dir: Content/js
 - url: /Content/html
@@ -32,3 +39,4 @@ handlers:
   static_dir: Content/img
 - url: /.*
   script: homepage.application
+
