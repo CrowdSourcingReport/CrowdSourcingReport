@@ -7,25 +7,25 @@ h2{
 }
 
 a:link{
-	color:black;
+	color:#A63800;
 	font-weight:bold;
 	text-decoration: none;
 }
 
 a:visited{
-	color:black;
+	color:#A63800;
 	font-weight:bold;
 	text-decoration: none;
 }
 
 a:hover{
 	font-weight:bold;
-	color:#CD853F;
+	color:#FFCC99;
 	text-decoration: none;
 }
 
 a:active{
-	color:black;
+	color:#A63800;
 	font-weight:bold;
 	text-decoration: none;
 }
@@ -79,11 +79,16 @@ a.fhypertext:active {
 	text-decoration:none;
 }
 div.footer{
-	background-color: #333333;
+	background-color: #9B001C;
+}
+
+div.panelbody{
+	background-color: #F56E8D;
 }
 
 body{
-	background-color: #E0FFFF;
+	background-color: #F53D68;
+}
 
 p.moderate{
 	font-size: 20px;
