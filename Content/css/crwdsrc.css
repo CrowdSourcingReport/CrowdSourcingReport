@@ -79,11 +79,13 @@ a.fhypertext:active {
 	text-decoration:none;
 }
 div.footer{
-	background-color: #9B001C;
+	background-color: #202020;
 }
 
 div.panelbody{
-	background-color: #3B3131;
+	background-color: black;
+	border-color: white;
+	border-style: solid;
 }
 
 body{
