@@ -3,7 +3,7 @@ console.log('Script Running');
     document.getElementById('desktop-view').style.visibility = 'visible';
  }
  function desktop_view(){
-  document.getElementById('view_meta').content = "width=1024";  
+  document.getElementById('view_meta').content = "width=1280";  
   document.getElementById('desktop-view').style.visibility = 'hidden';
  }
  
