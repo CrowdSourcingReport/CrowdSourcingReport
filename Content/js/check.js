@@ -1,5 +1,6 @@
-console.log('Script Running');
+
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    console.log('Script Running');
     var ref = document.createElement("a");
     var vie = document.createTextNode("Desktop View");
     ref.appendChild(vie);
