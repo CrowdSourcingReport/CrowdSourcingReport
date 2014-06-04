@@ -24,6 +24,8 @@ handlers:
   static_dir: Content/fonts
 - url: /Content/css
   static_dir: Content/css
+- url: /about
+  static_dir: Content/html/aboutus.html
 - url: /Content/carousal
   static_dir: Content/carousal
 - url: /Content/img
