@@ -1,13 +1,14 @@
-
+if(typeof(Storage)!=="undefined")
+  {
+  if (!sessionStorage.viewStatus)
+  {
+    sessionStorage.viewStatus=0;
+  }
+}
+  
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     console.log('Script Running');
-    var ref = document.createElement("a");
-    var vie = document.createTextNode("Desktop View");
-    ref.appendChild(vie);
-    ref.setAttribute("onClick","desktop_view()"); 
-    ref.setAttribute("href","#");
-    ref.setAttribute("id","desktop-view"); 
-    document.getElementById('desktopView').appendChild(ref);
+    sessionStorage.viewStatus=1;
  }
  
  
