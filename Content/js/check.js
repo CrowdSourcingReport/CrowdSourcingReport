@@ -1,9 +1,23 @@
-console.log('Script Running');
+if(typeof(Storage)!=="undefined")
+  {
+  if (!sessionStorage.viewStatus)
+  {
+    sessionStorage.viewStatus=0;
+  }
+}
+
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    document.getElementById('desktop-view').style.visibilty = 'visible'
- }
- function desktop_view(){
-  document.getElementById('view_meta').content = "width=1024";  
-  document.getElementById('desktop-view').style.visibilty = 'hidden'
+    console.log('Script Running');
+    if(sessionStorage.viewStatus===0){
+      sessionStorage.viewStatus = 1;
+      document.getElementById('desktopView').style.visibility = 'visible';
+      loaction.reload(true);
+    }   
  }
  
+ 
+ function desktop_view(){
+  document.getElementById('view_meta').content = "width=1280";  
+  document.getElementById('desktopView').style.visibility = 'hidden';
+  loaction.reload(true);
+}
