@@ -11,7 +11,7 @@ if(typeof(Storage)!=="undefined")
       sessionStorage.viewStatus = 1;
       document.getElementById('desktopView').style.visibility = 'visible';
       location.reload(true);
-      console.log('Script Running');
+      console.log('Script');
     }   
  }
  
