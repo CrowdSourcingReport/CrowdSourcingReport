@@ -32,6 +32,8 @@ handlers:
   static_dir: Content/carousal
 - url: /Content/img
   static_dir: Content/img
+- url: /signup
+  script: signup.app
 - url: /.*
   script: homepage.application
 
