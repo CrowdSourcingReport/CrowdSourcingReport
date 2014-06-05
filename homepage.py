@@ -13,7 +13,7 @@ class BaseHandler(webapp2.RequestHandler):
 		#template = env.get_template(filename )
 		#self.response.write(template.render(parameter))
 		path = os.path.join(os.path.dirname(__file__), 'html', filename)
-		self.response.out.write(template.render(path, params))
+		self.response.out.write(template.render(path, parameter))
 
 class MainPage(BaseHandler):
 	def get(self):
