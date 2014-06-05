@@ -1,0 +1,51 @@
+/* This css file will include css definations for all basic elements */
+
+/* Body */
+body{
+        background-color: black;
+}
+
+
+/* Headers */
+h1{
+        font-size: 50px;
+}
+
+h2{
+        font-size: 30px;
+}
+
+h3{
+        font-size: 20px;
+}
+
+/* Paragraph */
+p{
+        text-align: justify;
+}
+
+/* Hyperlinks */
+a:link{
+        color:white;
+        font-weight:bold;
+        text-decoration: none;
+}
+
+a:visited{
+        color:white;
+        font-weight:bold;
+        text-decoration: none;
+}
+
+a:hover{
+        font-weight:bold;
+        color:#FFCC99;
+        text-decoration: none;
+}
+
+a:active{
+        color:white;
+        font-weight:bold;
+        text-decoration: none;
+}
+

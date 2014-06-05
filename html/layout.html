@@ -3,74 +3,80 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    		<meta id='view_meta' name="viewport" content="width=device-width, initial-scale=1">
-		<script type="text/javascript" language="javascript" src="/Content/js/check.js"></script>
-    		{% block title %}
-    		{% endblock title %}
 
-    		<!-- Bootstrap CSS -->
-    			<link href="/Content/css/bootstrap.min.css" rel="stylesheet">
-    			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    			<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    			<!--[if lt IE 9]>
-      			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    			<![endif]-->
+		<!-- This defines viewport -->
+		<meta id='view_meta' name="viewport" content="width=device-width, initial-scale=1">
 
-		<!-- Custom CSS -->
-			<link rel="stylesheet" type="text/css" href="/Content/css/crwdsrc.css">
-
-		<!-- Header Begins -->
+		<!-- Javascript to determine screensize -->
+		<script type="text/javascript" language="javascript" src="/Content/js/checkScreen.js"></script>
 		
-  	</head>
+		<!-- Bootstrap CSS -->
+                <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements an$
+                        <!-- WARNING: Respond.js doesn't work if you view the p$
+                        <!--[if lt IE 9]>
+                        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.$
+                        <script src="https://oss.maxcdn.com/libs/respond.js/1.4$
+                        <![endif]-->
+
+
+		<!-- Template for title -->
+		<title>{% block title %}{% endblock title %}</title>
+
+		
+		<!-- Custom CSS -->
+		<link rel="stylesheet" type="text/css" href="/Content/css/crwdsrc.css">
+
+
+	</head>
 
 	<!-- Body Begin -->
   	<body>
-  		<!-- Navbar begins -->
+
+		<!-- Navbar begins -->
 		<nav class="navbar navbar-default" role="navigation">
   			<div class="container-fluid">
     			<!-- Brand and toggle get grouped for better mobile display -->
     				<div class="navbar-header">
-      					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        					<span class="sr-only">Toggle navigation</span>
-        					<span class="icon-bar"></span>
-        					<span class="icon-bar"></span>
-        					<span class="icon-bar"></span>
-      					</button>
-      					<a class="navbar-brand" href="#">CROWD SOURCING REPORT</a>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">CROWD SOURCING REPORT</a>
 				</div>
 
-    				<!-- Collect the nav links, forms, and other content for toggling -->
-    				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      					<ul class="nav navbar-nav">
-        					<li id="Projects"><a class="nav" href="#">Explore</a></li>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li id="Projects"><a class="nav" href="#">Explore</a></li>
 						<li id="Services"><a class="nav" href="#">Propose</a></li>
-						<li id="About_Us"><a class="nav" href="/aboutus.html">About</a></li>
-						<li id="feature"><a class="nav" href="/feature">Feature</a></li>         
-      					</ul>
-      					<ul class="nav navbar-nav navbar-right">
-        					<li><a class="nav" href="/signin">Sign In</a></li>
+						<li id="About_Us"><a class="nav" href="/about.html">About</a></li>
+						<li id="feature"><a class="nav" href="/feature">Features</a></li>         
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a class="nav" href="/signin">Sign In</a></li>
 						<li><a class="nav" href="/signin">Sign Up</a></li>
       					</ul>
-    				</div><!-- /.navbar-collapse -->
-  			</div><!-- /.container-fluid -->
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
 		</nav><!-- navbar ends -->		
 
 		<!-- Content Begins -->		
-		<div class="container">
 		{% block body %}
 		
 		{% endblock body %}
 		</div>	
 		<footer class="text-center">
 			<div class="footer-above">
-            			<div class="container">
-        				<div class="row">
+				<div class="container">
+					<div class="row">
 		    				<div class="footer-col col-md-4">
 							<h4><strong>CROUD SOURCING REPORT</strong></h4>
 		    				</div>
-                    				<div class="footer-col col-md-3">
-                        				<h4 >About Us</h4>
+	            				<div class="footer-col col-md-3">
+	                				<h4 >About Us</h4>
 							<ul class="list-unstyled footer">
 								<li><a href="#" class="fhypertext">What we do?</a></li>
 								<li><a href="#" class="fhypertext">Our Customers</a></li>
@@ -79,50 +85,49 @@
 								<li><a href="#" class="fhypertext">Terms of use</a></li>
 								<li><a href="#" class="fhypertext">Privacy Policy</a></li>
 							</ul>
-                				 </div>
-                				 <div class="footer-col col-md-2">
-                    					<h4>Projects</h4>
+	        				 </div>
+	        				 <div class="footer-col col-md-2">
+	            					<h4>Projects</h4>
 							<ul class="list-unstyled footer">
 								<li><a href="#" class="fhypertext">Sample 1</a></li>
 								<li><a href="#" class="fhypertext">Sample 2</a></li>
 								<li><a href="#" class="fhypertext">Sample 3</a></li>
 							</ul>
-                				   </div>
-                				  <div class="footer-col col-md-3">
-        					  	<h4 >Connect</h4>
+	        				   </div>
+	        				  <div class="footer-col col-md-3">
+						  	<h4 >Connect</h4>
 							<ul class="list-unstyled footer">
 								<li><a href="#" class="fhypertext">Facebook</a></li>
 								<li><a href="#" class="fhypertext">Twitter</a></li>
 								<li><a href="#" class="fhypertext">LinkedIn</a></li>
 								<li><a href="#" class="fhypertext">Blog</a></li>
 							</ul>
-        				        </div>
+					        </div>
 					    	<div class="footer-col col-md-2"></div>
-        					</div>
-        				</div>
+						</div>
+					</div>
 					<hr />
 				</div>
-        			<div class="footer-below">
-            				<div class="container">
-                				<div class="row">
-                					   Copyright &copy; 2014 GGC
-        					</div>
+				<div class="footer-below">
+					<div class="container">
+						<div class="row">
+							Copyright &copy; 2014 GGC
+						</div>
 				        </div>
-        			</div>
-    			</footer>
+				</div>
+			</footer>
 
 			
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    	
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
-    			<script src="/Content/js/bootstrap.min.js"></script>
-    			
-    		<!-- Page specific javascripts -->
-    		{% block scripts %}
-    		{% endblock scripts %}
+			<script src="/Content/js/bootstrap.min.js"></script>
 
+		<!-- Page specific javascripts -->
+		{% block scripts %}
+		{% endblock scripts %}
 
 	</body>
 </html>
