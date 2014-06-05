@@ -20,7 +20,7 @@ class BaseHandler(webapp2.RequestHandler):
 		params = {}
 	    #user = self.user_info
 	    #params['user'] = user
-	    path = os.path.join(os.path.dirname(__file__), 'html', 'frontPaqge.html')
+	    path = os.path.join(os.path.dirname(__file__), 'html', 'frontPage.html')
 	    self.response.out.write(template.render(path, params))
 	
 class MainPage(BaseHandler):
