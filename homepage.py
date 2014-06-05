@@ -27,4 +27,4 @@ class MainPage(BaseHandler):
 	def get(self):
             self.render('frontPage.html')        
         
-application=webapp2.WSGIApplication([('/',MainPage)],debug=True)
+application=webapp2.WSGIApplication([webapp2.Route('/',MainPage, name='home')],debug=True)
