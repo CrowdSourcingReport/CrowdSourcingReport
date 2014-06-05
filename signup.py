@@ -31,7 +31,7 @@ class AuthenticationPage(lib.BaseHandler):
 		else:
 			self.redirect("/home")
 		
-
+	
 
 app = webapp2.WSGIApplication([('/signup', AuthenticationPage)],debug=True)	
 
