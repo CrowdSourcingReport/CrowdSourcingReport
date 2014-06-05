@@ -1,200 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    		<meta id='view_meta' name="viewport" content="width=device-width, initial-scale=1">
-		<script type="text/javascript" language="javascript" src="/Content/js/check.js"></script>
-    		<title>Crowd Sourcing Report</title>
+{% extends "layout.html" %}
 
-    		<!-- Bootstrap CSS -->
-    			<link href="/Content/css/bootstrap.min.css" rel="stylesheet">
-    			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    			<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    			<!--[if lt IE 9]>
-      			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    			<![endif]-->
+{% block title %}Crowd Sourcing Report{% endblock title %}
 
-		<!-- Custom CSS -->
-			<link rel="stylesheet" type="text/css" href="/Content/css/crwdsrc.css">
+{% block body %}
+<div class="container">
+    
 
-		<!-- Header Begins -->
-		
-  	</head>
+    <!-- Carousel for Home Page -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Carousel indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="Content/img/homeslide1.jpg" alt="First slide">
+                <div class="carousel-caption">Slide 1</div>
+            </div>
+            <div class="item">
+                <img src="Content/img/homeslide2.jpg" alt="Second slide">
+                <div class="carousel-caption">Slide 2</div>
+            </div>
+            <div class="item">
+                <img src="Content/img/homeslide3.jpg" alt="Third slide">
+                <div class="carousel-caption">Slide 3</div>
+            </div>
+        </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel"data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel"data-slide="next">&rsaquo;</a>
+    </div>
+    <hr>
+    <!-- Carousel for home page ends -->
+    
+    <!-- Quick Features Pane -->
+    <div class="row">
+        <div class = "col-md-4">
+            <div class="panel panel-default panelbody">
+                <div class="panel-body">
+                    <h2 class="text-center">Accountibility</h1>
+                    <p class="text-center">Get a customized project development report...</p>
+                    <br />
+                    <p class="text-center">
+                        <button class="btn btn-primary" href="#" role="button">View details »</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class = "col-md-4">
+                                <div class="panel panel-default panelbody">
+                                        <div class="panel-body">
+                    <h2 class="text-center">History</h1>
+                    <p class="text-center">Browse through the past of the NGO</p>
+                    <br />
+                    <p class="text-center">
+                        <button class="btn btn-primary" href="#" role="button">View details »</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class = "col-md-4">
+                                <div class="panel panel-default panelbody">
+                                        <div class="panel-body">
+                    <h2 class="text-center">Smooth Payment</h1>
+                    <p class="text-center">We will handle all the payement and legal details regarding trasaction, making it as easy as 123</p>
+                    <p class="text-center">
+                        <button class="btn btn-primary" href="/services" role="button">View details »</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <!-- Quick Features Pane ends -->
 
-	<!-- Body Begin -->
-  	<body>
-		<div id="navbar"></div>
-		<!-- navbar ends -->		
+    <!-- Top Projects Pane -->
+    <h2 class="text-left">Top Projects</h2>
+    <div class="row">
+        <div id="top_proj" class="col-md-8">                
+                <div id="#Sample1">
+                    <div class="panel panel-default panelbody">
+                        <div class="panel-body">
+                            <p><a href="/Content/html/project_page.html">Sample 1</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div id="#Sample2">
+                    <div class="panel panel-default panelbody">
+                        <div class="panel-body">
+                            <p>Sample 2</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="#Sample3">
+                    <div class="panel panel-default panelbody">
+                        <div class="panel-body">
+                            <p>Sample 3</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="#Sample4">
+                    <div class="panel panel-default panelbody">
+                        <div class="panel-body">
+                            <p>Sample 4</p>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+        <div class="col-md-4"> 
+            <div class="panel panel-default panelbody">
+                <div class="panel-body">
+                    <h3><strong>Categories</strong></h3>
+                    <ul class="menu list-unstyled">
+                        <li><a href="#Sample1"><span>Sample 1</span></a></li>
+                        <li><a href="#Sample2"><span>Sample 2</span></a></li>
+                        <li><a href="#Sample3"><span>Sample 3</span></a></li>
+                        <li><a href="#Sample4"><span>Sample 4</span></a></li>
+                    </ul>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- Top Projects Pane ends -->
+</div>
+{% endblock body %}
 
-		<!-- Content Begins -->		
-		<div class="container">
-			
-		
-			<!-- Carousel for Home Page -->
-			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-				<!-- Carousel indicators -->
-				<ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
-				</ol>
-				<!-- Carousel items -->
-				<div class="carousel-inner">
-					<div class="item active">
-						<img src="Content/img/homeslide1.jpg" alt="First slide">
-						<div class="carousel-caption">Slide 1</div>
-					</div>
-					<div class="item">
-						<img src="Content/img/homeslide2.jpg" alt="Second slide">
-						<div class="carousel-caption">Slide 2</div>
-					</div>
-					<div class="item">
-						<img src="Content/img/homeslide3.jpg" alt="Third slide">
-						<div class="carousel-caption">Slide 3</div>
-					</div>
-				</div>
-				<!-- Carousel nav -->
-				<a class="carousel-control left" href="#myCarousel"data-slide="prev">&lsaquo;</a>
-				<a class="carousel-control right" href="#myCarousel"data-slide="next">&rsaquo;</a>
-			</div>
-			<hr>
-			<!-- Carousel for home page ends -->
-			
-			<!-- Quick Features Pane -->
-			<div class="row">
-				<div class = "col-md-4">
-					<div class="panel panel-default panelbody">
-						<div class="panel-body">
-							<h2 class="text-center">Accountibility</h1>
-							<p class="text-center">Get a customized project development report...</p>
-							<br />
-							<p class="text-center">
-								<button class="btn btn-primary" href="#" role="button">View details »</button>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class = "col-md-4">
-                                        <div class="panel panel-default panelbody">
-                                                <div class="panel-body">
-							<h2 class="text-center">History</h1>
-							<p class="text-center">Browse through the past of the NGO</p>
-							<br />
-							<p class="text-center">
-								<button class="btn btn-primary" href="#" role="button">View details »</button>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class = "col-md-4">
-                                        <div class="panel panel-default panelbody">
-                                                <div class="panel-body">
-							<h2 class="text-center">Smooth Payment</h1>
-							<p class="text-center">We will handle all the payement and legal details regarding trasaction, making it as easy as 123</p>
-							<p class="text-center">
-								<button class="btn btn-primary" href="/services" role="button">View details »</button>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr />
-			<!-- Quick Features Pane ends -->
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery.carouFredSel-6.2.1-packed.js"></script>
 
-			<!-- Top Projects Pane -->
-			<h2 class="text-left">Top Projects</h2>
-			<div class="row">
-				<div id="top_proj" class="col-md-8">				
-						<div id="#Sample1">
-							<div class="panel panel-default panelbody">
-								<div class="panel-body">
-									<p><a href="/Content/html/project_page.html">Sample 1</a></p>
-								</div>
-							</div>
-						</div>
-						<div id="#Sample2">
-							<div class="panel panel-default panelbody">
-								<div class="panel-body">
-									<p>Sample 2</p>
-								</div>
-							</div>
-						</div>
-						<div id="#Sample3">
-							<div class="panel panel-default panelbody">
-								<div class="panel-body">
-									<p>Sample 3</p>
-								</div>
-							</div>
-						</div>
-						<div id="#Sample4">
-							<div class="panel panel-default panelbody">
-								<div class="panel-body">
-									<p>Sample 4</p>
-								</div>
-							</div>
-						</div>
-					
-				</div>
-				<div class="col-md-4"> 
-					<div class="panel panel-default panelbody">
-						<div class="panel-body">
-							<h3><strong>Categories</strong></h3>
-							<ul class="menu list-unstyled">
-								<li><a href="#Sample1"><span>Sample 1</span></a></li>
-								<li><a href="#Sample2"><span>Sample 2</span></a></li>
-								<li><a href="#Sample3"><span>Sample 3</span></a></li>
-								<li><a href="#Sample4"><span>Sample 4</span></a></li>
-							</ul>
-						</div>	
-					</div>
-				</div>
-			</div>
-			<hr>
-			<!-- Top Projects Pane ends -->
-		</div>
-		<div id="SignIn"></div>
-		<div id="footer"></div>
-			
-
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    	
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-    			<script src="/Content/js/bootstrap.min.js"></script>
-			<script src="/Content/js/carousel.js"></script>
-	
-		<!-- CarouFredSel JavaScript Plugin -->
-			<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
-			<script type="text/javascript" language="javascript" src="/Content/carousal/jquery.carouFredSel-6.2.1-packed.js"></script>
-		
-		<!-- JavaScript to load Footer -->
-			<script type="text/javascript" language="javascript" src="/Content/js/LoadFooter.js"></script>
-		
-		<!-- JavaScript to load Sign In Modal -->
-			<script type="text/javascript" language="javascript" src="/Content/js/SignInModalLoader.js"></script>
-		
-		<!-- JavaScript to load Navbar -->
-			<script type="text/javascript" language="javascript" src="/Content/js/NavbarLoader.js"></script>
-		
-		<!-- Other Custom JavaScripts with description -->
-			<script>
-  			$(function(){
-				
-					// Top projects pane configuration
-					$("#top_proj").carouFredSel({
-						items		: 1,
-						direction	: "up",
-						responsive	: true,
-						auto		: false,
-						pagination	: {
-									container	: ".menu",
-									anchorBuilder	: false
-    								  }
-					});
-				});
-			</script>
-
-	</body>
-</html>
+<!-- Other Custom JavaScripts with description -->
+<script>
+  $(function(){
+    
+        // Top projects pane configuration
+        $("#top_proj").carouFredSel({
+            items        : 1,
+            direction    : "up",
+            responsive    : true,
+            auto        : false,
+            pagination    : {
+                        container    : ".menu",
+                        anchorBuilder    : false
+                          }
+        });
+    });
+</script>
+{% endblock scripts %}
