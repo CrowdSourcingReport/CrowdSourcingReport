@@ -10,7 +10,9 @@ env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dir
 class BaseHandler(webapp2.RequestHandler):
 	def render(self, filename, parameter = {}):
 		template = env.get_template(filename )
-		self.response.write(template.render(parameter)) 
+		#self.response.write(template.render(parameter))
+		path = os.path.join(os.path.dirname(__file__), 'html', filename)
+		self.response.out.write(template.render(path, params))
 
 class MainPage(BaseHandler):
 	def get(self):
