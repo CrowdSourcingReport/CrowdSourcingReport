@@ -1,4 +1,4 @@
-$('#navbar').load("/Content/html/navbar.html");
+$('#navbar').load("/html/navbar.html");
 
 
 

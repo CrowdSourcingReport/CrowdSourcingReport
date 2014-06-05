@@ -18,8 +18,9 @@ libraries:
 handlers:
 - url: /Content/js
   static_dir: Content/js
-- url: /Content/html
-  static_dir: Content/html
+- url: /html
+  static_dir: html
+  application_readable: true
 - url: /Content/fonts
   static_dir: Content/fonts
 - url: /Content/css
