@@ -1,6 +1,7 @@
 #oggpnosn
 #hkhr
 import webapp2
+from google.appengine.ext.webapp import template
 import random
 import jinja2
 import os
@@ -9,8 +10,10 @@ env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dir
 
 class BaseHandler(webapp2.RequestHandler):
 	def render(self, filename, parameter = {}):
-		template = env.get_template(filename )
-		self.response.write(template.render(parameter)) 
+		#template = env.get_template(filename )
+		#self.response.write(template.render(parameter))
+		path = os.path.join(os.path.dirname(__file__), 'html', filename)
+		self.response.out.write(template.render(path, parameter))
 
 class MainPage(BaseHandler):
 	def get(self):
