@@ -1,6 +1,7 @@
 #oggpnosn
 #hkhr
 import webapp2
+from google.appengine.ext.webapp import template
 import random
 import jinja2
 import os
