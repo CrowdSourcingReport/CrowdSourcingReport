@@ -29,5 +29,5 @@ handlers:
 - url: /signup
   script: signup.app
 - url: /.*
-  script: homepage.application
+  script: main.application
 
