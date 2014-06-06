@@ -32,5 +32,7 @@ class AboutHandler(BaseHandler):
 class FeatureHandler(BaseHandler):
 	def get(self):
             self.render('feature.html')        
+
+
        
 application=webapp2.WSGIApplication([('/', MainPageHandler),('/feature',FeatureHandler),('/about',AboutHandler),('/explore',ExploreHandler),('/propose',ProposeHandler)],debug=True)

@@ -26,11 +26,9 @@ class BaseHandler(webapp2.RequestHandler):
 
 #data model for storing user data
 class User(ndb.Model):
+	userid=ndb.StringProperty(required=True)
 	name=ndb.StringProperty(required=True)
-	username=ndb.StringProperty(required=True)
-	password=ndb.StringProperty(required=True)
-	email=ndb.StringProperty(required=True)
-
+	gender=ndb.StringProperty(required=True)
 class AuthenticationPage(BaseHandler):
 	def get(self):
 		user = users.get_current_user()
@@ -42,6 +40,32 @@ class AuthenticationPage(BaseHandler):
 			self.redirect("/home")
 		
 	
-
-app = webapp2.WSGIApplication([('/signup', AuthenticationPage)],debug=True)	
+class RegistrationPage(BaseHandler):
+	def get(self):
+		user=users.get_current_user()
+		if user:
+			self.render("registration.html")
+		else:
+			self.redirect("/signup")
+	
+	def post(self):
+		user = users.get_current_user()
+		userid = user.user_id()
+ 		authenticationQuery = ndb.gql("SELECT * FROM User WHERE userid="+str(userid),10)
+		if not authenticationQuery:
+		
+			name = self.request.get("name")	
+			gender = self.request.get("gender")
+			userObject = User()
+			userObject.userid=userid
+			userObject.name = name
+			userObject.gender = gender
+			userObject.put()
+			self.response.write("successfull!")
+		else: 
+			self.response.write("user exist")	
+		
+		#self.redirect("/home")
+				
+app = webapp2.WSGIApplication([('/signup', AuthenticationPage),('/signup/registration',RegistrationPage)],debug=True)	
 
