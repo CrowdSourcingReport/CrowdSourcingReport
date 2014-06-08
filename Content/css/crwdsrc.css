@@ -79,6 +79,25 @@ a.fhypertext:active {
 	text-decoration:none;
 }
 
+.vc-viewport{
+	position:relative;
+	padding-top: 50vh;
+}
+
+.vhc-viewport{
+        position:relative;
+        padding-top: 25vh;
+}
+
+
+div.full-viewport{
+	height: 100vh;
+}
+
+div.half-viewport{
+        height: 50vh;
+}
+
 div.panelbody{
 	background-color: black;
 	border-color: white;
