@@ -6,6 +6,11 @@ h2{
 	font-size: 30px;
 }
 
+hr{
+	color:yellow;
+	background-color:yellow;
+}
+
 a:link{
 	color:white;
 	font-weight:bold;
@@ -105,7 +110,8 @@ div.panelbody{
 }
 
 body{
-	background-color: black;
+	background-image: url("/Content/img/bg.png");
+	background-attachment: fixed;
 }
 
 p.moderate{
