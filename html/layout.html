@@ -56,17 +56,22 @@
 						<li id="feature"><a class="nav" href="/feature">Features</a></li>         
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a class="nav" href="/signin">
-							<div class="dropdown">
-  								<button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
-							    		Sign In
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-								</ul>
-							</div>
-						</a></li>
+						<li class="dropdown">
+						    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+							      Sign In<span class="caret"></span>
+						    </a>
+					     <ul class="dropdown-menu">
+    							<li><span id="signinButton">
+ 								 <span class="g-signin"
+								    data-callback="signinCallback"
+								    data-clientid="CLIENT_ID"
+								    data-cookiepolicy="single_host_origin"
+								    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+								    data-scope="https://www.googleapis.com/auth/plus.login">
+							  </span>
+							</span></li>
+    						</ul>
+					  </li>
       					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div><!-- /.container-fluid -->
@@ -133,6 +138,14 @@
 	
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 			<script src="/Content/js/bootstrap.min.js"></script>
+		<!-- Place this asynchronous JavaScript just before your </body> tag -->
+			<script type="text/javascript">
+			(function() {
+			       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			       po.src = 'https://apis.google.com/js/client:plusone.js';
+			       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+			     })();
+			</script>
 
 		<!-- Page specific javascripts -->
 		{% block scripts %}
