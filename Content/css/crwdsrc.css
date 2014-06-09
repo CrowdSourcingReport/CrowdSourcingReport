@@ -6,6 +6,11 @@ h2{
 	font-size: 30px;
 }
 
+hr{
+	color:yellow;
+	background-color:yellow;
+}
+
 a:link{
 	color:white;
 	font-weight:bold;
@@ -79,6 +84,25 @@ a.fhypertext:active {
 	text-decoration:none;
 }
 
+.vc-viewport{
+	position:relative;
+	padding-top: 50vh;
+}
+
+.vhc-viewport{
+        position:relative;
+        padding-top: 25vh;
+}
+
+
+div.full-viewport{
+	height: 100vh;
+}
+
+div.half-viewport{
+        height: 50vh;
+}
+
 div.panelbody{
 	background-color: black;
 	border-color: white;
@@ -86,7 +110,8 @@ div.panelbody{
 }
 
 body{
-	background-color: black;
+	background-image: url("/Content/img/bg.png");
+	background-attachment: fixed;
 }
 
 p.moderate{
