@@ -47,6 +47,9 @@ class FeatureHandler(BaseHandler):
 	def get(self):
             self.render('features.html')        
 
+class HomeHandler(BaseHandler):
+	def get(self):
+		self.render('home.html')
 
        
-application=webapp2.WSGIApplication([('/', MainPageHandler),('/features',FeatureHandler),('/about',AboutHandler),('/explore',ExploreHandler),('/propose',ProposeHandler)],debug=True)
+application=webapp2.WSGIApplication([('/', MainPageHandler),('/features',FeatureHandler),('/about',AboutHandler),('/explore',ExploreHandler),('/propose',ProposeHandler),('/home',HomeHandler)],debug=True)
