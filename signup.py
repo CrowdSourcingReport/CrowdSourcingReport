@@ -51,9 +51,8 @@ class RegistrationPage(BaseHandler):
 	def post(self):
 		user = users.get_current_user()
 		userid = user.user_id()
- 		authenticationQuery = ndb.gql("SELECT * FROM User WHERE userid="+str(userid),10)
+ 		authenticationQuery = User.query(User.userid == userid).fetch(1)
 		if not authenticationQuery:
-		
 			name = self.request.get("name")	
 			gender = self.request.get("gender")
 			userObject = User()
@@ -61,11 +60,9 @@ class RegistrationPage(BaseHandler):
 			userObject.name = name
 			userObject.gender = gender
 			userObject.put()
-			self.response.write("successfull!")
 		else: 
-			self.response.write("user exist")	
-		
-		#self.redirect("/home")
+			self.response.write("<script>alert('User already exist!')</script>")	
+		self.redirect("/")
 				
 app = webapp2.WSGIApplication([('/signup', AuthenticationPage),('/signup/registration',RegistrationPage)],debug=True)	
 
