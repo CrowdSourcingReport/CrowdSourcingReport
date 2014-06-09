@@ -37,32 +37,33 @@ class AuthenticationPage(BaseHandler):
 			parameter["signinUrlGoogle"] = users.create_login_url()
 			self.render("authenticationPage.html", parameter)
 		else:
-			self.redirect("/home")
+			self.redirect("/")
 		
 	
 class RegistrationPage(BaseHandler):
 	def get(self):
 		user=users.get_current_user()
 		if user:
-			self.render("registration.html")
+			userid = user.user_id()
+ 			authenticationUser = User.query(User.userid == userid).fetch(1)
+			if  not authenticationUser:
+				self.render("registration.html")
+			else:
+				self.redirect("/")
 		else:
 			self.redirect("/signup")
 	
 	def post(self):
-		user = users.get_current_user()
+		user= users.get_current_user()
+		name = self.request.get("name")	
 		userid = user.user_id()
- 		authenticationQuery = User.query(User.userid == userid).fetch(1)
-		if not authenticationQuery:
-			name = self.request.get("name")	
-			gender = self.request.get("gender")
-			userObject = User()
-			userObject.userid=userid
-			userObject.name = name
-			userObject.gender = gender
-			userObject.put()
-		else: 
-			self.response.write("<script>alert('User already exist!')</script>")	
-		self.redirect("/")
+		gender = self.request.get("gender")
+		userObject = User()
+		userObject.userid=userid
+		userObject.name = name
+		userObject.gender = gender
+		userObject.put()
+		self.redirect("/home")
 				
 app = webapp2.WSGIApplication([('/signup', AuthenticationPage),('/signup/registration',RegistrationPage)],debug=True)	
 

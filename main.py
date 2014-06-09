@@ -5,8 +5,16 @@ from google.appengine.ext.webapp import template
 import random
 import jinja2
 import os
+from google.appengine.ext import ndb
+from google.appengine.api import users
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'html')),extensions=['jinja2.ext.autoescape'], autoescape=True)
+
+#data model for storing user data
+class User(ndb.Model):
+	userid=ndb.StringProperty(required=True)
+	name=ndb.StringProperty(required=True)
+	gender=ndb.StringProperty(required=True)
 
 class BaseHandler(webapp2.RequestHandler):
 	def render(self, filename, parameter = {}):
@@ -15,7 +23,13 @@ class BaseHandler(webapp2.RequestHandler):
 	
 class MainPageHandler(BaseHandler):
 	def get(self):
-            self.render('frontPage.html')        
+		user=users.get_current_user()
+		if user:
+			userid = user.user_id()
+	 	    	authenticationQuery = User.query(User.userid == userid).fetch(1)	 	    	      
+			if not authenticationQuery:
+				self.redirect("/signup/registration")    
+		self.render('frontPage.html')        
 
 class ProposeHandler(BaseHandler):
 	def get(self):
