@@ -18,6 +18,9 @@ class User(ndb.Model):
 
 class BaseHandler(webapp2.RequestHandler):
 	def render(self, filename, parameter = {}):
+		parameter["users"] = users
+		user = users.get_current_user()
+		parameter["user"] = user
 		template = env.get_template(filename )
 		self.response.write(template.render(parameter))
 	

@@ -29,16 +29,7 @@ class User(ndb.Model):
 	userid=ndb.StringProperty(required=True)
 	name=ndb.StringProperty(required=True)
 	gender=ndb.StringProperty(required=True)
-class AuthenticationPage(BaseHandler):
-	def get(self):
-		user = users.get_current_user()
-		if not user:
-			parameter={}	
-			parameter["signinUrlGoogle"] = users.create_login_url()
-			self.render("authenticationPage.html", parameter)
-		else:
-			self.redirect("/")
-		
+
 	
 class RegistrationPage(BaseHandler):
 	def get(self):
@@ -65,5 +56,5 @@ class RegistrationPage(BaseHandler):
 		userObject.put()
 		self.redirect("/home")
 				
-app = webapp2.WSGIApplication([('/signup', AuthenticationPage),('/signup/registration',RegistrationPage)],debug=True)	
+app = webapp2.WSGIApplication([('/signup/registration',RegistrationPage)],debug=True)	
 
