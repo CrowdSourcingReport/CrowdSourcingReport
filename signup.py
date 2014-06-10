@@ -12,23 +12,9 @@ import re
 from google.appengine.ext import ndb
 import lib 
 from google.appengine.api import users
-
-#jinja templating environment
-env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'html')), extensions=['jinja2.ext.autoescape'], autoescape=True)
+from lib import User, BaseHandler
 
 
-#base handler that cointains all the required charteristic
-class BaseHandler(webapp2.RequestHandler):
-        def render(self,filename, parameter={}):
-                template = env.get_template(filename)
-                self.response.write(template.render(parameter))
-
-
-#data model for storing user data
-class User(ndb.Model):
-	userid=ndb.StringProperty(required=True)
-	name=ndb.StringProperty(required=True)
-	gender=ndb.StringProperty(required=True)
 
 	
 class RegistrationPage(BaseHandler):
