@@ -4,4 +4,8 @@
 /Faq		Faq.html
 /TermsOfUse	TermsOfUse.html
 /PrivacyPolicy	PrivacyPolicy.html
+/features	features.html
+/about 		aboutUs.html
+/propose	propose.html
+/explore	explore.html
 

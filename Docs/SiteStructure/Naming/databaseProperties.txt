@@ -1,0 +1,5 @@
+User:
+	name	string
+	userid	string
+	gender 	string
+
