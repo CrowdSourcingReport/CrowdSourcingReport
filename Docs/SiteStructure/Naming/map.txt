@@ -1,0 +1,7 @@
+/WhatWeDo	WhatWeDo.html
+/Customers	Customer.html
+/Media		Media.html
+/Faq		Faq.html
+/TermsOfUse	TermsOfUse.html
+/PrivacyPolicy	PrivacyPolicy.html
+

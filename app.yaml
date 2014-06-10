@@ -30,6 +30,9 @@ handlers:
   script: signup.app
 - url: /signup/.*
   script: signup.app
+- url: /home
+  script: main.application
+  login: required
 - url: /.*
   script: main.application
 
