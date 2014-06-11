@@ -31,6 +31,8 @@ handlers:
 - url: /home
   script: main.application
   login: required
+- url: /admin/.*
+  script: admin.app
 - url: /.*
   script: main.application
 

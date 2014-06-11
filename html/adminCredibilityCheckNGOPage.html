@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block body %}
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2  ">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="/admin/Authenticate">Authenticate</a></li>
+            <li><a href="/admin/CredibilityCheck">Credibility Check</a></li>
+          </ul>
+        </div>
+                     
+      <div class="col-sm-10 ">
+	<h1>{{ngo.name}}</h1>
+		<p>{{ngo.description}}</p>
+		<p>80G Registration No:{{ngo.eightygRegistrationNumber}}</p>
+		
+      </div>
+    </div>
+    </div>
+
+{% endblock body %}
+
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+{% endblock scripts %}
+
