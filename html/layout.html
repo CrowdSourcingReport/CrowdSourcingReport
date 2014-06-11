@@ -65,8 +65,11 @@
 						    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							      Sign In<span class="caret"></span>
 						    </a>
-					     <ul class="dropdown-menu">
-    							<li><a href="{{users.create_login_url()}}"><img width="240" height="40" src="/Content/img/sign-in-with-google.png"/></a></li>
+					     <ul class="dropdown-menu" style="min-width:10px">
+    							<li><a href="{{users.create_login_url()}}"> <div id="customBtn">
+   							   <span class="icon"></span>
+   							   <span class="buttonText">Sign in with Google</span>
+    						</div></a></li>
     						</ul>
 					  </li>
       					</ul>
