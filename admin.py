@@ -30,21 +30,21 @@ class CredibilityCheckNGOHandler(BaseHandler):
 		if descriptionAuthenticity == "on" and eightygAuthenticity == "on":
 			for ngo in ngoList:	
 				mail.send_mail(sender=" <tanaygahlot@gmail.com>",
-    					          to="Tanay gahlot <tanaygahlot@gmail.com>",
+    					          to= "<"+ngo.email+">",
               					subject="Your NGO has been approved",
-              					body="""Dear :"""+ngo.name+"""Your csr.com account has been approved.  You can now visit
+              					body="""Dear :"""+ngo.name+"""\nYour csr.com account has been approved.  You can now visit
 http://www.csr.com/ and sign in using your Google Account to access new features.Please let us know if you have any questions.
 The csr.com Team
 """)				
 		else:
-			failiureReport = "Places where your ngo failed\n"
+			failiureReport = "\nPlaces where your ngo failed\n"
 			if descriptionAuthenticity != "on":	
 				failiureReport+=" The Description you provided isnt apt for a site like us.\n"
 			elif eightygAuthenticity != "off": 
 				failiureReport+=" Your 80G no isnt valid\n"
 			for ngo in ngoList:
                                 mail.send_mail(sender=" <tanaygahlot@gmail.com>",
-                                                  to="Tanay gahlot <tanaygahlot@gmail.com>",
+                                                  to= "<"+ngo.email+">",
                                                 subject="Your NGO has failed authentication test",
                                                 body="""Dear :"""+ ngo.name + failiureReport +"""Please let us know if you have any questions.
 The csr.com Team
@@ -59,6 +59,12 @@ class CreateFakeAccount(BaseHandler):
 			ngo.eightygRegistrationNumber = str(random.randrange(1,10000))
 			ngo.description = str(random.randrange(1,100000000000000000000))
 			ngo.userid = str(random.randrange(1,1000000))
+			ngo.email = "tanaygahlot@gmail.com"
 			ngo.put()
 		self.response.write("Done!")
-app = webapp2.WSGIApplication([('/admin/CredibilityCheck', CredibilityCheckHandler),('/admin/fake',CreateFakeAccount),('/admin/CredibilityCheck/([0-9]+)', CredibilityCheckNGOHandler)])
+
+class AdminHandler(BaseHandler):
+	def get(self):
+		self.render("adminHomePage.html")
+
+app = webapp2.WSGIApplication([('/admin/CredibilityCheck', CredibilityCheckHandler),('/admin/fake',CreateFakeAccount),('/admin/CredibilityCheck/([0-9]+)', CredibilityCheckNGOHandler), ('/admin', AdminHandler )])

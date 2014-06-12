@@ -1,5 +1,10 @@
 User:
-	name	string
-	userid	string
-	gender 	string
-
+	name		string
+	userid		string
+	gender 		string
+NGO: 
+	name 		string
+	userid 		string
+	credibility 	boolean
+	email		string
+		
