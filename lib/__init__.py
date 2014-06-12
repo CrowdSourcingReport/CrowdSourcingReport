@@ -17,6 +17,23 @@ class User(ndb.Model):
         name=ndb.StringProperty(required=True)
         gender=ndb.StringProperty(required=True)
 
+#data model for storing ngo data 
+class NGO(ndb.Model):
+	userid = ndb.StringProperty(required = True)
+	name = ndb.StringProperty(required = True)
+	credibility = ndb.BooleanProperty(required = True)
+	eightygRegistrationNumber = ndb.StringProperty(required = True)
+	description = ndb.StringProperty(required = True)
+	email = ndb.StringProperty(required = True)
+
+#data model for storing project data 
+class Project(ndb.Model):
+	title = ndb.StringProperty(required=True)
+	description = ndb.StringProperty(required = True)
+	ngo = ndb.StringProperty(required = True)
+	authenticity = ndb.BooleanProperty(required = True)	
+	
+
 #base handler that cointains all the required charteristic
 class BaseHandler(webapp2.RequestHandler):
         def render(self, filename, parameter = {}):

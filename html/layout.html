@@ -66,7 +66,7 @@
 							      Sign In<span class="caret"></span>
 						    </a>
 					     <ul class="dropdown-menu" style="min-width:10px">
-    							<li><a href="{{users.create_login_url()}}"> <div id="customBtn">
+    							<li><a href="{{users.create_login_url()}}"> <div id="customBtn" class="gButton">
    							   <span class="icon"></span>
    							   <span class="buttonText">Sign in with Google</span>
     						</div></a></li>
@@ -143,14 +143,7 @@
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 			<script src="/Content/js/bootstrap.min.js"></script>
 		<!-- Place this asynchronous JavaScript just before your </body> tag -->
-			<script type="text/javascript">
-			(function() {
-			       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-			       po.src = 'https://apis.google.com/js/client:plusone.js';
-			       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-			     })();
-			</script>
-
+		
 		<!-- Page specific javascripts -->
 		{% block scripts %}
 		{% endblock scripts %}

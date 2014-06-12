@@ -15,16 +15,29 @@ from google.appengine.api import users
 from lib import User, BaseHandler
 
 
+class RegistrationHandler(BaseHandler):
+	def get(self):
+		user = users.get_current_user()
+		if user:
+			self.render("registration.html")
+		else:
+			self.redirect("/")
+	def post(self):
+		userChoice = self.request.get("userChoice")
+		if userChoice=="ngo":
+			self.redirect("/signup/UserRegistration")
+		else:
+			self.redirect("/signup/NGORegistration")
 
 	
-class RegistrationPage(BaseHandler):
+class UserRegistrationPage(BaseHandler):
 	def get(self):
 		user=users.get_current_user()
 		if user:
 			userid = user.user_id()
  			authenticationUser = User.query(User.userid == userid).fetch(1)
 			if  not authenticationUser:
-				self.render("registration.html")
+				self.render("userRegistration.html")
 			else:
 				self.redirect("/")
 		else:
@@ -42,5 +55,5 @@ class RegistrationPage(BaseHandler):
 		userObject.put()
 		self.redirect("/home")
 				
-app = webapp2.WSGIApplication([('/signup/registration',RegistrationPage)],debug=True)	
+app = webapp2.WSGIApplication([('/signup/UserRegistration',UserRegistrationPage),('/signup/registration',RegistrationHandler)],debug=True)	
 
