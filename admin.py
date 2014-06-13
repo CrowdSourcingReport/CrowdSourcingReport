@@ -125,4 +125,4 @@ The csr.com Team
 The csr.com Team
 """)
 
-app = webapp2.WSGIApplication([('/admin/CredibilityCheck', CredibilityCheckHandler),('/admin/fake/NGO',CreateFakeNGOAccount),('/admin/fake/Project',CreateFakeProject),('/admin/CredibilityCheck/([0-9]+)', CredibilityCheckNGOHandler), ('/admin', AdminHandler ), ('/admin/Authenticate', AuthenticateHandler), ('/admin/Authenticate/([0-9]+)')])
+app = webapp2.WSGIApplication([('/admin/CredibilityCheck', CredibilityCheckHandler),('/admin/fake/NGO',CreateFakeNGOAccount),('/admin/fake/Project',CreateFakeProject),('/admin/CredibilityCheck/([0-9]+)', CredibilityCheckNGOHandler), ('/admin', AdminHandler ), ('/admin/Authenticate', AuthenticateHandler), ('/admin/Authenticate/([0-9]+)', AuthenticateProjectHandler)])
