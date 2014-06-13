@@ -26,7 +26,7 @@ class CredibilityCheckNGOHandler(BaseHandler):
 		eightygAuthenticity = self.request.get("eightygAuthenticity")
 		ngoQuery = NGO.query(NGO.userid == userid)
                 ngoList = ngoQuery.fetch(1)
-
+		parameter = {}
 		if descriptionAuthenticity == "on" and eightygAuthenticity == "on":
 			for ngo in ngoList:	
 				mail.send_mail(sender=" <tanaygahlot@gmail.com>",
@@ -34,8 +34,11 @@ class CredibilityCheckNGOHandler(BaseHandler):
               					subject="Your NGO has been approved",
               					body="""Dear :"""+ngo.name+"""\nYour csr.com account has been approved.  You can now visit
 http://www.csr.com/ and sign in using your Google Account to access new features.Please let us know if you have any questions.
-The csr.com Team
+The csr.com Team		
 """)				
+				parameter["message"]= "Success Mail Sent!"
+				self.render("responseAdmin.html", parameter)
+
 		else:
 			failiureReport = "\nPlaces where your ngo failed\n"
 			if descriptionAuthenticity != "on":	
@@ -49,6 +52,9 @@ The csr.com Team
                                                 body="""Dear :"""+ ngo.name + failiureReport +"""Please let us know if you have any questions.
 The csr.com Team
 """)
+				parameter["message"] = "Failure Report Sent!"
+				self.render("responseAdmin.html", parameter)
+
 			
 class CreateFakeNGOAccount(BaseHandler):
 	def get(self):
@@ -104,7 +110,7 @@ class AuthenticateProjectHandler(BaseHandler):
 		ngoQuery = NGO.query(NGO.userid == ngoUserid)
 		ngoList = ngoQuery.fetch(1)
                 projectList = projectQuery.fetch(1)
-
+		parameter = {}
                 if descriptionAuthenticity == "on":
                         for project in projectList:
 				for ngo in ngoList:
@@ -114,7 +120,9 @@ class AuthenticateProjectHandler(BaseHandler):
 	                                                body="""Dear :"""+ ngo.name + failiureReport +"""Please let us know if you have any questions.
 The csr.com Team
 """)
-					self.response.write("Success Mail sent to "+ ngo.email)
+					parameter["message"]= "Success Mail Sent!"
+    		                        self.render("responseAdmin.html", parameter)
+
                 else:
                 	failiureReport = "\nPlaces where your project failed\n"
                         failiureReport+=" The Description you provided isnt apt for a site like us.\n"
@@ -122,4 +130,7 @@ The csr.com Team
 				for project in projectList:
         	                       	mail.send_mail(sender=" <tanaygahlot@gmail.com>", to= "<"+ngo.email+">", subject="Your Project has failed authentication test",body="""Dear :"""+ ngo.name + failiureReport +"""Please let us know if you have any questions. \nThe csr.com Team""")
 
+					parameter["message"]= "Failure Report Sent!"
+        	                        self.render("responseAdmin.html", parameter)
+	
 app = webapp2.WSGIApplication([('/admin/CredibilityCheck', CredibilityCheckHandler),('/admin/fake/NGO',CreateFakeNGOAccount),('/admin/fake/Project',CreateFakeProject),('/admin/CredibilityCheck/([0-9]+)', CredibilityCheckNGOHandler), ('/admin', AdminHandler ), ('/admin/Authenticate', AuthenticateHandler), ('/admin/Authenticate/([0-9_a-zA-Z]+)', AuthenticateProjectHandler)])
