@@ -120,6 +120,6 @@ The csr.com Team
                         failiureReport+=" The Description you provided isnt apt for a site like us.\n"
                         for ngo in ngoList:
 				for project in projectList:
-        	                       	mail.send_mail(sender=" <tanaygahlot@gmail.com>", to= "<"+ngo.email+">", subject="Your NGO has failed authentication test",body="""Dear :"""+ ngo.name + failiureReport +"""Please let us know if you have any questions. \nThe csr.com Team""")
+        	                       	mail.send_mail(sender=" <tanaygahlot@gmail.com>", to= "<"+ngo.email+">", subject="Your Project has failed authentication test",body="""Dear :"""+ ngo.name + failiureReport +"""Please let us know if you have any questions. \nThe csr.com Team""")
 
 app = webapp2.WSGIApplication([('/admin/CredibilityCheck', CredibilityCheckHandler),('/admin/fake/NGO',CreateFakeNGOAccount),('/admin/fake/Project',CreateFakeProject),('/admin/CredibilityCheck/([0-9]+)', CredibilityCheckNGOHandler), ('/admin', AdminHandler ), ('/admin/Authenticate', AuthenticateHandler), ('/admin/Authenticate/([0-9_a-zA-Z]+)', AuthenticateProjectHandler)])

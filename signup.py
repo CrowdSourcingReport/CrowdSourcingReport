@@ -24,13 +24,14 @@ class RegistrationHandler(BaseHandler):
 			self.redirect("/")
 	def post(self):
 		userChoice = self.request.get("userChoice")
+		self.response.write(userChoice)		
 		if userChoice=="ngo":
 			self.redirect("/signup/UserRegistration")
 		else:
 			self.redirect("/signup/NGORegistration")
 
 	
-class UserRegistrationPage(BaseHandler):
+class UserRegistrationHandler(BaseHandler):
 	def get(self):
 		user=users.get_current_user()
 		if user:
@@ -41,7 +42,7 @@ class UserRegistrationPage(BaseHandler):
 			else:
 				self.redirect("/")
 		else:
-			self.redirect("/signup")
+			self.redirect("/")
 	
 	def post(self):
 		user= users.get_current_user()
@@ -54,6 +55,31 @@ class UserRegistrationPage(BaseHandler):
 		userObject.gender = gender
 		userObject.put()
 		self.redirect("/home")
-				
-app = webapp2.WSGIApplication([('/signup/UserRegistration',UserRegistrationPage),('/signup/registration',RegistrationHandler)],debug=True)	
+
+class NGORegistrationHandler(BaseHandler):
+	def get(self):
+		user=users.get_current_user()
+		if user:
+			userid = user.user_id()
+ 			authenticationUser = User.query(User.userid == userid).fetch(1)
+			if  not authenticationUser:
+				self.render("userRegistration.html")
+			else:
+				self.redirect("/")
+		else:
+			self.redirect("/")
+	
+	def post(self):
+		user= users.get_current_user()
+		name = self.request.get("name")	
+		userid = user.user_id()
+		gender = self.request.get("gender")
+		userObject = User()
+		userObject.userid=userid
+		userObject.name = name
+		userObject.gender = gender
+		userObject.put()
+		self.redirect("/home")
+			
+app = webapp2.WSGIApplication([('/signup/UserRegistration',UserRegistrationHandler),('/signup/registration',RegistrationHandler),('/signup/NGORegistration',NGORegistrationHandler)],debug=True)	
 
