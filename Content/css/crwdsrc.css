@@ -188,11 +188,14 @@ img.middle{
     span.buttonText {
       display: inline-block;
       vertical-align: middle;
-      padding-left: 7px;
-      padding-right: 7px;
+      padding:auto;
       font-size: 14px;
       font-weight: bold;
       /* Use the Roboto font that is loaded in the <head> */
       font-family: 'Roboto',arial,sans-serif;
     }
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
 
