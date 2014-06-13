@@ -7,4 +7,10 @@ NGO:
 	userid 		string
 	credibility 	boolean
 	email		string
+	description	string
 		
+Project:
+	title 		string
+	ngo 		string
+	description	string
+	authenticity	Boolean"
