@@ -1,10 +1,18 @@
 User:
-	name		string
-	userid		string
-	gender 		string
+	name					string
+	userid					string
+	gender 					string
+
 NGO: 
-	name 		string
-	userid 		string
-	credibility 	boolean
-	email		string
-		
+	name 					string
+	userid 					string
+	credibility 				boolean
+	email					string
+	description				string
+	eightygRegistrationNumber		string		
+
+Project:
+	title			 		string
+	ngo 					string
+	description				string
+	authenticity				Boolean

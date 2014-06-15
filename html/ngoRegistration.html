@@ -6,7 +6,7 @@
 
 <form class="form-horizontal" method="post">
   <fieldset>
-    <legend>Register</legend>
+    <legend>NGO Registration</legend>
     <div class="form-group">
       <label for="inputText" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-10">
@@ -14,24 +14,20 @@
       </div>
     </div>
     
-   
     <div class="form-group">
-      <label class="col-lg-2 control-label">Gender</label>
+      <label for="textArea" class="col-lg-2 control-label">Description</label>
       <div class="col-lg-10">
-        <div class="radio">
-          <label>
-            <input type="radio" name="gender" id="optionsRadios1" value="male" checked="">
-            Male
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="gender" id="optionsRadios2" value="female">
-            Female
-          </label>
-        </div>
+        <textarea class="form-control" rows="3" id="textArea" name= "description"></textarea>
       </div>
     </div>
+
+    <div class="form-group">
+      <label for="inputText" class="col-lg-2 control-label">80G Registration Number</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputText"  name="eightygRegistrationNumber" placeholder="80G">
+      </div>
+    </div>
+   
       <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button class="btn btn-default">Cancel</button>

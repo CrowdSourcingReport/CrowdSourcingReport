@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}Crowd Sourcing Report{% endblock title %}
+
+{% block body %}
+	<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2  ">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="/admin/Authenticate">Authenticate</a></li>
+            <li><a href="/admin/CredibilityCheck">Credibility Check</a></li>
+          </ul>
+        </div>
+	    <div class="col-sm-10 ">
+		<h1>{{message}}</h1>
+		<a href="/admin/CredibilityCheck"><h3> Credibility Check For NGO</h3></a>
+		<a href="/admin/Authenticate"><h3>Authentication for Project</h3></a>
+      </div>
+	</div>
+	</div>
+
+
+{% endblock body %}
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/js/slidingPanels.js"></script>
+{% endblock scripts %}
+
