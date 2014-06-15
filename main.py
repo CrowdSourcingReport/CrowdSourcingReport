@@ -63,7 +63,8 @@ class PrivacyPolicyHandler(BaseHandler):
 	def get(self):
             self.render('PrivacyPolicy.html')        
 
-
-
+class LoginHandler(BaseHandler):
+	def get(self):
+            self.render('login.html')        
        
-application=webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler),('/propose', ProposeHandler),('/home', HomeHandler),('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler)],debug=True)
+application=webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler),('/propose', ProposeHandler),('/home', HomeHandler),('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler),('/login', LoginHandler)],debug=True)
