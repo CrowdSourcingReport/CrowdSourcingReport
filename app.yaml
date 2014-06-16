@@ -26,6 +26,10 @@ handlers:
   static_dir: Content/carousal
 - url: /Content/img
   static_dir: Content/img
+- url: /propose
+  script: propose.app
+- url: /propose/.*
+  script: propose.app
 - url: /signup/.*
   script: signup.app
 - url: /home

@@ -24,14 +24,13 @@ class RegistrationHandler(BaseHandler):
 			self.redirect("/")
 	def post(self):
 		userChoice = self.request.get("userChoice")
-		self.response.write(userChoice)		
 		if userChoice=="ngo":
-			self.redirect("/signup/NGORegistration")
+			self.redirect("/signup/ngoRegistration")
 		else:
-			self.redirect("/signup/UserRegistration")
+			self.redirect("/signup/userRegistration")
 
 	
-class UserRegistrationHandler(BaseHandler):
+class UserRegistrationPage(BaseHandler):
 	def get(self):
 		user=users.get_current_user()
 		if user:
@@ -42,7 +41,7 @@ class UserRegistrationHandler(BaseHandler):
 			else:
 				self.redirect("/")
 		else:
-			self.redirect("/")
+			self.redirect("/signup")
 	
 	def post(self):
 		user= users.get_current_user()
@@ -56,24 +55,23 @@ class UserRegistrationHandler(BaseHandler):
 		userObject.put()
 		self.redirect("/home")
 
-class NGORegistrationHandler(BaseHandler):
+class NGORegistrationPage(BaseHandler):
 	def get(self):
 		user=users.get_current_user()
 		if user:
 			userid = user.user_id()
- 			authenticationNGO = NGO.query(User.userid == userid).fetch(1)
-			if  not authenticationNGO:
+ 			authenticationUser = NGO.query(NGO.userid == userid).fetch(1)
+			if  not authenticationUser:
 				self.render("ngoRegistration.html")
 			else:
 				self.redirect("/")
 		else:
-			self.redirect("/")
+			self.redirect("/signup")
 	
 	def post(self):
 		user= users.get_current_user()
 		name = self.request.get("name")	
 		userid = user.user_id()
-		
 		ngoObject = NGO()
 		ngoObject.userid = userid
 		ngoObject.name = name
@@ -82,7 +80,8 @@ class NGORegistrationHandler(BaseHandler):
 		ngoObject.eightygRegistrationNumber = self.request.get("eightygRegistrationNumber")
 		ngoObject.email = user.email()
 		ngoObject.put()
-		self.redirect("/home")
-			
-app = webapp2.WSGIApplication([('/signup/UserRegistration',UserRegistrationHandler),('/signup/registration',RegistrationHandler),('/signup/NGORegistration',NGORegistrationHandler)],debug=True)	
+		self.redirect("/home")	
+
+				
+app = webapp2.WSGIApplication([('/signup/userRegistration',UserRegistrationPage), ('/signup/ngoRegistration',NGORegistrationPage),('/signup/registration',RegistrationHandler)],debug=True)	
 
