@@ -13,6 +13,7 @@ from google.appengine.ext import ndb
 import lib 
 from google.appengine.api import users
 from lib import User, BaseHandler, NGO
+from time import sleep
 
 
 class RegistrationHandler(BaseHandler):
@@ -39,7 +40,7 @@ class UserRegistrationPage(BaseHandler):
 			if  not authenticationUser:
 				self.render("userRegistration.html")
 			else:
-				self.redirect("/")
+				self.redirect("/home")
 		else:
 			self.redirect("/signup")
 	
@@ -53,6 +54,7 @@ class UserRegistrationPage(BaseHandler):
 		userObject.name = name
 		userObject.gender = gender
 		userObject.put()
+		sleep(5)
 		self.redirect("/home")
 
 class NGORegistrationPage(BaseHandler):
@@ -64,7 +66,7 @@ class NGORegistrationPage(BaseHandler):
 			if  not authenticationUser:
 				self.render("ngoRegistration.html")
 			else:
-				self.redirect("/")
+				self.redirect("/home")
 		else:
 			self.redirect("/signup")
 	
@@ -80,6 +82,7 @@ class NGORegistrationPage(BaseHandler):
 		ngoObject.eightygRegistrationNumber = self.request.get("eightygRegistrationNumber")
 		ngoObject.email = user.email()
 		ngoObject.put()
+		sleep(5) #cheap trick but none the less it works!
 		self.redirect("/home")	
 
 				

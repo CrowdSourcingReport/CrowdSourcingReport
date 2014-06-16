@@ -26,7 +26,7 @@ class ProposePage(BaseHandler):
 			else:
                                 self.render("propose.html")
 		else:
-                        self.redirect("/signup")
+                        self.redirect("/login")
                 
         def post(self):
                 category = self.request.get("name")
@@ -50,7 +50,7 @@ class ProjectDetailsPage(BaseHandler):
                         else:
                                 self.redirect("/")
                 else:
-                        self.redirect("/signup")
+                        self.redirect("/login")
                 
                 
 app = webapp2.WSGIApplication([('/propose', ProposePage), ('/propose/project', ProjectDetailsPage)],debug=True)

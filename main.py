@@ -18,40 +18,13 @@ class MainPageHandler(BaseHandler):
                         NGOauthenticationQuery = NGO.query(NGO.userid == userid).fetch(1)
                         if (not userAuthenticationQuery) and (not NGOauthenticationQuery) :
 				self.redirect("/signup/registration")
-			else:
-                                self.redirect("/home")
 		self.render('frontPage.html')        
    
-
-class UserDashboardHandler(BaseHandler):
-        def get(self):
-                user=users.get_current_user()
-		if user:
-			userid = user.user_id()
- 	    		userAuthenticationQuery = User.query(User.userid == userid).fetch(1)	 	    	      
-                        if not userAuthenticationQuery:
-				self.redirect("/signup/userRegistration")
-			else:
-                                self.render('userDashboard.html')
-		else:
-                        self.redirect("/signup")
 
 class SignupHandler(BaseHandler):
         def get(self):
                 self.render("login.html")
                 
-class NGODashboardHandler(BaseHandler):
-        def get(self):
-                user=users.get_current_user()
-		if user:
-			userid = user.user_id()
- 	    		NGOAuthenticationQuery = NGO.query(NGO.userid == userid).fetch(1)	 	    	      
-                        if not NGOAuthenticationQuery:
-				self.redirect("/signup/ngoRegistration")
-			else:
-                                self.render('ngoDashboard.html')
-		else:
-                        self.redirect("/signup")
 
 class ExploreHandler(BaseHandler):
 	def get(self):
@@ -93,9 +66,11 @@ class PrivacyPolicyHandler(BaseHandler):
 	def get(self):
                 self.render('PrivacyPolicy.html')        
 
-
+class LoginHandler(BaseHandler):
+	def get(self):
+		self.render("login.html")
 
        
 
-app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler),('/propose', ProposeHandler),('/home', HomeHandler),('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler)],debug=True)
+app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler)],debug=True)
 
