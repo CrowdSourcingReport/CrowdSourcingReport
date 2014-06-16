@@ -52,6 +52,8 @@
 					<ul class="nav navbar-nav">
 						<li id="Projects"><a class="nav" href="/explore">Explore</a></li>
 						<li id="Services"><a class="nav" href="/propose">Propose</a></li>
+						
+						
 						 <li id="feature"><a class="nav" href="/features">Features</a></li>
 						<li id="About_Us"><a class="nav" href="/about">About</a></li>        
 					</ul>
@@ -65,12 +67,15 @@
 						    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							      Sign In<span class="caret"></span>
 						    </a>
-					     <ul class="dropdown-menu" style="min-width:10px">
-    							<li><a href="{{users.create_login_url()}}"> <div id="customBtn" class="gButton">
-   							   <span class="icon"></span>
-   							   <span class="buttonText">Sign in with Google</span>
-    						</div></a></li>
-    						</ul>
+					     <ul class="dropdown-menu btn col-centered">
+    						<li><a href="{{users.create_login_url()}}"> 
+    							<div id="customBtn" class="gButton ">
+   							   		<span class="icon"></span>
+   							   		<span class="buttonText">Sign in with Google</span>
+    							</div></a></li>
+    						
+    							</div>
+   						</ul>
 					  </li>
       					</ul>
 					{% endif %}
