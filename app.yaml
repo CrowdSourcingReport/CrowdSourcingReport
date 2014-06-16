@@ -29,12 +29,13 @@ handlers:
 - url: /signup/.*
   script: signup.app
 - url: /home
-  script: main.application
-  login: required
+  script: home.app
+- url: /home/.*
+  script: home.app
 - url: /admin
   script: admin.app
 - url: /admin/.*
   script: admin.app
 - url: /.*
-  script: main.application
+  script: main.app
 
