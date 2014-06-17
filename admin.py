@@ -77,6 +77,7 @@ class CreateFakeProject(BaseHandler):
                        	project.authenticity = False
                 	project.description = str(random.randrange(1,100000000000000000000))
                         project.ngo = str(random.randrange(1,10))
+			project.category = "Health"
               	        project.put()
 	    	self.response.write("Done!")
 	

@@ -32,7 +32,7 @@ class Project(ndb.Model):
 	description = ndb.StringProperty(required = True)
 	ngo = ndb.StringProperty(required = True)
 	authenticity = ndb.BooleanProperty(required = True)	
-	
+	category = ndb.StringProperty( required = True)	
 
 #base handler that cointains all the required charteristic
 class BaseHandler(webapp2.RequestHandler):

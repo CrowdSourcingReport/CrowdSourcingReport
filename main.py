@@ -7,7 +7,7 @@ import jinja2
 import os
 from google.appengine.ext import ndb
 from google.appengine.api import users
-from lib import User,BaseHandler, NGO
+from lib import User,BaseHandler, NGO, Project
 
 class MainPageHandler(BaseHandler):
 	def get(self):
@@ -18,7 +18,9 @@ class MainPageHandler(BaseHandler):
                         NGOauthenticationQuery = NGO.query(NGO.userid == userid).fetch(1)
                         if (not userAuthenticationQuery) and (not NGOauthenticationQuery) :
 				self.redirect("/signup/registration")
-		self.render('frontPage.html')        
+		projects = Project.query().fetch(3)
+		parameter = {"projects" : projects }
+		self.render('frontPage.html', parameter)        
    
 
 class SignupHandler(BaseHandler):
