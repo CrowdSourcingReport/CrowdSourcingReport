@@ -53,6 +53,7 @@ class UserRegistrationPage(BaseHandler):
 		userObject.userid=userid
 		userObject.name = name
 		userObject.gender = gender
+		userObject.projects = []
 		userObject.put()
 		sleep(5)
 		self.redirect("/home")

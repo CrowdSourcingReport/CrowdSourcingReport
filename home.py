@@ -33,7 +33,8 @@ class ProjectUpdateHandler(BaseHandler):
 				parameter = {}
 				for userObject in userAuthentication:
 					projects = userObject.projects
-                                self.render("projectUpdate.html")
+				parameter["projects"] = projects[:10]
+                                self.render("projectUpdate.html", parameter)
                         else:
                                 self.redirect("/")
                 else:   
