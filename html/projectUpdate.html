@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}Crowd Sourcing Report{% endblock title %}
+
+{% block body %}
+
+
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2  ">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="/home/ProjectUpdate">Project Updates</a></li>
+          </ul>
+        </div>
+                     
+      <div class="col-sm-10 ">
+		<h1>Projects</h1> 
+      {% for project in projects %}
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{project.title}}</h3>
+          </div>
+          <div class="panel-body">
+            <p>{{project.description}}</p>
+          </div>
+        </div>
+      {% endfor %}  
+
+		
+      </div>
+    </div>
+    </div>
+{% endblock body %}
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/js/slidingPanels.js"></script>
+{% endblock scripts %}

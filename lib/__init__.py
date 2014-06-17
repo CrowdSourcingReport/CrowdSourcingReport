@@ -13,9 +13,10 @@ env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dir
 
 #data model for storing user data
 class User(ndb.Model):
-        userid=ndb.StringProperty(required=True)
-        name=ndb.StringProperty(required=True)
-        gender=ndb.StringProperty(required=True)
+        userid=ndb.StringProperty(required = True)
+        name=ndb.StringProperty(required = True)
+        gender=ndb.StringProperty(required = True)
+	projects =  ndb.PickleProperty(required = True)
 
 #data model for storing ngo data 
 class NGO(ndb.Model):
@@ -23,16 +24,16 @@ class NGO(ndb.Model):
 	name = ndb.StringProperty(required = True)
 	credibility = ndb.BooleanProperty(required = True)
 	eightygRegistrationNumber = ndb.StringProperty(required = True)
-	description = ndb.StringProperty(required = True)
+	description = ndb.TextProperty(required = True)
 	email = ndb.StringProperty(required = True)
 
 #data model for storing project data 
 class Project(ndb.Model):
 	title = ndb.StringProperty(required=True)
-	description = ndb.StringProperty(required = True)
+	description = ndb.TextProperty(required = True)
 	ngo = ndb.StringProperty(required = True)
 	authenticity = ndb.BooleanProperty(required = True)	
-	
+	category = ndb.StringProperty( required = True)	
 
 #base handler that cointains all the required charteristic
 class BaseHandler(webapp2.RequestHandler):
@@ -42,5 +43,7 @@ class BaseHandler(webapp2.RequestHandler):
                 parameter["user"] = user
                 template = env.get_template(filename )
                 self.response.write(template.render(parameter))
+	def uniqueIdentifierProject(self, project):
+		return project.ngo+"_"+project.title
 
 

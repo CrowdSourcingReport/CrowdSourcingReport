@@ -16,3 +16,5 @@ Project:
 	ngo 					string
 	description				string
 	authenticity				Boolean
+	category				string
+
