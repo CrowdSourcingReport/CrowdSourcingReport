@@ -6,6 +6,7 @@ from lib import BaseHandler, NGO, Project, User
 import random 
 from google.appengine.api import mail
 from google.appengine.api import users
+from google.appengine.ext import ndb
 
 class HomePageHandler(BaseHandler):
 	def get(self):
@@ -31,14 +32,18 @@ class ProjectUpdateHandler(BaseHandler):
                         userAuthentication =  User.query(User.userid == userid).fetch(1)
                         if userAuthentication:
 				parameter = {}
-				for userObject in userAuthentication:
-					projects = userObject.projects
-				parameter["projects"] = projects[:10]
+				userObject = userAuthentication[0]
+				projectsIdentifier = userObject.projects[:10]
+				projects = []
+				for projectIdentifier in projectsIdentifier:
+					key = ndb.Key("Project", projectIdentifier)
+					projects.append(key.get())
+				parameter["projects"] = projects
                                 self.render("projectUpdate.html", parameter)
                         else:
                                 self.redirect("/")
                 else:   
-                        self.redirect("/signup")
+                        self.redirect("/login")
 	
 
 		
