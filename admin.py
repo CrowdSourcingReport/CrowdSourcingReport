@@ -36,6 +36,8 @@ class CredibilityCheckNGOHandler(BaseHandler):
 http://www.csr.com/ and sign in using your Google Account to access new features.Please let us know if you have any questions.
 The csr.com Team		
 """)				
+				ngo.credibility = True
+				ngo.put()	
 				parameter["message"]= "Success Mail Sent!"
 				self.render("responseAdmin.html", parameter)
 
@@ -121,8 +123,11 @@ class AuthenticateProjectHandler(BaseHandler):
 	                                                body="""Dear :"""+ ngo.name + failiureReport +"""Please let us know if you have any questions.
 The csr.com Team
 """)
+					project.authenticity = True
+					project.put()
 					parameter["message"]= "Success Mail Sent!"
-    		                        self.render("responseAdmin.html", parameter)
+   		                        self.render("responseAdmin.html", parameter)
+					
 
                 else:
                 	failiureReport = "\nPlaces where your project failed\n"
