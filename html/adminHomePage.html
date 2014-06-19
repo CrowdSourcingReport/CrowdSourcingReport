@@ -6,20 +6,31 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-2  ">
-            
-            <ul class="nav nav-sidebar">
-              <li class="active"><a href="/admin/Authenticate">Authenticate</a></li>
-              <li><a href="/admin/CredibilityCheck">Credibility Check</a></li>
+            <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+            <li class="active"><a href="/admin">Home</a></li>
+            <li ><a href="/admin/Authenticate">Authenticate</a></li>
+            <li><a href="/admin/CredibilityCheck">Credibility Check</a></li>
             </ul>
-          </div>
-                       
+          </div>                      
           <div class="col-sm-10 ">
-    	     <h3>Welcome</h3>
-        		<a href="/admin/CredibilityCheck"><h3> Credibility Check For NGO</h3></a>
-        		<a href="/admin/Authenticate"><h3>Authentication for Project</h3></a>
+            <div class="row">
+             <div class="jumbotron">
+                <h1>Authenticate Project</h1>
+                <p>Authenticate Project submitted by NGO </p>
+                <p><a class="btn btn-primary btn-lg" href="/admin/Authenticate">Authenticate</a></p>
+             </div>
+           </div>
+           <div class="row">
+             <div class="jumbotron">
+                <h1>Credibility Check</h1>
+                <p>Perform a credibility check on NGO using parameters supplied to us</p>
+                <p><a class="btn btn-primary btn-lg" href="/admin/CredibilityCheck">Credibility Check</a></p>
+             </div>
+           
+            </div>
           </div>
         </div>
-    </div>
+      </div>
 
 {% endblock body %}
 
