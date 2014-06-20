@@ -66,6 +66,7 @@ class CreateFakeNGOAccount(BaseHandler):
 			ngo.description = str(random.randrange(1,100000000000000000000))
 			ngo.userid = str(random.randrange(1,10))
 			ngo.email = "tanaygahlot@gmail.com"
+			ngo.projects=[]
 			ngo.put()
 		self.response.write("Done!")
 

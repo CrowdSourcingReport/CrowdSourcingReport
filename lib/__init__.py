@@ -26,6 +26,8 @@ class NGO(ndb.Model):
 	eightygRegistrationNumber = ndb.StringProperty(required = True)
 	description = ndb.TextProperty(required = True)
 	email = ndb.StringProperty(required = True)
+	projects = ndb.PickleProperty(required=[])
+
 
 #data model for storing project data 
 class Project(ndb.Model):
@@ -46,4 +48,7 @@ class BaseHandler(webapp2.RequestHandler):
 	def uniqueIdentifierProject(self, project):
 		return project.ngo+"_"+project.title
 
+	def stripProjectIdentifier(self, identifier):
+		split = identifier.split("_") 
+		return (split[0], split[1])
 
