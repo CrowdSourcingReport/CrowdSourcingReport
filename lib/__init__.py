@@ -27,14 +27,23 @@ class NGO(ndb.Model):
 	description = ndb.TextProperty(required = True)
 	email = ndb.StringProperty(required = True)
 
+#data model for storing the tasks
+class TaskList(ndb.Model):
+        taskTitle = ndb.StringProperty(required=True)
+	taskDescription = ndb.TextProperty(required = True)
+	taskFund = ndb.StringProperty(required=True)
+
 #data model for storing project data 
 class Project(ndb.Model):
-	title = ndb.StringProperty(required=True)
-	description = ndb.TextProperty(required = True)
-	ngo = ndb.StringProperty(required = True)
-	authenticity = ndb.BooleanProperty(required = True)	
-	category = ndb.StringProperty( required = True)	
-
+	title = ndb.StringProperty()
+	shortDescription = ndb.TextProperty()
+	ngo = ndb.StringProperty()
+	authenticity = ndb.BooleanProperty()	
+	category = ndb.StringProperty()	
+        detailedDescription = ndb.TextProperty()
+        tasks = ndb.StructuredProperty(TaskList, repeated = True)
+	
+	
 #base handler that cointains all the required charteristic
 class BaseHandler(webapp2.RequestHandler):
         def render(self, filename, parameter = {}):
