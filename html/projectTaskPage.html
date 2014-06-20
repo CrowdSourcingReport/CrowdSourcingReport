@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>Task List</title>
+	</head>
+	<body>
+		<form method="post">
+			<p>Project Description</p>
+			<textarea name="detailedDescription"></textarea>
+			<br />
+			<hr />
+			<div id = "tasklist"></div>
+			<hr />
+			<input type="hidden" id="count" name="count"	value="0">
+			<input type ="button" onclick = "addTask()" value ="Add a task"><br /><br />
+			<input type = "submit" method = "post" value ="Submit" />
+		</form>
+		<script src = "/Content/js/addTask.js"></script>
+	</body>
+</html>
