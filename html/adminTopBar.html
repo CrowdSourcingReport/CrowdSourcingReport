@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block body %}
+<div class = "container">
+	<div class="col-md-2">
+          		<ul class="nav nav-pills text-center nav-stacked" style =" max-width = 300px">
+            			<li><a href="/admin">Home</a></li>
+            			<li><a href="/admin/Authenticate">Authenticate</a></li>
+            			<li><a href="/admin/CredibilityCheck">Credibility Check</a></li>
+            		</ul>
+	</div>
+
+		{% block adminblock %}
+		{% endblock adminblock %}
+</div>
+{% endblock body %}
