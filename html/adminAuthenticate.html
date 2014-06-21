@@ -4,23 +4,29 @@
 
 {% block body %}
       <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-2  ">
-          <ul class="nav nav-sidebar">
+        <div class="row">
+          <div class="col-sm-2  ">
+            <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+            <li ><a href="/admin">Home</a></li>
             <li class="active"><a href="/admin/Authenticate">Authenticate</a></li>
             <li><a href="/admin/CredibilityCheck">Credibility Check</a></li>
-          </ul>
+            </ul>
+          </div>
+                       
+          <div class="col-sm-10 ">
+          	<h1>List Of Project</h1>
+            <div class="col-sm-6">
+              <div class="list-group">
+              	{% for project in projectList %}
+                      <a href="/admin/Authenticate/{{project.ngo}}_{{project.title}}" class="list-group-item">
+                      <h4 class="list-group-item-heading">{{project.title}}</h4>
+                      <p class="list-group-item-text">{{project.description}}</p></a>
+              	{% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
-                     
-      <div class="col-sm-10 ">
-	<h1>Dashboard</h1>
-	{% for project in projectList %}
-		<a href="/admin/Authenticate/{{project.ngo}}_{{project.title}}"><h2>{{project.title}}</h2></a>
-		<p>{{project.description}}</p>
-	{% endfor %}
       </div>
-    </div>
-    </div>
 
 {% endblock body %}
 
