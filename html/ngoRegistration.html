@@ -3,39 +3,62 @@
 {% block title %}Crowd Sourcing Report{% endblock title %}
 
 {% block body %}
+<div class="cointainer full-viewport">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="well">
+        <form class="form-horizontal" method="post">
+          <fieldset>
+            <legend>NGO Registration</legend>
+            <div class="form-group">
+              <label for="inputText" class="col-lg-2 control-label">Name</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText"  name="name" placeholder="Name" style="width:50%">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="textArea" class="col-lg-2 control-label">Description</label>
+              <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="textArea" name= "description"></textarea>
+              </div>
+            </div>
 
-<form class="form-horizontal" method="post">
-  <fieldset>
-    <legend>NGO Registration</legend>
-    <div class="form-group">
-      <label for="inputText" class="col-lg-2 control-label">Name</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputText"  name="name" placeholder="Name">
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="textArea" class="col-lg-2 control-label">Description</label>
-      <div class="col-lg-10">
-        <textarea class="form-control" rows="3" id="textArea" name= "description"></textarea>
-      </div>
-    </div>
+            <div class="form-group">
+              <label for="textArea" class="col-lg-2 control-label">Proof Of Registration</label>
+              <div class="col-lg-10">
+                <input type="file" name="proofOfRegistration">
+              </div>
+            </div>
 
-    <div class="form-group">
-      <label for="inputText" class="col-lg-2 control-label">80G Registration Number</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputText"  name="eightygRegistrationNumber" placeholder="80G">
+            <div class="form-group">
+              <label for="inputText" class="col-lg-2 control-label">Pan Card Number</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText"  name="panCardNumber" placeholder="Pan Card Number" style="width:50%">
+              </div>
+            </div>
+           
+            <div class="form-group">
+              <label for="inputText" class="col-lg-2 control-label">80G Registration Number</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText"  name="eightygRegistrationNumber" placeholder="80G" style="width:50%">
+              </div>
+            </div>
+           
+              <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
       </div>
-    </div>
-   
-      <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
+    <div class="col-md-2"></div>
     </div>
-  </fieldset>
-</form>
+    </div>
 {% endblock body %}
 
 {% block scripts %}

@@ -14,14 +14,26 @@
           </div>
                        
           <div class="col-sm-10 ">
-          	<h1>List Of Project</h1>
-            <div class="col-sm-6">
+          	<h2>List Of Project</h2>
+            <div class="col-sm-12">
               <div class="list-group">
+                <div class="row">
+
               	{% for project in projectList %}
-                      <a href="/admin/Authenticate/{{project.ngo}}_{{project.title}}" class="list-group-item">
-                      <h4 class="list-group-item-heading">{{project.title}}</h4>
-                      <p class="list-group-item-text">{{project.description}}</p></a>
+                      <div class="col-md-4">
+                        <div class="panel panel-primary">
+                        <div class="panel-heading">
+                          <a href="/admin/Authenticate/{{project.ngo}}_{{project.title}}">
+                          <h3 class="panel-title">
+                            {{project.title}}</h3></a>
+                        </div>    
+                          <div class="panel-body">
+                            {{project.shortDescription}}
+                          </div>
+                        </div> 
+                      </div>
               	{% endfor %}
+              </div>
               </div>
             </div>
           </div>

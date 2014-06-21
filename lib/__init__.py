@@ -26,8 +26,9 @@ class NGO(ndb.Model):
 	eightygRegistrationNumber = ndb.StringProperty(required = True)
 	description = ndb.TextProperty(required = True)
 	email = ndb.StringProperty(required = True)
-	projects = ndb.PickleProperty(required=[])
-
+	projects = ndb.PickleProperty(required = True )
+	proofOfRegistration = ndb.BlobProperty(required = True)
+	panCardNumber = ndb.StringProperty(required = True)
 
 #data model for storing the tasks
 class TaskList(ndb.Model):
