@@ -23,12 +23,12 @@ class NGO(ndb.Model):
 	userid = ndb.StringProperty(required = True)
 	name = ndb.StringProperty(required = True)
 	credibility = ndb.BooleanProperty(required = True)
-	eightygRegistrationNumber = ndb.StringProperty(required = True)
+	eightygRegistrationNumber = ndb.StringProperty()
 	description = ndb.TextProperty(required = True)
 	email = ndb.StringProperty(required = True)
-	projects = ndb.PickleProperty(required = True )
-	proofOfRegistration = ndb.BlobProperty(required = True)
-	panCardNumber = ndb.StringProperty(required = True)
+	projects = ndb.PickleProperty()
+	proofOfRegistration = ndb.BlobProperty()
+	panCardNumber = ndb.StringProperty()
 
 #data model for storing the tasks
 class TaskList(ndb.Model):

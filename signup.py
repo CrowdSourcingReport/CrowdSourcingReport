@@ -58,34 +58,55 @@ class UserRegistrationPage(BaseHandler):
 		sleep(5)
 		self.redirect("/home")
 
-class NGORegistrationPage(BaseHandler):
+class NGORegistrationBasicInfo(BaseHandler):
 	def get(self):
 		user=users.get_current_user()
 		if user:
 			userid = user.user_id()
  			authenticationUser = NGO.query(NGO.userid == userid).fetch(1)
 			if  not authenticationUser:
-				self.render("ngoRegistration.html")
+				self.render("ngoRegistrationBasicInfo.html")
 			else:
 				self.redirect("/home")
 		else:
-			self.redirect("/signup")
+			self.redirect("/login")
 	
 	def post(self):
 		user= users.get_current_user()
 		name = self.request.get("name")	
 		userid = user.user_id()
+		description = self.request.get("description")
+		panCardNumber = self.request.get("panCardNumber")
 		ngoObject = NGO()
 		ngoObject.userid = userid
 		ngoObject.name = name
 		ngoObject.credibility = False
-		ngoObject.description = self.request.get("description")
-		ngoObject.eightygRegistrationNumber = self.request.get("eightygRegistrationNumber")
+		ngoObject.description = description
+		ngoObject.panCardNumber = panCardNumber
 		ngoObject.email = user.email()
 		ngoObject.put()
 		sleep(5) #cheap trick but none the less it works!
-		self.redirect("/home")	
+		self.redirect("/signup/ngoRegistration/proofOfRegistration")	
+ 
+class ProofOfRegistration(BaseHandler):
+	def get(self):
+		user = users.get_current_user()
+		if user:
+			userid = user.user_id()
+			ngo = NGO.query(NGO.userid == userid).fetch(1)[0]
+			if ngo:
+				name = ngo.name
+				description = ngo.description
+				panCardNumber = ngo.panCardNumber
+				if name and description and panCardNumber:
+					self.render("ngoRegistrationUpload.html")
+				else:
+					self.redirect("/signup/ngoRegistration")
+			else:
+				self.redirect("/signup/ngoRegistration")
 
+		else:
+			self.redirect("/login")
 				
-app = webapp2.WSGIApplication([('/signup/userRegistration',UserRegistrationPage), ('/signup/ngoRegistration',NGORegistrationPage),('/signup/registration',RegistrationHandler)],debug=True)	
+app = webapp2.WSGIApplication([('/signup/userRegistration',UserRegistrationPage), ('/signup/ngoRegistration',NGORegistrationBasicInfo),('/signup/registration',RegistrationHandler),('/signup/ngoRegistration/proofOfRegistration', ProofOfRegistration )],debug=True)	
 
