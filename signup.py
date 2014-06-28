@@ -14,6 +14,8 @@ import lib
 from google.appengine.api import users
 from lib import User, BaseHandler, NGO
 from time import sleep
+from google.appengine.ext import blobstore
+from google.appengine.ext.webapp import blobstore_handlers
 
 
 class RegistrationHandler(BaseHandler):
@@ -99,7 +101,9 @@ class ProofOfRegistration(BaseHandler):
 				description = ngo.description
 				panCardNumber = ngo.panCardNumber
 				if name and description and panCardNumber:
-					self.render("ngoRegistrationUpload.html")
+					upload_url = blobstore.create_upload_url("/signup/upload")
+					parameter = {'upload_url':upload_url}
+					self.render("ngoRegistrationUpload.html",parameter)
 				else:
 					self.redirect("/signup/ngoRegistration")
 			else:
@@ -107,6 +111,16 @@ class ProofOfRegistration(BaseHandler):
 
 		else:
 			self.redirect("/login")
+
+class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
+	def post(self):
+		user = users.get_current_user()
+		ngo = NGO.query(NGO.userid == user.user_id()).fetch(1)[0]
+		eightygRegistration = self.get_uploads("eightygRegistration")[0]
+		ngo.eigthygRegistration = eightygRegistration 	
+		ngo.put()
+		
+		
 				
-app = webapp2.WSGIApplication([('/signup/userRegistration',UserRegistrationPage), ('/signup/ngoRegistration',NGORegistrationBasicInfo),('/signup/registration',RegistrationHandler),('/signup/ngoRegistration/proofOfRegistration', ProofOfRegistration )],debug=True)	
+app = webapp2.WSGIApplication([('/signup/userRegistration',UserRegistrationPage), ('/signup/ngoRegistration',NGORegistrationBasicInfo),('/signup/registration',RegistrationHandler),('/signup/ngoRegistration/proofOfRegistration', ProofOfRegistration ),('/signup/upload',UploadHandler)],debug=True)	
 

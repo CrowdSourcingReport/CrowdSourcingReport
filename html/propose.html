@@ -3,42 +3,37 @@
 {% block title %}Propose{% endblock title %}
 
 {% block body %}
-	<div class = "container">
-		<div class = "col-md-12">
-			<div class = "navigation panel panel-default panelbody">
-			<!--<div class = "navigation full-viewport" style = "border:2px solid white;">-->
-				
-</div>
-		</div><form class="form-horizontal" method="post">
-  <fieldset>
+	<div class = "container full-viewport">
+    <div class="well">
+		<div class = "row">			
+		<form class="form-horizontal" method="post">
+    <fieldset>
     <legend>Categories</legend>
+
     <div class="form-group">
       <label for="inputText" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputText"  name="name" placeholder="Category">
+        <input type="text" class="form-control" id="inputText"  name="name" placeholder="Name" style="width:30%">
       </div>
     </div>
-    
-   
-      <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button class="btn btn-default">Cancel</button>
+
+    <div class="form-group">
+      <label for="inputText" class="col-lg-2 control-label">Category</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputText"  name="category" placeholder="Category" style="width:30%">
+      </div>
+    </div>
+
+    <div class="form-group">
+     <div class="col-lg-10 col-lg-offset-2">
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </fieldset>
-</form>
-
-
-
-
-		<div class = "col-md-8">
-				<div class = "row full-viewport">
-				</div>
-				<p class = "text-right"><a href = "#top">^ Back to Top ^</a></p>
-		</div>
-		<hr />
+    </form>
 	</div>
+</div>
+</div>
 {% endblock body %}
 
 {% block scripts %}

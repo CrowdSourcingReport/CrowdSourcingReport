@@ -20,9 +20,8 @@ class ProposePage(BaseHandler):
                 user=users.get_current_user()
 		if user:
 			userid = user.user_id()
- 	    		userAuthenticationQuery = User.query(User.userid == userid).fetch(1)	 	    	      
                         NGOauthenticationQuery = NGO.query(NGO.userid == userid).fetch(1)	 	    	      
-			if (not userAuthenticationQuery) and (not NGOauthenticationQuery) :
+			if not NGOauthenticationQuery :
 				self.redirect("/signup/registration")
 			else:
                                 self.render("propose.html")
@@ -42,6 +41,7 @@ class ProposePage(BaseHandler):
 
 class ProjectDetailsPage(BaseHandler):
         def get(self):
+				
                 self.render("project.html")
 
         def post(self):
