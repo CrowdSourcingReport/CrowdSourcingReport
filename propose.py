@@ -30,47 +30,43 @@ class ProposePage(BaseHandler):
                 
         def post(self):
                 category = self.request.get("category")
+		title = self.request.get("title")
                 user=users.get_current_user()
                 userid = user.user_id()
                 projectObject = Project()
                 projectObject.ngo = userid
                 projectObject.category = category
+		projectObject.title = title 
+		projectObject.authenticity = False
                 projectObject.put()
+		self.response.headers.add_header("Set-Cookie",str("title=%s"%title))
                 sleep(5)
                 self.redirect("/propose/project")
 
 class ProjectDetailsPage(BaseHandler):
         def get(self):
-				
-                self.render("project.html")
+		user = users.get_current_user()
+		if user:
+			title = self.request.cookies.get("title", None)
+			userid = user.user_id()
+			project = Project.query(Project.ngo == userid, Project.title == title).fetch(1)[0]
+			if project:
+				self.render("project.html")
+			else:
+				self.redirect("/propose")
+			
+		else:
+			self.redirect("/login")
 
         def post(self):
-                title = self.request.get("title")
                 shortDescription = self.request.get("shortDescription")
-                projectObject = Project()
-                user=users.get_current_user()
-                if user:
-                        userid = user.user_id()
-                        authenticationUser = User.query(User.userid==userid).fetch(1)
-                        authenticationNGO = NGO.query(NGO.userid==userid).fetch(1)
-                        if authenticationNGO:
-                                existingProject = Project.query(Project.ngo==userid).fetch(1)
-                                if existingProject:
-                                        ngo = userid+title
-                                        title = title
-                                        shortDescription = shortDescription
-                                        #projectObject.put()
-                                        sleep(5)
-                                        self.redirect("/propose/project/taskList")
-                                else:
-                                        self.redirect("/propose")
-                        elif authenticationUser:
-                                self.redirect("/home")
-                        else:
-                                self.redirect("/")
-                else:
-                        self.redirect("/login")
-                
+		user = users.get_current_user()
+		userid = user.user_id()
+		title = self.request.cookies.get("title", "")
+                project = Project.query(Project.ngo == userid, Project.title == title).fetch(1)[0]
+		project.shortDescription = shortDescription             
+		project.put()
+		self.redirect("/propose/project/taskList")
 
 class ProjectTaskPage(BaseHandler):
         def get(self):

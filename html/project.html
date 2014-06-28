@@ -1,22 +1,34 @@
-<form class="form-horizontal" method="post">
-  <fieldset>
-    <legend>Title</legend>
-    <div class="form-group">
-      <label for="inputText" class="col-lg-2 control-label">Name</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputText"  name="name" placeholder="Title">
-      </div>
-    </div>
-    
-   
-      <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
+{% extends "layout.html" %}
 
+{% block title %}Crowd Sourcing Report{% endblock title %}
 
+{% block body %}
+<div class="container">
+  <div class="row">
+    <form class="form-horizontal" method="post">
+      <fieldset>
+        <legend>Tell us what you want to do in 100 words</legend>
+       
+        <div class="form-group">
+          <div class="col-lg-10">
+            <textarea name="shortDescription" style="width:120vh"></textarea>
+          </div>
+        </div>
+
+          <div class="form-group">
+          <div class="col-lg-10 ">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+        </div>
+      </fieldset>
+    </form>
+  
+</div>
+{% endblock body %}
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+
+{% endblock scripts %}
 	

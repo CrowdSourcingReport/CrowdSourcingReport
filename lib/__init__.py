@@ -23,7 +23,7 @@ class NGO(ndb.Model):
 	userid = ndb.StringProperty(required = True)
 	name = ndb.StringProperty(required = True)
 	credibility = ndb.BooleanProperty(required = True)
-	eightygRegistrationNumber = ndb.StringProperty()
+	eightygRegistration = ndb.StringProperty()
 	description = ndb.TextProperty(required = True)
 	email = ndb.StringProperty(required = True)
 	projects = ndb.PickleProperty()
