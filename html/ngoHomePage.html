@@ -1,28 +1,52 @@
-{% extends "layout.html" %}
+{% extends "ngoTopBar.html" %}
+
 
 {% block title %}Crowd Sourcing Report{% endblock title %}
 
-{% block body %}
-
-
-      <div class="container-fluid">
-        <div class="row full-viewport">
-          <div class="col-sm-2 ">
-          	<div class="well" style= "height:100vh">
-            <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-            <li class="active"><a href="/home">Home</a></li>
-            <li ><a href="/home/UpdateProject">Update Project</a></li>
-            </ul>
-            </div>
-          </div>
-                     
-      <div class="col-sm-10 ">
-		<h3>Dashboard</h3>
-		<a href="/home/UpdateProject"><h3>Update Project</h3></a>
+{% block userblock %}
+    
+<div class="col-sm-10 ">
+	<div class="row text-center">
+		<h3>
+			NGO Dashboard
+		</h3>
+		<div class="panel panel-default panelbody">
+			<div class="panel-body">
+				<p class="text-center">
+					Welcome {{user}}, This is the portal to all your potential investors. Please proceed to create a new project or update existing one.
+				</p>
+			</div>
+		</div>
       </div>
+      <div class="row">
+		<h3 class="text-center">
+			Quick Links
+		</h3>
+		<div class="panel panel-default panelbody">
+			<div class="panel-body">
+				<p class="text-left">
+					<ul>
+						<li><a href="#">Create New Project</a></li>
+						<li><a href="#">Update Your Profile</a></li>
+						<li><a href="#">Update a project</a></li>
+					</ul>
+				</p>
+			</div>
+		</div>
+		<div class="text-center">
+		<h3>
+			Your Projects
+		</h3>
+		<div class="panel panel-default panelbody">
+			<div class="panel-body">
+				<p class="text-center">
+					This section will show top projects by {{user}}.
+				</p>
+			</div>
+		</div>
     </div>
     </div>
-{% endblock body %}
+{% endblock userblock %}
 {% block scripts %}
 <!-- CarouFredSel JavaScript Plugin -->
 <script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
