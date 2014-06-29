@@ -4,8 +4,46 @@
 {% block title %}Crowd Sourcing Report{% endblock title %}
 
 {% block userblock %}
-      <div class="col-md-10 ">
-    		<h1>Dashboard</h1>
-    		<a href="/home/ProjectUpdate"><h3> Project Updates</h3></a>
+	<div class="col-md-10 ">
+		<div class="row">
+			<h2 class="text-center">User Dashboard</h2>
+			<div class="panel panel-default panelbody">
+				<div class="panel-body">
+					<p class="text-center">
+						Welcome {{user}}, This is the portal to all your social serving needs. Please go through the list of Top Projects specially tailored for you. As you start dnating for NGO projects, they will appear in Project Update section for your follow-up.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+    		<h3 class="text-center">Top Projects</h3>
+    		<div class="panel panel-default panelbody">
+				<div class="panel-body">
+					<p class="text-center">
+						This section will show top projects in single row.
+					</p>
+				</div>
+			</div>
+    	</div>
+    	<div class="row">
+    		<h3 class="text-center">Top NGOs</h3>
+    		<div class="panel panel-default panelbody">
+				<div class="panel-body">
+					<p class="text-center">
+						This section will show top performing NGOs in single row.
+					</p>
+				</div>
+			</div>
+    	</div>
+    	<div class="row">
+    		<h3 class="text-center">Your Project</h3>
+    		<div class="panel panel-default panelbody">
+				<div class="panel-body">
+					<p class="text-center">
+						This section will show projects for which #user# has donated in single row.
+					</p>
+				</div>
+			</div>
+    	</div>
       </div>
 {% endblock userblock %}
