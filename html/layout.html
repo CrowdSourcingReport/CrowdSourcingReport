@@ -57,6 +57,9 @@
 						 <li id="feature"><a class="nav" href="/features">Features</a></li>
 						<li id="About_Us"><a class="nav" href="/about">About</a></li>        
 					</ul>
+					<form class="navbar-form navbar-left" action = "/search" method="post">
+      					<input type="text" class="form-control col-lg-8" placeholder="Search" name = "searchString">
+    				</form>
 					{% if user %}
 					<ul class="nav navbar-nav navbar-right">
 						<li id="home"><a class="nav" href="/home">Home</a></li>

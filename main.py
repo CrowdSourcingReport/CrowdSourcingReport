@@ -8,7 +8,7 @@ import os
 from google.appengine.ext import ndb
 from google.appengine.api import users
 from lib import User,BaseHandler, NGO, Project
-
+from google.appengine.api import search
 class MainPageHandler(BaseHandler):
 	def get(self):
 		user=users.get_current_user()
@@ -72,7 +72,18 @@ class LoginHandler(BaseHandler):
 	def get(self):
 		self.render("login.html")
 
-       
+class SearchHandler(BaseHandler):
+	def post(self):
+		searchString = self.request.get("searchString")     
+		index = search.Index(name = "NGO")		
+		try:
+			results = index.search(searchString)
+			parameter = {}
+			parameter["results"] = results
+			self.render("search.html", parameter)
+		except search.Error:
+			logging.exception("Search Failed")
+		
 
-app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler)],debug=True)
+app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler), ('/search', SearchHandler)],debug=True)
 

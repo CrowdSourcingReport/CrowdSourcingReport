@@ -16,7 +16,7 @@ from lib import User, BaseHandler, NGO
 from time import sleep
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
-
+from google.appengine.api import search
 
 class RegistrationHandler(BaseHandler):
 	def get(self):
@@ -87,6 +87,14 @@ class NGORegistrationBasicInfo(BaseHandler):
 		ngoObject.panCardNumber = panCardNumber
 		ngoObject.email = user.email()
 		ngoObject.put()
+		
+		index = search.Index(name = "NGO")		
+		document = search.Document(doc_id = userid, fields = [ search.AtomField(name = "name", value = name ),
+								       search.TextField(name = "description", value = description)])
+		try:
+			index.put(document)
+		except search.Error:
+			logging.exception("Put Failed")
 		sleep(5) #cheap trick but none the less it works!
 		self.redirect("/signup/ngoRegistration/proofOfRegistration")	
  

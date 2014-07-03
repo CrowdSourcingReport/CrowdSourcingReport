@@ -1,0 +1,31 @@
+<!--oggpnosn hkhr -->
+{% extends "layout.html" %}
+{% block title %}Search{% endblock title %}
+{% block body %}
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			{% for result in results %}
+				<div class="row">
+					<div class="row">
+						<h2>{{result.fields[0].value}}</h2>
+					</div>
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-11">
+							<p>{{result.fields[1].value}}</p>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+				</div>
+			{% endfor %}	
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+{% endblock body %}
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/js/slidingPanels.js"></script>
+{% endblock scripts %}
