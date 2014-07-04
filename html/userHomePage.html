@@ -10,7 +10,7 @@
 			<div class="panel panel-default panelbody">
 				<div class="panel-body">
 					<p class="text-center">
-						Welcome {{user}}, This is the portal to all your social serving needs. Please go through the list of Top Projects specially tailored for you. As you start dnating for NGO projects, they will appear in Project Update section for your follow-up.
+						Welcome {{user}}, This is the portal to all your social serving needs. Please go through the list of Top Projects specially tailored for you. As you start donating for NGO projects, they will appear in Project Update section for your follow-up.
 					</p>
 				</div>
 			</div>
@@ -19,9 +19,18 @@
     		<h3 class="text-center">Top Projects</h3>
     		<div class="panel panel-default panelbody">
 				<div class="panel-body">
-					<p class="text-center">
-						This section will show top projects in single row.
-					</p>
+					{% for project in projects %}
+						<div class="col-md-4">
+							<div class="panel panel-primary">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">{{project.title}}</h3>
+							  </div>
+							  <div class="panel-body">
+							    {{project.description}}
+							  </div>
+							</div>
+						</div>
+					{% endfor %}	
 				</div>
 			</div>
     	</div>
@@ -29,9 +38,18 @@
     		<h3 class="text-center">Top NGOs</h3>
     		<div class="panel panel-default panelbody">
 				<div class="panel-body">
-					<p class="text-center">
-						This section will show top performing NGOs in single row.
-					</p>
+					{% for ngo in ngos %}
+						<div class="col-md-4">
+							<div class="panel panel-primary">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">{{ngo.name}}</h3>
+							  </div>
+							  <div class="panel-body">
+							    {{ngo.description}}
+							  </div>
+							</div>
+						</div>
+					{% endfor %}	
 				</div>
 			</div>
     	</div>

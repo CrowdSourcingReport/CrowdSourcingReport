@@ -16,7 +16,12 @@ class HomePageHandler(BaseHandler):
 			userAuthentication =  User.query(User.userid == userid).fetch(1)
 			ngoAuthentication = NGO.query(NGO.userid == userid).fetch(1)
 			if userAuthentication:
-				self.render("userHomePage.html")
+				projects = Project.query().fetch(3)
+				ngos = NGO.query().fetch(3)
+				parameter = {}
+				parameter["projects"] = projects 
+				parameter["ngos"] = ngos
+				self.render("userHomePage.html", parameter)
 			elif ngoAuthentication:
 				self.render("ngoHomePage.html")
 			else:
