@@ -16,10 +16,17 @@ class HomePageHandler(BaseHandler):
 			userAuthentication =  User.query(User.userid == userid).fetch(1)
 			ngoAuthentication = NGO.query(NGO.userid == userid).fetch(1)
 			if userAuthentication:
-				projects = Project.query().fetch(3)
-				ngos = NGO.query().fetch(3)
 				parameter = {}
-				parameter["projects"] = projects 
+				ngos = NGO.query().fetch(3)
+				userObject = userAuthentication[0]
+                                projectsIdentifier = userObject.projects[:3]
+                                userProjects = []
+                                for projectIdentifier in projectsIdentifier:
+                                        key = ndb.Key("Project", projectIdentifier)
+                                        userProjects.append(key.get())
+				projects = Project.query().fetch(3)
+                                parameter["projects"] = projects
+				parameter["userProjects"] = userProjects 
 				parameter["ngos"] = ngos
 				self.render("userHomePage.html", parameter)
 			elif ngoAuthentication:
