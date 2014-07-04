@@ -26,9 +26,8 @@
 			<div class="panel-body">
 				<p class="text-left">
 					<ul>
-						<li><a href="#">Create New Project</a></li>
-						<li><a href="#">Update Your Profile</a></li>
-						<li><a href="#">Update a project</a></li>
+						<li><a href="/propose">Create New Project</a></li>
+						<li><a href="/home/UpdateProject">Update a project</a></li>
 					</ul>
 				</p>
 			</div>
@@ -39,9 +38,22 @@
 		</h3>
 		<div class="panel panel-default panelbody">
 			<div class="panel-body">
-				<p class="text-center">
-					This section will show top projects by {{user}}.
-				</p>
+				{% if ngoProjects%}
+					{% for ngoProject in ngoProjects %}
+							<div class="col-md-4">
+								<div class="panel panel-primary">
+								  <div class="panel-heading">
+								    <h3 class="panel-title">{{ngoProject.title}}</h3>
+								  </div>
+								  <div class="panel-body">
+								    {{ngoProject.description}}
+								  </div>
+								</div>
+							</div>
+						{% endfor %}	
+				{% else %}		
+					<p> Why dont you <a href="propose">propose</a> some project?</p>
+				{% endif %}	
 			</div>
 		</div>
     </div>

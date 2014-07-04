@@ -30,7 +30,17 @@ class HomePageHandler(BaseHandler):
 				parameter["ngos"] = ngos
 				self.render("userHomePage.html", parameter)
 			elif ngoAuthentication:
-				self.render("ngoHomePage.html")
+				parameter={}
+                                ngo = ngoAuthentication[0]
+                                projectsIdentifierList = ngo.projects
+                                ngoProjects = []
+				if projectsIdentifierList:
+                             		for projectIdentifier in projectsIdentifierList:
+                                	        ngo, title = self.stripProjectIdentifier(projectIdentifier)
+                                       	        projectObject = Project.query(Project.ngo == ngo, Project.title == title).fetch(1)[0]
+                                        	ngoProjects.append(projectObject)
+                                parameter["ngoProjects"] = ngoProjects
+				self.render("ngoHomePage.html", parameter)
 			else:
 				self.redirect("/signup/registration")
 		else:
