@@ -1,0 +1,231 @@
+{% extends "layout.html" %}
+
+{% block title %}Crowd Sourcing Report{% endblock title %}
+
+{% block body %}
+<div class="cointainer full-viewport">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="well">
+        <form class="form-horizontal" method="post">
+          <fieldset>
+            <legend>NGO Registration</legend>
+            <div class="form-group">
+              <label for="inputText" class="col-lg-2 control-label">Name</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText"  name="name" placeholder="Name" style="width:50%">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="textArea" class="col-lg-2 control-label">Description</label>
+              <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="textArea" name= "description"></textarea>
+              </div>
+            </div>            
+
+            <div class="form-group">
+              <label for="inputText" class="col-lg-2 control-label">Chief Functionary</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText"  name="chiefFunctionary" placeholder="Chief" style="width:50%">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputText" class="col-lg-2 control-label">Chairman</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText"  name="chairman" placeholder="Chairman" style="width:50%">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="select" class="col-lg-2 control-label">Sector</label>
+              <div class="col-lg-10">
+                <select class="form-control" id="select" name="sectorOfOperation">
+                  <option>Agriculture </option>
+                  <option>Animal Husbandry, Dairying & Fisheries </option>
+                  <option>Any Other </option>
+                  <option>Art & Culture </option>
+                  <option>Biotechnology </option>
+                  <option>Children </option>
+                  <option>Civic Issues </option>
+                  <option>Dalit Upliftment </option>
+                  <option>Differently Abled </option>
+                  <option>Disaster Management </option>
+                  <option>Drinking Water </option>
+                  <option>Education & Literacy </option>
+                  <option>Environment & Forests </option>
+                  <option>Food Processing </option>
+                  <option>Health & Family Welfare </option>
+                  <option>HIV/AIDS </option>
+                  <option>Housing </option>
+                  <option>Human Rights </option>
+                  <option>Information & Communication Technology </option>
+                  <option>Labour & Employment </option>
+                  <option>Land Resources </option>
+                  <option>Legal Awareness & Aid </option>
+                  <option>Micro Finance </option>
+                  <option>Micro Small & Medium Enterprises </option>
+                  <option>Minority Issues </option>
+                  <option>New & Renewable Energy </option>
+                  <option>Nutrition </option>
+                  <option>Panchayati Raj </option>
+                  <option>Prisoner's Issues </option>
+                  <option>Right to Information & Advocacy </option>
+                  <option>Rural Development & Poverty Alleviation </option>
+                  <option>Science & Technology </option>
+                  <option>Scientific & Industrial Research </option>
+                  <option>Sports </option>
+                  <option>Tourism </option>
+                  <option>Tribal Affairs </option>
+                  <option>Urban Development & Poverty Alleviation </option>
+                  <option>Vocational Training </option>
+                  <option>Water Resources </option>
+                  <option>Women's Development & Empowerment </option>
+                  <option>Youth Affairs </option>
+
+                </select>
+               </div>
+              </div> 
+            <div class="form-group">
+              <label for="select" class="col-lg-2 control-label">State</label>
+              <div class="col-lg-10">
+                <select class="form-control" id="select" name="stateOfOperation">
+                  <option>Andaman and Nicobar Island </option>
+                  <option>Andhra Pradesh </option>
+                  <option>Arunachal Pradesh </option>
+                  <option>Assam </option>
+                  <option>Bihar </option>
+                  <option>Chandigarh </option>
+                  <option>Chhattisgarh </option>
+                  <option>Dadra and Nagar Haveli </option>
+                  <option>Daman and Diu </option>
+                  <option>Delhi </option>
+                  <option>Goa </option>
+                  <option>Gujarat </option>
+                  <option>Haryana </option>
+                  <option>Himachal Pradesh </option>
+                  <option>Jammu and Kashmir </option>
+                  <option>Jharkhand </option>
+                  <option>Karnataka </option>
+                  <option>Kerala </option>
+                  <option>Lakshadweep </option>
+                  <option>Madhya Pradesh </option>
+                  <option>Maharashtra </option>
+                  <option>Manipur </option>
+                  <option>Meghalaya </option>
+                  <option>Mizoram </option>
+                  <option>Nagaland </option>
+                  <option>Orissa </option>
+                  <option>Puducherry </option>
+                  <option>Punjab </option>
+                  <option>Rajasthan </option>
+                  <option>Sikkim </option>
+                  <option>Tamil Nadu </option>
+                  <option>Tripura </option>
+                  <option>Uttar Pradesh </option>
+                  <option>Uttarkhand </option>
+                  <option>West Bengal </option>
+                </select>
+               </div>
+              </div>
+
+            <div class="form-group">
+              <label for="inputText" class="col-lg-2 control-label">Pan Card Number</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText"  name="pancardNumber" placeholder="Pan Card Number" style="width:50%">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputText" class="col-lg-2 control-label">NGO Registration Number</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText"  name="registrationNumber" placeholder="Registration Number" style="width:50%">
+              </div>
+            </div>
+    
+            <div class="form-group">
+              <label for="inputText" class="col-lg-2 control-label">Date Of Registration(yyyy-MM-dd)</label>
+              <div class="col-lg-10" >
+                <input type="text" class="form-control" id="inputText"  name="dateOfRegistration" placeholder="Date Of Registration" style="width:50%">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="select" class="col-lg-2 control-label">State Of Registration</label>
+              <div class="col-lg-10">
+                <select class="form-control" id="select" name="stateOfRegistration">
+                  <option>Andaman and Nicobar Island </option>
+                  <option>Andhra Pradesh </option>
+                  <option>Arunachal Pradesh </option>
+                  <option>Assam </option>
+                  <option>Bihar </option>
+                  <option>Chandigarh </option>
+                  <option>Chhattisgarh </option>
+                  <option>Dadra and Nagar Haveli </option>
+                  <option>Daman and Diu </option>
+                  <option>Delhi </option>
+                  <option>Goa </option>
+                  <option>Gujarat </option>
+                  <option>Haryana </option>
+                  <option>Himachal Pradesh </option>
+                  <option>Jammu and Kashmir </option>
+                  <option>Jharkhand </option>
+                  <option>Karnataka </option>
+                  <option>Kerala </option>
+                  <option>Lakshadweep </option>
+                  <option>Madhya Pradesh </option>
+                  <option>Maharashtra </option>
+                  <option>Manipur </option>
+                  <option>Meghalaya </option>
+                  <option>Mizoram </option>
+                  <option>Nagaland </option>
+                  <option>Orissa </option>
+                  <option>Puducherry </option>
+                  <option>Punjab </option>
+                  <option>Rajasthan </option>
+                  <option>Sikkim </option>
+                  <option>Tamil Nadu </option>
+                  <option>Tripura </option>
+                  <option>Uttar Pradesh </option>
+                  <option>Uttarkhand </option>
+                  <option>West Bengal </option>
+                </select>
+               </div>
+              </div>
+
+            <div class="form-group">
+              <label for="textArea" class="col-lg-2 control-label">Address</label>
+              <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="textArea" name= "address"></textarea>
+              </div>
+            </div>            
+
+            <div class="form-group">
+              <label for="inputText" class="col-lg-2 control-label">Telephone/Mobile</label>
+              <div class="col-lg-10" >
+                <input type="text" class="form-control" id="inputText"  name="telephone"  style="width:50%">
+              </div>
+            </div>              
+
+              <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      </div>
+    <div class="col-md-2"></div>
+    </div>
+    </div>
+{% endblock body %}
+
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/js/slidingPanels.js"></script>
+{% endblock scripts %}

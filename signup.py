@@ -60,14 +60,15 @@ class UserRegistrationPage(BaseHandler):
 		sleep(5)
 		self.redirect("/home")
 
-class NGORegistrationBasicInfo(BaseHandler):
+class NGORegistration(BaseHandler):
 	def get(self):
 		user=users.get_current_user()
 		if user:
 			userid = user.user_id()
  			authenticationUser = NGO.query(NGO.userid == userid).fetch(1)
 			if  not authenticationUser:
-				self.render("ngoRegistrationBasicInfo.html")
+				
+				self.render("ngoRegistration.html")
 			else:
 				self.redirect("/home")
 		else:
@@ -77,16 +78,36 @@ class NGORegistrationBasicInfo(BaseHandler):
 		user= users.get_current_user()
 		name = self.request.get("name")	
 		userid = user.user_id()
+		email = user.email()
 		description = self.request.get("description")
-		panCardNumber = self.request.get("panCardNumber")
-		ngoObject = NGO()
-		ngoObject.userid = userid
-		ngoObject.name = name
-		ngoObject.credibility = False
-		ngoObject.description = description
-		ngoObject.panCardNumber = panCardNumber
-		ngoObject.email = user.email()
-		ngoObject.put()
+		pancardNumber = self.request.get("pancardNumber")
+		chiefFunctionary = self.request.get("chiefFunctionary")
+		chairman = self.request.get("chairman")
+		sectorOfOperation = self.request.get("sectorOfOperation")
+		stateOfOperation = self.request.get("stateOfOperation")
+		registrationNumber = self.request.get("registrationNumber")
+		dateOfRegistration = self.request.get("dateOfRegistration")
+		stateOfRegistration = self.request.get("stateOfRegistration")
+		telephone = self.request.get("telephone")	
+		address = self.request.get("address")
+		dateOfRegistration  =  self.date(dateOfRegistration)
+		ngo = NGO()
+		ngo.userid = userid
+		ngo.name = name
+		ngo.credibility = False
+		ngo.description = description
+		ngo.pancardNumber = pancardNumber
+		ngo.chiefFunctionary = chiefFunctionary
+		ngo.chairman = chairman
+		ngo.sectorOfOperation = sectorOfOperation
+		ngo.stateOfOperation = stateOfOperation
+		ngo.registrationNumber = registrationNumber
+		ngo.dateOfRegistration = dateOfRegistration
+		ngo.stateOfRegistration = stateOfRegistration 
+		ngo.telephone = telephone 
+		ngo.address = address 
+		ngo.email = email
+		ngo.put()
 		
 		index = search.Index(name = "NGO")		
 		document = search.Document(doc_id = userid, fields = [ search.AtomField(name = "name", value = name ),
@@ -107,7 +128,7 @@ class ProofOfRegistration(BaseHandler):
 			if ngo:
 				name = ngo.name
 				description = ngo.description
-				panCardNumber = ngo.panCardNumber
+				panCardNumber = ngo.pancardNumber
 				if name and description and panCardNumber:
 					upload_url = blobstore.create_upload_url("/signup/upload")
 					parameter = {'upload_url':upload_url}
@@ -130,5 +151,5 @@ class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
 		
 		
 				
-app = webapp2.WSGIApplication([('/signup/userRegistration',UserRegistrationPage), ('/signup/ngoRegistration',NGORegistrationBasicInfo),('/signup/registration',RegistrationHandler),('/signup/ngoRegistration/proofOfRegistration', ProofOfRegistration ),('/signup/upload',UploadHandler)],debug=True)	
+app = webapp2.WSGIApplication([('/signup/userRegistration',UserRegistrationPage), ('/signup/ngoRegistration',NGORegistration),('/signup/registration',RegistrationHandler),('/signup/ngoRegistration/proofOfRegistration', ProofOfRegistration ),('/signup/upload',UploadHandler)],debug=True)	
 

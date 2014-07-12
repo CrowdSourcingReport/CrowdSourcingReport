@@ -8,6 +8,7 @@ import os
 import webapp2
 from google.appengine.ext import ndb
 from google.appengine.api import users
+from datetime import datetime 
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'..','html')), extensions=['jinja2.ext.autoescape'], autoescape=True)
 
@@ -26,7 +27,7 @@ class NGO(ndb.Model):
 	eightygRegistration = ndb.StringProperty()
 	description = ndb.TextProperty(required = True)
 	email = ndb.StringProperty(required = True)
-	projects = ndb.PickleProperty(required = True)
+	projects = ndb.PickleProperty()
 	proofOfRegistration = ndb.BlobProperty()
 	pancardProof = ndb.BlobProperty()
 	pancardNumber = ndb.StringProperty(required = True)
@@ -39,8 +40,6 @@ class NGO(ndb.Model):
 	logo = ndb.BlobProperty()
 	address = ndb.StringProperty(required = True)
 	telephone = ndb.PickleProperty(required = True)
-	state = ndb.PickleProperty(required = True)
-	city = ndb.PickleProperty(required = True)
 	registrationNumber = ndb.StringProperty(required = True)	
 
 #data model for storing the tasks
