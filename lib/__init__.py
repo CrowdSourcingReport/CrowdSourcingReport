@@ -26,9 +26,22 @@ class NGO(ndb.Model):
 	eightygRegistration = ndb.StringProperty()
 	description = ndb.TextProperty(required = True)
 	email = ndb.StringProperty(required = True)
-	projects = ndb.PickleProperty()
+	projects = ndb.PickleProperty(required = True)
 	proofOfRegistration = ndb.BlobProperty()
-	panCardNumber = ndb.StringProperty()
+	pancardProof = ndb.BlobProperty()
+	pancardNumber = ndb.StringProperty(required = True)
+	dateOfRegistration = ndb.DateTimeProperty(required = True)
+	placeOfRegistration = ndb.StringProperty(required = True)
+	chiefFunctionary = ndb.StringProperty(required = True)
+	chairman = ndb.StringProperty(required = True)
+	stateOfOperation = ndb.PickleProperty(required = True)
+	sectorOfOperation = ndb.PickleProperty(required = True)
+	logo = ndb.BlobProperty()
+	address = ndb.StringProperty(required = True)
+	telephone = ndb.PickleProperty(required = True)
+	state = ndb.PickleProperty(required = True)
+	city = ndb.PickleProperty(required = True)
+	
 
 #data model for storing the tasks
 class TaskList(ndb.Model):
@@ -39,13 +52,15 @@ class TaskList(ndb.Model):
 #data model for storing project data 
 class Project(ndb.Model):
 	title = ndb.StringProperty()
-	shortDescription = ndb.TextProperty()
 	ngo = ndb.StringProperty()
 	authenticity = ndb.BooleanProperty()	
 	category = ndb.StringProperty()	
-        detailedDescription = ndb.TextProperty()
+        Description = ndb.TextProperty()
         tasks = ndb.StructuredProperty(TaskList, repeated = True)
-	
+
+#data model for NGO Gov database
+class NGOGOV(ndb.Model):
+	pass
 	
 #base handler that cointains all the required charteristic
 class BaseHandler(webapp2.RequestHandler):
