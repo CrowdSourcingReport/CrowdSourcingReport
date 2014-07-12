@@ -31,7 +31,7 @@ class NGO(ndb.Model):
 	pancardProof = ndb.BlobProperty()
 	pancardNumber = ndb.StringProperty(required = True)
 	dateOfRegistration = ndb.DateTimeProperty(required = True)
-	placeOfRegistration = ndb.StringProperty(required = True)
+	stateOfRegistration = ndb.StringProperty(required = True)
 	chiefFunctionary = ndb.StringProperty(required = True)
 	chairman = ndb.StringProperty(required = True)
 	stateOfOperation = ndb.PickleProperty(required = True)
@@ -41,7 +41,7 @@ class NGO(ndb.Model):
 	telephone = ndb.PickleProperty(required = True)
 	state = ndb.PickleProperty(required = True)
 	city = ndb.PickleProperty(required = True)
-	
+	registrationNumber = ndb.StringProperty(required = True)	
 
 #data model for storing the tasks
 class TaskList(ndb.Model):
@@ -76,4 +76,7 @@ class BaseHandler(webapp2.RequestHandler):
 	def stripProjectIdentifier(self, identifier):
 		split = identifier.split("_") 
 		return (split[0], split[1])
-
+	def date(self,dateString):
+		dateString = dateString.split("-")
+		return datetime(int(dateString[0]), int(dateString[1]), int(dateString[2]) )
+	
