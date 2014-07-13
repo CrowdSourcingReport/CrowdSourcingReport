@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 		<!-- This defines viewport -->
-		<meta id='view_meta' name="viewport" content="width=device-width, initial-scale=1">
+		<meta id='view_meta' name="viewport" content="width=device-width">
 
 		<!-- Javascript to determine screensize -->
 		<script type="text/javascript" language="javascript" src="/Content/js/checkScreen.js"></script>
@@ -63,6 +63,7 @@
 					{% if user %}
 					<ul class="nav navbar-nav navbar-right">
 						<li id="home"><a class="nav" href="/home">Home</a></li>
+						<li><a href="#">Sign Out</a></li>
 					</ul>
 					{% else %}
 					<ul class="nav navbar-nav navbar-right">
@@ -71,11 +72,14 @@
 							      Sign In<span class="caret"></span>
 						    </a>
 					     <ul class="dropdown-menu btn col-centered">
-    						<li><a href="{{users.create_login_url()}}"> 
-    							<div id="customBtn" class="gButton ">
-   							   		<span class="icon"></span>
-   							   		<span class="buttonText">Sign in with Google</span>
-    							</div></a></li>
+    						<li id="customBtn" class="gButton ">
+								<a href="{{users.create_login_url()}}"> 
+									<div >
+										<span class="icon"></span>
+										<span class="buttonText">Sign in with Google</span>
+									</div>
+								</a>
+							</li>
     						
     							</div>
    						</ul>
@@ -146,7 +150,7 @@
 			
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-			<script src="Content/js/jquery-2.1.1.min.js"></script>
+			<script src="/Content/js/jquery-2.1.1.min.js"></script>
 	
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 			<script src="/Content/js/bootstrap.min.js"></script>

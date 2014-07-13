@@ -12,11 +12,13 @@
 		</h3>
 		<div class="panel panel-default panelbody">
 			<div class="panel-body">
-				<p class="text-center">
+				<p class="text-left">
 					Welcome {{user}}, This is the portal to all your potential investors. Please proceed to create a new project or update existing one.
-					{% if not ngoProjects %}
-						<p class="text-center">It seems you don't have any project right now. Why not <a href="propose">create</a> now?"</p>
-					{% endif %}
+					<ul>
+						{% if not ngoProjects %}
+							<li><p class="text-left">It seems you don't have any project right now. Why not <a href="propose">create</a> now?"</p></li>
+						{% endif %}
+					</ul>
 				</p>
 			</div>
 		</div>
@@ -31,6 +33,7 @@
 					<ul>
 						<li><a href="/propose">Create New Project</a></li>
 						<li><a href="/home/UpdateProject">Update a project</a></li>
+						<li><a href="#">Update {{name}} profile</a></li>
 					</ul>
 				</p>
 			</div>
