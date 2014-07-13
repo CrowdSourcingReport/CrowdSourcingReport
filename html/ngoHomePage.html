@@ -14,6 +14,9 @@
 			<div class="panel-body">
 				<p class="text-center">
 					Welcome {{user}}, This is the portal to all your potential investors. Please proceed to create a new project or update existing one.
+					{% if not ngoProjects %}
+						<p class="text-center">It seems you don't have any project right now. Why not <a href="propose">create</a> now?"</p>
+					{% endif %}
 				</p>
 			</div>
 		</div>
