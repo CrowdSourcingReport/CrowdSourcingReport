@@ -1,19 +1,23 @@
-<html>
-	<head>
-		<title>Task List</title>
-	</head>
-	<body>
-		<form method="post">
-			<p>Project Description</p>
-			<textarea name="detailedDescription"></textarea>
-			<br />
-			<hr />
-			<div id = "tasklist"></div>
-			<hr />
-			<input type="hidden" id="count" name="count"	value="0">
-			<input type ="button" onclick = "addTask()" value ="Add a task"><br /><br />
-			<input type = "submit" method = "post" value ="Submit" />
+{% extends "layout.html" %}
+
+{% block title %}Crowd Sourcing Report{% endblock title %}
+
+{% block body %}
+<div class="container">
+	<div class="row">
+		<form class="form-horizontal" method="post">
+			<fieldset>
+				<legend>Add Tasks in Your Project:</legend>
+					<div id = "tasklist"></div>
+					<input type="hidden" id="count" name="count"	value="0">
+					<input type ="button" class="btn btn-primary" onclick = "addTask()" value ="Add a task"><br /><br />
+					<input type = "submit" class="btn btn-primary" method = "post" value ="Submit" />
+				</fieldset>
 		</form>
+	</div>
+</div>
+{% endblock body %}
+
+{% block scripts %}
 		<script src = "/Content/js/addTask.js"></script>
-	</body>
-</html>
+{% endblock scripts %}
