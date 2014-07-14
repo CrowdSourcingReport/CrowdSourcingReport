@@ -76,48 +76,55 @@ class NGORegistration(BaseHandler):
 	
 	def post(self):
 		user= users.get_current_user()
-		name = self.request.get("name")	
-		userid = user.user_id()
-		email = user.email()
-		description = self.request.get("description")
-		pancardNumber = self.request.get("pancardNumber")
-		chiefFunctionary = self.request.get("chiefFunctionary")
-		chairman = self.request.get("chairman")
-		sectorOfOperation = self.request.get("sectorOfOperation")
-		stateOfOperation = self.request.get("stateOfOperation")
-		registrationNumber = self.request.get("registrationNumber")
-		dateOfRegistration = self.request.get("dateOfRegistration")
-		stateOfRegistration = self.request.get("stateOfRegistration")
-		telephone = self.request.get("telephone")	
-		address = self.request.get("address")
-		dateOfRegistration  =  self.date(dateOfRegistration)
-		ngo = NGO()
-		ngo.userid = userid
-		ngo.name = name
-		ngo.credibility = False
-		ngo.description = description
-		ngo.pancardNumber = pancardNumber
-		ngo.chiefFunctionary = chiefFunctionary
-		ngo.chairman = chairman
-		ngo.sectorOfOperation = sectorOfOperation
-		ngo.stateOfOperation = stateOfOperation
-		ngo.registrationNumber = registrationNumber
-		ngo.dateOfRegistration = dateOfRegistration
-		ngo.stateOfRegistration = stateOfRegistration 
-		ngo.telephone = telephone 
-		ngo.address = address 
-		ngo.email = email
-		ngo.put()
-		
-		index = search.Index(name = "NGO")		
-		document = search.Document(doc_id = userid, fields = [ search.AtomField(name = "name", value = name ),
+		if user:
+			userid = user.user_id()
+			authenticationUser = User.query(User.userid == userid).fetch(1)
+			authenticationNgo = NGO.query(NGO.userid == userid).fetch(1)
+			if authenticationUser or authenticationNgo:
+				self.redirect("/home")
+			else:
+				name = self.request.get("name")	
+				email = user.email()
+				description = self.request.get("description")
+				pancardNumber = self.request.get("pancardNumber")
+				chiefFunctionary = self.request.get("chiefFunctionary")
+				chairman = self.request.get("chairman")
+				sectorOfOperation = self.request.get("sectorOfOperation");self.response.write(sectorOfOperation)
+				stateOfOperation = self.request.get("stateOfOperation")
+				registrationNumber = self.request.get("registrationNumber")
+				dateOfRegistration = self.request.get("dateOfRegistration")
+				stateOfRegistration = self.request.get("stateOfRegistration")
+				telephone = self.request.get("telephone");self.response.write(telephone)	
+				address = self.request.get("address");self.response.write(address)
+				dateOfRegistration  =  self.date(dateOfRegistration)
+				ngo = NGO()
+				ngo.userid = userid
+				ngo.name = name
+				ngo.credibility = False
+				ngo.description = description
+				ngo.pancardNumber = pancardNumber
+				ngo.chiefFunctionary = chiefFunctionary
+				ngo.chairman = chairman
+				ngo.sectorOfOperation = sectorOfOperation
+				ngo.stateOfOperation = stateOfOperation
+				ngo.registrationNumber = registrationNumber
+				ngo.dateOfRegistration = dateOfRegistration
+				ngo.stateOfRegistration = stateOfRegistration 
+				ngo.telephone = telephone 
+				ngo.projects = []
+				ngo.address = address 
+				ngo.email = email
+				ngo.put()
+
+				index = search.Index(name = "NGO")		
+				document = search.Document(doc_id = userid, fields = [ search.AtomField(name = "name", value = name ),
 								       search.TextField(name = "description", value = description)])
-		try:
-			index.put(document)
-		except search.Error:
-			logging.exception("Put Failed")
-		sleep(5) #cheap trick but none the less it works!
-		self.redirect("/signup/ngoRegistration/proofOfRegistration")	
+				try:
+					index.put(document)
+				except search.Error:
+					logging.exception("Put Failed")
+				sleep(5) #cheap trick but none the less it works!
+				#self.redirect("/signup/ngoRegistration/proofOfRegistration")	
  
 class ProofOfRegistration(BaseHandler):
 	def get(self):
