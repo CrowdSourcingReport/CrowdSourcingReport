@@ -152,8 +152,10 @@ class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
 	def post(self):
 		user = users.get_current_user()
 		ngo = NGO.query(NGO.userid == user.user_id()).fetch(1)[0]
-		eightygRegistration = self.get_uploads("proofOfRegistration");self.response.write(eightygRegistration)
-		ngo.eigthygRegistration = eightygRegistration 	
+		eightygRegistration = self.get_uploads("eightygRegistration")
+		proofOfRegistration = self.get_uploads("proofOfRegistration")
+		ngo.eightygRegistration = eightygRegistration[0].key() 
+		ngo.proofOfRegistration = proofOfRegistration[0].key()	
 		ngo.put()
 		
 		
