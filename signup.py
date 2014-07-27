@@ -125,7 +125,8 @@ class NGORegistration(BaseHandler):
 					logging.exception("Put Failed")
 				sleep(5) #cheap trick but none the less it works!
 				#self.redirect("/signup/ngoRegistration/proofOfRegistration")	
- 
+		else:
+			self.redirect("/login") 
 class ProofOfRegistration(BaseHandler):
 	def get(self):
 		user = users.get_current_user()
@@ -151,13 +152,20 @@ class ProofOfRegistration(BaseHandler):
 class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
 	def post(self):
 		user = users.get_current_user()
-		ngo = NGO.query(NGO.userid == user.user_id()).fetch(1)[0]
-		eightygRegistration = self.get_uploads("eightygRegistration")
-		proofOfRegistration = self.get_uploads("proofOfRegistration")
-		ngo.eightygRegistration = eightygRegistration[0].key() 
-		ngo.proofOfRegistration = proofOfRegistration[0].key()	
-		ngo.put()
-		
+		if user:
+			ngo = NGO.query(NGO.userid == user.user_id()).fetch(1)[0]
+			if ngo:
+				eightygRegistration = self.get_uploads("eightygRegistration")
+				proofOfRegistration = self.get_uploads("proofOfRegistration")
+				if not ngo.eightygRegistration:
+					ngo.eightygRegistration = eightygRegistration[0].key() 
+				if not ngo.proofOfRegistration:
+					ngo.proofOfRegistration = proofOfRegistration[0].key()	
+				ngo.put()
+			else: 
+				self.redirect("/signup/registration")
+		else:
+			self.redirect("/login")
 		
 				
 app = webapp2.WSGIApplication([('/signup/userRegistration',UserRegistrationPage), ('/signup/ngoRegistration',NGORegistration),('/signup/registration',RegistrationHandler),('/signup/ngoRegistration/proofOfRegistration', ProofOfRegistration ),('/signup/upload',UploadHandler)],debug=True)	
