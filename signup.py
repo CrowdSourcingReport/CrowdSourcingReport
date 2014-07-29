@@ -89,13 +89,13 @@ class NGORegistration(BaseHandler):
 				pancardNumber = self.request.get("pancardNumber")
 				chiefFunctionary = self.request.get("chiefFunctionary")
 				chairman = self.request.get("chairman")
-				sectorOfOperation = self.request.get("sectorOfOperation");self.response.write(sectorOfOperation)
+				sectorOfOperation = self.request.get("sectorOfOperation")
 				stateOfOperation = self.request.get("stateOfOperation")
 				registrationNumber = self.request.get("registrationNumber")
 				dateOfRegistration = self.request.get("dateOfRegistration")
 				stateOfRegistration = self.request.get("stateOfRegistration")
-				telephone = self.request.get("telephone");self.response.write(telephone)	
-				address = self.request.get("address");self.response.write(address)
+				telephone = self.request.get("telephone")	
+				address = self.request.get("address")
 				dateOfRegistration  =  self.date(dateOfRegistration)
 				ngo = NGO()
 				ngo.userid = userid
@@ -124,7 +124,7 @@ class NGORegistration(BaseHandler):
 				except search.Error:
 					logging.exception("Put Failed")
 				sleep(5) #cheap trick but none the less it works!
-				#self.redirect("/signup/ngoRegistration/proofOfRegistration")	
+				self.redirect("/signup/ngoRegistration/proofOfRegistration")	
 		else:
 			self.redirect("/login") 
 class ProofOfRegistration(BaseHandler):
