@@ -7,7 +7,7 @@ import random
 from google.appengine.api import mail
 from google.appengine.api import users
 from google.appengine.ext import ndb
-
+#yo i m chenna
 class HomePageHandler(BaseHandler):
 	def get(self):
 		user = users.get_current_user()
