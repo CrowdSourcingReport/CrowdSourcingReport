@@ -3,36 +3,28 @@
 {% block title %}Propose{% endblock title %}
 
 {% block body %}
-	<div class = "container full-viewport">
-    <div class="well">
-		<div class = "row">			
+	
+<div class = "container">
+	<div class = "row">			
 		<form class="form-horizontal" method="post">
-    <fieldset>
-    <legend>Categories</legend>
+			<fieldset>
+				<legend>Propose a Project</legend>
+				<div class="form-group">
+					<label for="inputText" class="control-label">Title:</label>
+					<input type="text" class="form-control" id="inputText"  name="title" placeholder="Title" style="width:30%">
+				</div>
 
-    <div class="form-group">
-      <label for="inputText" class="col-lg-2 control-label">Title</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputText"  name="title" placeholder="Title" style="width:30%">
-      </div>
-    </div>
+				<div class="form-group">
+					<label for="inputText" class="control-label">Category:</label>
+					<input type="text" class="form-control" id="inputText"  name="category" placeholder="Category" style="width:30%">
+				</div>
 
-    <div class="form-group">
-      <label for="inputText" class="col-lg-2 control-label">Category</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputText"  name="category" placeholder="Category" style="width:30%">
-      </div>
-    </div>
-
-    <div class="form-group">
-     <div class="col-lg-10 col-lg-offset-2">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </fieldset>
-    </form>
+				<div class="form-group">
+						<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</fieldset>
+		</form>
 	</div>
-</div>
 </div>
 {% endblock body %}
 
