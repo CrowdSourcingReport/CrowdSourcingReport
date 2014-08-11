@@ -8,7 +8,6 @@ function addTask(){
 		table.innerHTML = "<thead><tr><th style='padding:5px; text-align:center;'>Sr. No.</th><th style='padding:5px; text-align:center;'>Title</th><th style='padding:5px; text-align:center;'>Description</th><th style='padding:5px; text-align:center;'>Funds (in &#8377;)</th><th style='padding:5px; text-align:center;'>Remove</th></tr></thead><tbody></tbody>"
 		document.getElementById('tasklist').appendChild(table);
 	}
-	no++;
 	counter++;
 	titleid = "taskTitle" + no; 
 	descrid = "taskDescription" + no;
@@ -16,11 +15,11 @@ function addTask(){
 	var row = document.createElement('tr');
 	row.setAttribute("id","row"+counter.toString());
 	row.setAttribute("class","text-center");
-	var string = "<td class='srno' style='padding:5px; vertical-align:middle;'>"+no+"</td><td style='padding:5px; vertical-align:middle;'><input type = 'text' class='form-control title' id = " + titleid + " /></td><td style='padding:5px;'><textarea class='form-control descr' cols='80' rows='1' id=" + descrid + " ></textarea></td><td style='padding:5px; vertical-align:middle;'><input type = 'text' class='form-control fund' id =" + fundsid + " /></td><td style='padding:5px; text-align:center; vertical-align:middle;'><a class='btn btn-primary form-control' href='#' id=" + counter + " onclick = 'removeTask(this.id)'>-</a></td>"
+	var string = "<td class='srno' style='padding:5px; vertical-align:middle;'>"+no+"</td><td style='padding:5px; vertical-align:middle;'><input type = 'text' class='form-control title' name = " + titleid + " /></td><td style='padding:5px;'><textarea class='form-control descr' cols='80' rows='1' name =" + descrid + " ></textarea></td><td style='padding:5px; vertical-align:middle;'><input type = 'text' class='form-control fund' name =" + fundsid + " /></td><td style='padding:5px; text-align:center; vertical-align:middle;'><a class='btn btn-primary form-control' href='#' id=" + counter + " onclick = 'removeTask(this.id)'>-</a></td>"
 	row.innerHTML = string;
 	document.getElementById("count").value=no;
 	document.getElementsByTagName('tbody')[0].appendChild(row);
-	
+	no++;
 }
 
 function removeTask(count){
@@ -33,9 +32,9 @@ function removeTask(count){
 		var descr = document.getElementsByClassName('descr');
 		for(var i=0; i<srno.length; i++){
 			srno[i].innerHTML = (i+1).toString();
-			title[i].id = "taskTitle" + i.toString();
-			fund[i].id = "taskFund" + i.toString();
-			descr[i].id = "taskDescription" + i.toString();
+			title[i].name = "taskTitle" + i.toString();
+			fund[i].name = "taskFund" + i.toString();
+			descr[i].name = "taskDescription" + i.toString();
 		}
 		no--;
 
