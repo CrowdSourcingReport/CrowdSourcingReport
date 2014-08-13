@@ -6,6 +6,7 @@ import webapp2
 from lib import BaseHandler, NGO, Project
 import random 
 from google.appengine.api import mail
+import datetime
 
 class CredibilityCheckHandler(BaseHandler):
 	def get(self):
@@ -56,13 +57,21 @@ class CreateFakeNGOAccount(BaseHandler):
 	def get(self):
 		for i in range(100):
 			ngo = NGO()
-			ngo.name = str(random.randrange(20,10000))		
+			ngo.userid = str(random.randrange(1000,10000))
+			ngo.name = "TG"
 			ngo.credibility = False
-			ngo.eightygRegistrationNumber = str(random.randrange(1,10000))
-			ngo.description = str(random.randrange(1,100000000000000000000))
-			ngo.userid = str(random.randrange(1,10))
-			ngo.email = "tanaygahlot@gmail.com"
-			ngo.projects=[]
+			ngo.description = ""
+			ngo.email = ""
+			ngo.pancardNumber = ""
+			ngo.dateOfRegistration = datetime.datetime.now()
+			ngo.stateOfRegistration = ""
+			ngo.chiefFunctionary = ""
+			ngo.chairman = ""
+			ngo.stateOfOperation = ""
+			ngo.sectorOfOperation = "ap"
+			ngo.address = ""
+			ngo.telephone = "122"
+			ngo.registrationNumber = "1234"	
 			ngo.put()
 		self.response.write("Done!")
 
