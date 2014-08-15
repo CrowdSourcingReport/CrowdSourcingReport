@@ -2,6 +2,7 @@ function signup() {
 	Parse.initialize("3lKrL4HTUMbclk8CikblOpWZlJA7OLWkI7BMxP03", "vLhckw4U9M0TtXcPjEQLIOpnC1e8enWURTMlyoUb");
 
 	var user = new Parse.User();
+	user.set("username",document.getElementsByName("email")[0].value)
 	user.set("first", document.getElementsByName("fname")[0].value);
 	user.set("last", document.getElementsByName("lname")[0].value);
 	user.set("email", document.getElementsByName("email")[0].value);
