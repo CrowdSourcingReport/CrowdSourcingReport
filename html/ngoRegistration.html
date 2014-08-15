@@ -49,7 +49,8 @@
 										<textarea class="form-control" rows="3" id="textArea" name= "description" style="width:50%"></textarea>
 									</div>
 									<div class="form-group">
-										  <label for="select" class="control-label">State</label>
+										  <label for="select" class="control-label">State of Operation</label>
+											<div id="selectState_output"></div><br />
 											<select class="form-control" id="selectState" name="stateOfOperation" style="width:50%">
 												  <option>Andaman and Nicobar Island </option>
 												  <option>Andhra Pradesh </option>
@@ -87,6 +88,7 @@
 												  <option>Uttarkhand </option>
 												  <option>West Bengal </option>
 											</select>
+											<a class="btn btn-primary" onclick="selectById('selectState')">Add</a>
 									</div>
 								</fieldset>
 							</form>
@@ -153,7 +155,8 @@
 						<div class="tab-pane fade" id="sector">
 								<fieldset>
 									<legend>Sector</legend>
-									<select class="form-control" id="selectStateReg" form= "ngoRegForm" name="sectorOfOperation" style="width:50%">
+									<div id="NGOsector_output"></div>
+									<select class="form-control" id="NGOsector" form= "ngoRegForm" name="sectorOfOperation" style="width:50%">
 										<option>Aged/Elderly </option>
 										<option>Agriculture </option>
 										<option>Animal Husbandry, Dairying & Fisheries </option>
@@ -197,7 +200,7 @@
 										<option>Women's Development & Empowerment </option>
 										<option>Youth Affairs </option>
 									</select>	
-									
+									<a class="btn btn-primary" onclick="selectById('NGOsector')">Add</a>
 								</fieldset>
 						</div>
 						<div class="tab-pane fade" id="team">
@@ -241,4 +244,5 @@
 {% block scripts %}
 <!-- CarouFredSel JavaScript Plugin -->
 <script type="text/javascript" language="javascript" src="/Content/js/copyState.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/js/selectmult.js"></script>
 {% endblock scripts %}

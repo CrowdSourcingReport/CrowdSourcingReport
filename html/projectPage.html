@@ -1,118 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    		<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
 
-    		<title>Sample Project</title>
+{% block title %}Crowd Sourcing Report{% endblock title %}
 
-    		<!-- Bootstrap CSS -->
-    			<link href="/Content/css/bootstrap.min.css" rel="stylesheet">
-    			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    			<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    			<!--[if lt IE 9]>
-      			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    			<![endif]-->
-
-		<!-- Custom CSS -->
-			<link rel="stylesheet" type="text/css" href="/Content/css/crwdsrc.css">
-
-		<!-- Header Begins -->
-		
-  	</head>
-
-	<!-- Body Begin -->
-  	<body>
-		<!-- navbar begins -->
-		<div id="navbar"></div>
-		<!-- navbar ends -->		
-	
-		<!-- Content Begins -->		
-		<div class="container">
-			<div class="row">
-				<div class="col-md-9">
-					<div class="panel panel-default">
-						<div class="panel-body panelbody">
-							<h1>Sample Project</h1>
-							<div class="col-md-8">
-								<p class="subheading">
-									<a href="#">
-										<img class="middle" src="/Content/img/ngo_logo.jpg" width=50px />&nbsp;&nbsp;NGO Name
-									</a>
-								</p>
-							</div>
-							<div class="col-md-4">
-								<p class="text-right"><button class="btn btn-lg btn-success" href="#" role="button">Donate</button></p>
-							</div>
-							<img style="margin:auto" src="/Content/img/project_image.jpg" width=800px />
-							<p class="bigtext">Estimated Project Cost: &#8377;0.00</p>
-							<p class="bigtext">Funds Required: &#8377;0.00</p>
-							<h3>Project Description:</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam iaculis tempor ante, a bibendum nisi faucibus ut. Proin tincidunt justo ut congue hendrerit. Nunc tempus consequat mauris, quis consectetur lectus tempor in. Suspendisse vel nunc ut augue condimentum placerat. In faucibus erat sapien, nec sollicitudin enim aliquet sed. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras non gravida risus. Aliquam gravida ante at sodales tincidunt. Cras eget elementum mi. Vestibulum dapibus elementum tincidunt. Nunc pellentesque urna non fringilla posuere. Duis nec urna arcu.
-
-Sed bibendum odio vitae mi elementum, ac scelerisque lorem egestas. Sed scelerisque laoreet purus ut rhoncus. Pellentesque volutpat mauris dui, sit amet volutpat metus ultricies eu. Nulla et tristique dolor. Cras id turpis a nunc eleifend tempor. Vestibulum id imperdiet mauris. Vestibulum fringilla auctor justo eu hendrerit. Etiam nec porta mi, non dapibus quam. Ut vel malesuada velit. Nullam varius nisl a nisi porta vulputate. Sed vitae libero facilisis, rhoncus nisi at, pulvinar odio. Curabitur tincidunt, nunc quis mollis malesuada, felis orci venenatis orci, id porta mauris libero ut felis. In sollicitudin purus a egestas tempor. Mauris viverra fermentum dignissim. Aenean nec viverra massa. Vivamus arcu ipsum, tincidunt eget faucibus in, posuere sed ante.
-
-Vivamus vel orci tristique, auctor diam in, commodo massa. Quisque ornare congue purus convallis sollicitudin. Ut scelerisque, mi vel pharetra lacinia, neque nunc viverra justo, iaculis malesuada leo nisl quis quam. Pellentesque varius pellentesque nulla et hendrerit. Ut felis dui, tincidunt eget hendrerit a, euismod non ipsum. Sed.</p>
-							<h3>Funds Utilisation: </h3>
-							<p>Nothing to show</p>
-							<div class="panel" style="background-color:#9B001C">
-								<div class="panel-body">
-									<div class="col-md-2">
-										<img class="middle" src="/Content/img/ngo_logo2.jpg" width=100px />
-									</div>
-									<div class = "col-md-10">
-										<h4>NGO Name</h4>
-										<p><strong>Location:</strong> Unknown</p>
-										<p><strong>Description:</strong></p>
-										<p>Not Available</p>
-										<br>
-										<a href="#" class="fhypertext">Learn More about this NGO</a>
-									</div>
-								</div>
-							</div>
-						</div>
+{% block body %}
+<div class="container">
+	<div class="row">
+		<h1 class="text-center"><strong>PROJECT NAME</strong></h1>
+		<p class="text-center"><a href="#"><img src="/Content/img/ngo_logo.jpg" width="2%" height="2%" style="border-width:1px; border-style:solid"/> NGO name with logo</a></p>
+		<div class="text-right">
+			<strong>Share this on : </strong>
+			<i class="fa fa-facebook-square fa-2x" style="padding-left:2"></i>
+			<i class="fa fa-twitter-square fa-2x" style="padding-left:2"></i>
+			<i class="fa fa-google-plus-square fa-2x" style="padding-left:2"></i>
+			<i class="fa fa-pinterest-square fa-2x " style="padding-left:2"></i>
+		</div> 
+		<hr />
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="row text-right">
+				<div class="panel panelbody">
+					<div class="panel-body">
+						<i class="fa fa-tags" style="padding-left:1em"></i> demo <i class="fa fa-map-marker" style="padding-left:1em"></i> Maharashtra <i class="fa fa-calendar" style="padding-left:1em"></i> 14 february 2014
 					</div>
 				</div>
-				<div class="col-md-3">
-					<div class="panel panel-default">
-						<div class="panel-body panelbody">
-							<h4>Projects you might be interested in</h4>
+			</div>
+			<div class="row">
+				<div class="panel panelbody">
+					<div class="panel-body">
+						<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="panel panelbody">
+					<div class="panel-body">
+						<ul id="projectPageTab" class="nav nav-tabs">
+							<li class="active">
+								<a href="#details" data-toggle="tab">
+									Details
+								</a>
+							</li>
+							<li>
+								<a href="#taskList" data-toggle="tab">
+									Task List
+								</a>
+							</li>
+						</ul>
+						<div id="projectDetailsTab" class="tab-content">
+							<div class="tab-pane fade in active" id="details">
+								<p>
+									This section will consist of details of a project. Also includes rich text. In future, provision has to be made to incorporate media as well.
+								</p>
+							</div>
+							<div class="tab-pane fade" id="taskList">
+								<p>
+									Task list will consist of flowchart/table (implementation uncertain) of list of tasks in which project has been divided.
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			
 		</div>
-		<div id="SignIn"></div>
-		<div id="footer"></div>
-			
-
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    	
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-    			<script src="/Content/js/bootstrap.min.js"></script>
-	
-		<!-- CarouFredSel JavaScript Plugin -->
-			<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
-			<script type="text/javascript" language="javascript" src="/Content/carousal/jquery.carouFredSel-6.2.1-packed.js"></script>
-		
-		<!-- JavaScript to load Footer -->
-			<script type="text/javascript" language="javascript" src="/Content/js/LoadFooter.js"></script>
-		
-		<!-- JavaScript to load Sign In Modal -->
-			<script type="text/javascript" language="javascript" src="/Content/js/SignInModalLoader.js"></script>
-		
-		<!-- JavaScript to load Navbar -->
-			<script type="text/javascript" language="javascript" src="/Content/js/NavbarLoader.js"></script>
-		
-		<!-- Other Custom JavaScripts with description -->
-			<script>
-  			
-			</script>
-
-	</body>
-</html>
+		<div class="col-md-4">
+			<div>
+				<a href="#" class="panel btn btn-success form-control" style="">Support This!</a>
+			</div>
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<div>
+						Total No. of Supporters: 
+					</div>
+					<div style="font-size:30px">
+						3000
+					</div>
+					<div>
+						Days to Go:
+					</div>
+					<div style="font-size:30px">
+						20
+					</div>
+					<div>
+						Contributed Amount:
+					</div>
+					<div class="text-right">
+						&#8377; 4500/&#8377; 10000
+					</div>
+					<div class="progress progress-striped active">
+						<div class="progress-bar" style="width: 45%"></div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<h3><strong>Rewards</strong></h3>
+				</div>
+			</div>
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<h3><strong>Top Contributors</strong></h3>
+					<ol>
+						<li>
+							<a href="#">Tanay Gahlot</a>
+							<br />
+							Funding: &#8377; 0
+						</li>
+						<li>
+							<a href="#">Tanay Gahlot</a>
+							<br />
+							Funding: &#8377; 0
+						</li>
+						<li>
+							<a href="#">Tanay Gahlot</a>
+							<br />
+							Funding: &#8377; 0
+						</li>
+						<li>
+							<a href="#">Tanay Gahlot</a>
+							<br />
+							Funding: &#8377; 0
+						</li>
+						<li>
+							<a href="#">Tanay Gahlot</a>
+							<br />
+							Funding: &#8377; 0
+						</li>
+					</ol>
+				</div>
+			</div>
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<h3><strong>Similar Projects</strong></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock body %}
+{% block scripts %}
+{% endblock scripts %}

@@ -1,4 +1,4 @@
-#oggpnosn
+	#oggpnosn
 #hkhr
 
 #library for essential and redundant function(templating)
@@ -42,11 +42,6 @@ class NGO(ndb.Model):
 	registrationNumber = ndb.StringProperty(required = True)	
 	proofOfRegistration = ndb.BlobKeyProperty()
 
-#data model for storing the tasks
-class TaskList(ndb.Model):
-        taskTitle = ndb.StringProperty(required=True)
-	taskDescription = ndb.TextProperty(required = True)
-	taskFund = ndb.StringProperty(required=True)
 
 #data model for storing project data 
 class Project(ndb.Model):
@@ -54,8 +49,11 @@ class Project(ndb.Model):
 	ngo = ndb.StringProperty()
 	authenticity = ndb.BooleanProperty()	
 	category = ndb.StringProperty()	
-        Description = ndb.TextProperty()
-        tasks = ndb.StructuredProperty(TaskList, repeated = True)
+    description = ndb.TextProperty()
+    tasks = ndb.PickleProperty()
+    rewards = ndb.PickleProperty()
+    stateOfOperation = ndb.PickleProperty()
+ 
 
 #data model for NGO Gov database
 class NGOGOV(ndb.Model):
