@@ -49,11 +49,11 @@ class Project(ndb.Model):
 	ngo = ndb.StringProperty()
 	authenticity = ndb.BooleanProperty()	
 	category = ndb.StringProperty()	
-    description = ndb.TextProperty()
-    tasks = ndb.PickleProperty()
-    rewards = ndb.PickleProperty()
-    stateOfOperation = ndb.PickleProperty()
- 
+	description = ndb.TextProperty()
+	tasks = ndb.PickleProperty()
+	rewards = ndb.PickleProperty()
+	stateOfOperation = ndb.PickleProperty()
+	sectorOfOperation = ndb.StringProperty()
 
 #data model for NGO Gov database
 class NGOGOV(ndb.Model):
