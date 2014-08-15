@@ -10,11 +10,16 @@ function signup() {
 	console.log("I am here");  
 	user.signUp(null, {
 	  success: function(user) {
-    // Hooray! Let them use the app now.
+    alert("A verification email has been sent to you. Please verify your email.");
+    document.getElementsByName("fname")[0].innerHTML = "";
+    document.getElementsByName("lname")[0].innerHTML = "";
+    document.getElementsByName("pass")[0].innerHTML = "";
+    document.getElementsByName("pass_confirmation")[0].innerHTML = "";
+
   },
   error: function(user, error) {
     // Show the error message somewhere and let the user try again.
-    alert("Error: " + error.code + " " + error.message);
+    alert("Error: " + error.message); //+ error.code + " " + error.message);
   }
 });
 }
