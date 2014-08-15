@@ -5,10 +5,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 		<!-- This defines viewport -->
-		<meta id='view_meta' name="viewport" content="width=device-width, initial-scale=1">
+		<meta id='view_meta' name="viewport" content="width=device-width">
 
 		<!-- Javascript to determine screensize -->
 		<script type="text/javascript" language="javascript" src="/Content/js/checkScreen.js"></script>
+		
+		<!-- Font Awesome css -->
+        <link rel="stylesheet" href="/Content/css/font-awesome/css/font-awesome.min.css">
+        
 		
 		<!-- Bootstrap CSS -->
                 <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
@@ -44,39 +48,56 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/">CROWD SOURCING REPORT</a>
+					<a class="navbar-brand" href="/">LetsSankalp.Com</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li id="Projects"><a class="nav" href="/explore">Explore</a></li>
+						<li id="Services"><a class="nav" href="/propose">Propose</a></li>
 						
-						{% if user %}
-							<li id="Services"><a class="nav" href="/propose">Propose</a></li>
-						{% else %}
-							<li id="Services"><a class="nav" href="/login">Propose</a></li>
-						{% endif %}
 						
 						 <li id="feature"><a class="nav" href="/features">Features</a></li>
 						<li id="About_Us"><a class="nav" href="/about">About</a></li>        
 					</ul>
+					<form class="navbar-form navbar-left" action = "/search" method="get" style="display:inline-block;">
+      					<input type="text" class="form-control col-lg-8" placeholder="Search" name = "searchString" style="background-color:transperant">
+      					&nbsp;<a href="#" class="btn btn-success">Search</a>
+    				</form>
 					{% if user %}
 					<ul class="nav navbar-nav navbar-right">
-						<li><h4> Hello, {{user.nickname()}}</h4></li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								<i class="fa fa-user"></i> {{user}} <span class="caret"></span>
+						    </a>
+							<ul class="dropdown-menu btn">
+								<li class="text-left"><a href="#"><i class="fa fa-user"></i> {{user}}</a></li>
+
+								<li class="text-left"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+								<li class="text-left"><a href="{{users.create_logout_url('/home')}}"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-gear"></i></a></li>
 					</ul>
 					{% else %}
 					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="/Signup">Sign Up</a>
+						</li>
 						<li class="dropdown">
 						    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							      Sign In<span class="caret"></span>
 						    </a>
-					     <ul class="dropdown-menu" style="min-width:10px">
-    							<li><a href="{{users.create_login_url()}}"> <div id="customBtn" class="gButton">
-   							   <span class="icon"></span>
-   							   <span class="buttonText">Sign in with Google</span>
-    						</div></a></li>
-    						</ul>
+					     	<div class="dropdown-menu">
+            			<form style="padding:15px" action="[YOUR ACTION]" method="post" accept-charset="UTF-8">
+  									<input id="user_username" style="margin-bottom: 15px;" type="text" name="user[username]" size="30" placeholder=" Username"/>
+  									<input id="user_password" style="margin-bottom: 15px;" type="password" name="user[password]" size="30" placeholder=" Password"/>
+  									<input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" value="1" />
+  									<label class="string optional" for="user_remember_me"> Remember me</label>
+  									<input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
+									</form>
+        				</div>
 					  </li>
       					</ul>
 					{% endif %}
@@ -91,18 +112,18 @@
 		
 		{% endblock body %}
 		</div>	
-		<footer class="text-center">
+		<footer class="text-left">
 			<div class="footer-above">
 				<div class="container">
 					<hr />
 					<div class="row">
-		    				<div class="footer-col col-md-4">
-							<h4><strong>CROUD SOURCING REPORT</strong></h4>
+		    				<div class="footer-col col-md-3">
+							<h4><strong>LetsSankalp.Com</strong></h4>
 		    				</div>
 	            				<div class="footer-col col-md-3">
 	                				<h4 >About Us</h4>
 							<ul class="list-unstyled footer">
-								<li><a href="/WhatWeDo" class="fhypertext">What we do?</a></li>
+								<li><a href="/about" class="fhypertext">What we do?</a></li>
 								<li><a href="/Customers" class="fhypertext">Our Customers</a></li>
 								<li><a href="/Media" class="fhypertext">In Media</a></li>
 								<li><a href="/Faq" class="fhypertext">FAQ</a></li>
@@ -110,32 +131,34 @@
 								<li><a href="/PrivacyPolicy" class="fhypertext">Privacy Policy</a></li>
 							</ul>
 	        				 </div>
-	        				 <div class="footer-col col-md-2">
+	        				 <div class="footer-col col-md-3">
 	            					<h4>Projects</h4>
 							<ul class="list-unstyled footer">
-								<li><a href="#" class="fhypertext">Sample 1</a></li>
-								<li><a href="#" class="fhypertext">Sample 2</a></li>
-								<li><a href="#" class="fhypertext">Sample 3</a></li>
+								<li><a href="#" class="fhypertext">Art & Culture</a></li>
+								<li><a href="#" class="fhypertext">Environment & Forests</a></li>
+								<li><a href="#" class="fhypertext">Human Rights</a></li>
+								<li><a href="#" class="fhypertext">Science & Technology </a></li>
 							</ul>
 	        				   </div>
 	        				  <div class="footer-col col-md-3">
 						  	<h4 >Connect</h4>
 							<ul class="list-unstyled footer">
-								<li><a href="#" class="fhypertext">Facebook</a></li>
-								<li><a href="#" class="fhypertext">Twitter</a></li>
-								<li><a href="#" class="fhypertext">LinkedIn</a></li>
-								<li><a href="#" class="fhypertext">Blog</a></li>
+								<li><a href="#" class="fhypertext"><i class="fa fa-facebook"></i> Facebook</a></li>
+								<li><a href="#" class="fhypertext"><i class="fa fa-twitter"></i> Twitter</a></li>
+								<li><a href="#" class="fhypertext"><i class="fa fa-google-plus"></i> Google Plus</a></li>
+								<li><a href="#" class="fhypertext"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+								<li><a href="#" class="fhypertext"><i class="fa fa-pencil"></i> Blog</a></li>
 							</ul>
 					        </div>
-					    	<div class="footer-col col-md-2"></div>
+					    	<div class="footer-col col-md-3"></div>
 						</div>
 					</div>
 					<hr />
 				</div>
-				<div class="footer-below">
+				<div class="footer-below text-center">
 					<div class="container">
 						<div class="row">
-							Copyright &copy; 2014 GGC
+							&copy; <img src="/Content/img/connectree.PNG" height="40px" style="vertical-align:text-bottom"/>, 2014 | All Rights Reserved
 						</div>
 				        </div>
 				</div>
@@ -144,7 +167,7 @@
 			
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script src="/Content/js/jquery-2.1.1.min.js"></script>
 	
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 			<script src="/Content/js/bootstrap.min.js"></script>

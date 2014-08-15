@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+<div class = "container ">
+	<div class="row center-block">
+			<legend>Sign Up</legend>
+			<div class="well">
+				<form id="signup" class="form-horizontal" action="#">
+			  	<div class="input-group input-group-lg">
+						<input name="fname" type="text" class="form-control" style="border-radius:5px" placeholder="First Name" required>
+						<!--data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="Between 3-12 chars, only alphanumeric">-->
+        			</div>
+					</br>
+					
+					<div class="input-group input-group-lg">
+	        			<input name="lname" type="text" class="form-control" style="border-radius:5px" placeholder="Last Name" required>
+			        </div>
+					</br>
+			        
+			        <div class="input-group input-group-lg">
+	                    <input name="email" type="text" class="form-control" style="border-radius:5px" placeholder="Email" data-validation="email" required>
+					</div>
+					</br>
+					
+			        <div class="input-group input-group-lg">
+						 <input name="pass_confirmation" type="password" class="form-control" style="border-radius:5px" placeholder="Password" data-validation="length" data-validation-length="6-12" data-validation-error-msg="Password must be of length 6-12"><!--data-validation="strength data-validation-strength="2"-->
+					</div>
+					</br>
+					
+					<div class="input-group input-group-lg">
+						<input name="pass" data-validation="confirmation" type="password" class="form-control" style="border-radius:5px" placeholder="Confirm Password" data-validation-error-msg="Password doesn't match">
+					</div>
+					</br>
+					
+		    		<div class="input-group input-group-lg">
+						<button type="submit" class="btn btn-success " style="border-radius:5px" onclick="signup()">Create Account</button>
+					</div>
+				</form>
+			</div>
+	</div>
+</div>
+
+
+{% endblock body %}
+{% block scripts %}
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+	<script src = "/Content/js/smoothScroll.js"></script>
+	<script src="/Content/js/signup.js"></script>
+	<script src="//www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+		$.validate({
+			modules : 'security',
+			form : '#signup',
+			
+		});
+				});
+	</script>
+{% endblock scripts %}

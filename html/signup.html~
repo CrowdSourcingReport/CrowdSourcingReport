@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+<div class = "container ">
+	<div class = "row" >
+    <div class = "col-md-3" >
+    </div>
+    <div class="col-md-6">
+        <div class="well" >
+          <div class="row">
+            <h2 class="text-center">Login</h2>
+          </div>
+          <div class="row text-center">
+        		<a href="{{users.create_login_url()}}">
+            <div id="customBtn" class="gButton">
+                <span class="icon"></span>
+                <span class="buttonText">Sign in with Google</span>
+            </div>
+            </a>
+          </div>
+        </div>  			
+    </div>
+    <div class = "col-md-3" >
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock body %}
+{% block scripts %}
+	<script src = "/Content/js/smoothScroll.js"></script>
+{% endblock scripts %}
