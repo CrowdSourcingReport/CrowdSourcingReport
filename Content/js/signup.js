@@ -2,8 +2,8 @@ function signup() {
 	Parse.initialize("3lKrL4HTUMbclk8CikblOpWZlJA7OLWkI7BMxP03", "vLhckw4U9M0TtXcPjEQLIOpnC1e8enWURTMlyoUb");
 
 	var user = new Parse.User();
-	user.set("first", document.getElementsBydName[0]("fname").value);
-	user.set("last", document.getElementsBydName[0]("lname").value);
+	user.set("first", document.getElementsByName[0]("fname").value);
+	user.set("last", document.getElementsByName[0]("lname").value);
 	user.set("email", document.getElementsByName[0]("email").value);
 	user.set("password", document.getElementsByName[0]("pass").value);
 	console.log("I am here");  
