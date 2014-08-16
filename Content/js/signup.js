@@ -2,7 +2,7 @@ function signup() {
 	
 	alert("Please wait for a moment.");
 
-	Parse.initialize("3lKrL4HTUMbclk8CikblOpWZlJA7OLWkI7BMxP03", "vLhckw4U9M0TtXcPjEQLIOpnC1e8enWURTMlyoUb");
+	Parse.initialize("12ySyuWoqXJ4lRxzGzr7xJeN4p7rnIsWUguNSQG3", "12ySyuWoqXJ4lRxzGzr7xJeN4p7rnIsWUguNSQG3");
 	
 	var user = new Parse.User();
 	user.set("username",document.getElementsByName("email")[0].value)
