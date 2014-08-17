@@ -3,29 +3,127 @@
 {% block title %}Propose{% endblock title %}
 
 {% block body %}
-	
-<div class = "container">
-	<div class = "row">			
-		<form class="form-horizontal" method="post">
-			<fieldset>
-				<legend>Propose a Project</legend>
-				<div class="form-group">
-					<label for="inputText" class="control-label">Title:</label>
-					<input type="text" class="form-control" id="inputText"  name="title" placeholder="Title" style="width:30%">
-				</div>
+<div class="container">
+	<div class="row">
+		<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+		  <li class="active"><a href="#basicInfo" data-toggle="tab">Basic Info</a></li>
+		  <li><a href="#description" data-toggle="tab">Description</a></li>
+		  <li><a href="#tasklist" data-toggle="tab">Task List</a></li>
+		  <li><a href="#rewards" data-toggle="tab">Rewards</a></li>
+		</ul>
+			
+		<div id="myTabContent" class="tab-content">
+		  <div class="tab-pane fade active in" id="basicInfo">
+		  	<form id="projectRegistrationForm" method="post">
+					<div class="form-group">
+						<label for="inputText" class="control-label">Title</label>
+						<input type="text" class="form-control" form= "projectRegistrationForm" id="inputText"  name="title" placeholder="Title" style="width:50%">
+					</div>
+			    	<div class="form-group">
+										  <label for="select" class="control-label">State</label>
+											<select class="form-control" id="selectState" form= "projectRegistrationForm" name="stateOfOperation" style="width:50%">
+												  <option>Andaman and Nicobar Island </option>
+												  <option>Andhra Pradesh </option>
+												  <option>Arunachal Pradesh </option>
+												  <option>Assam </option>
+												  <option>Bihar </option>
+												  <option>Chandigarh </option>
+												  <option>Chhattisgarh </option>
+												  <option>Dadra and Nagar Haveli </option>
+												  <option>Daman and Diu </option>
+												  <option>Delhi </option>
+												  <option>Goa </option>
+												  <option>Gujarat </option>
+												  <option>Haryana </option>
+												  <option>Himachal Pradesh </option>
+												  <option>Jammu and Kashmir </option>
+												  <option>Jharkhand </option>
+												  <option>Karnataka </option>
+												  <option>Kerala </option>
+												  <option>Lakshadweep </option>
+												  <option>Madhya Pradesh </option>
+												  <option>Maharashtra </option>
+												  <option>Manipur </option>
+												  <option>Meghalaya </option>
+												  <option>Mizoram </option>
+												  <option>Nagaland </option>
+												  <option>Orissa </option>
+												  <option>Puducherry </option>
+												  <option>Punjab </option>
+												  <option>Rajasthan </option>
+												  <option>Sikkim </option>
+												  <option>Tamil Nadu </option>
+												  <option>Tripura </option>
+												  <option>Uttar Pradesh </option>
+												  <option>Uttarkhand </option>
+												  <option>West Bengal </option>
+											</select>
+									</div>
+							<div class="form-group">
+								<fieldset>
+									<label for="select" class="control-label">Sector</label>
+									<select class="form-control" id="NGOsector" form= "projectRegistrationForm" name="sectorOfOperation" style="width:50%">
+										<option>Aged/Elderly </option>
+										<option>Agriculture </option>
+										<option>Animal Husbandry, Dairying & Fisheries </option>
+										<option>Any Other </option>
+										<option>Art & Culture </option>
+										<option>Biotechnology </option>
+										<option>Children </option>
+										<option>Civic Issues </option>
+										<option>Dalit Upliftment </option>
+										<option>Differently Abled </option>
+										<option>Disaster Management </option>
+										<option>Drinking Water </option>
+										<option>Education & Literacy </option>
+										<option>Environment & Forests </option>
+										<option>Food Processing </option>
+										<option>Health & Family Welfare </option>
+										<option>HIV/AIDS </option>
+										<option>Housing </option>
+										<option>Human Rights </option>
+										<option>Information & Communication Technology </option>
+										<option>Labour & Employment </option>
+										<option>Land Resources </option>
+										<option>Legal Awareness & Aid </option>
+										<option>Micro Finance </option>
+										<option>Micro Small & Medium Enterprises </option>
+										<option>Minority Issues </option>
+										<option>New & Renewable Energy </option>
+										<option>Nutrition </option>
+										<option>Panchayati Raj </option>
+										<option>Prisoner's Issues </option>
+										<option>Right to Information & Advocacy </option>
+										<option>Rural Development & Poverty Alleviation </option>
+										<option>Science & Technology </option>
+										<option>Scientific & Industrial Research </option>
+										<option>Sports </option>
+										<option>Tourism </option>
+										<option>Tribal Affairs </option>
+										<option>Urban Development & Poverty Alleviation </option>
+										<option>Vocational Training </option>
+										<option>Water Resources </option>
+										<option>Women's Development & Empowerment </option>
+										<option>Youth Affairs </option>
+									</select>	
 
-				<div class="form-group">
-					<label for="inputText" class="control-label">Category:</label>
-					<input type="text" class="form-control" id="inputText"  name="category" placeholder="Category" style="width:30%">
-				</div>
-
-				<div class="form-group">
-						<button type="submit" class="btn btn-primary">Submit</button>
-				</div>
-			</fieldset>
-		</form>
+								</fieldset>
+						</div>				
+					</form>    
+		  </div>
+		  <div class="tab-pane fade" id="description">
+		    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+		  </div>
+		  <div class="tab-pane fade" id="tasklist">
+		    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+		  </div>
+		  <div class="tab-pane fade" id="rewards">
+		    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+		  </div>
+		</div>
 	</div>
-</div>
+</div>	
+
 {% endblock body %}
 
 {% block scripts %}
