@@ -1,6 +1,6 @@
 function signin() {
 
-	Parse.initialize("12ySyuWoqXJ4lRxzGzr7xJeN4p7rnIsWUguNSQG3", "12ySyuWoqXJ4lRxzGzr7xJeN4p7rnIsWUguNSQG3");
+	Parse.initialize("3lKrL4HTUMbclk8CikblOpWZlJA7OLWkI7BMxP03", "vLhckw4U9M0TtXcPjEQLIOpnC1e8enWURTMlyoUb");
 	
 	var user = new Parse.User();
 	Parse.User.logIn(document.getElementById("user_username"), document.getElementById("user_password"), {
