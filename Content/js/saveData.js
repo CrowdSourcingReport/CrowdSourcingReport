@@ -4,7 +4,7 @@ function saveData(){
 		sessionStorage.pass = document.getElementById("user_password").value;
 		sessionStorage.remember = document.getElementById("user_remember_me").checked;
 	} else {
-    // Sorry! No Web Storage support..
+    
 	}
 }
 
