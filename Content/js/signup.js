@@ -1,7 +1,7 @@
 function signup() {
 	
 	alert("Please wait for a moment.");
-
+	alert(document.getElementsByName("pass")[0].value);
 	Parse.initialize("3lKrL4HTUMbclk8CikblOpWZlJA7OLWkI7BMxP03", "vLhckw4U9M0TtXcPjEQLIOpnC1e8enWURTMlyoUb");
 	
 	var user = new Parse.User();
