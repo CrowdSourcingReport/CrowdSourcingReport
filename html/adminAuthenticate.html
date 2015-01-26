@@ -1,9 +1,57 @@
-{% extends "layout.html" %}
+{% extends "adminTopBar.html" %}
 
-{% block title %}Dashboard{% endblock title %}
+{% block adminblock %}
+<div class="col-sm-10 ">
+	<div class="row text-center">
+		<h2 class="text-left">Authenticate Projects</h2>
+<div class="panel panelbody">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 1</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 2</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 3</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 4</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>
 
-{% block body %}
-      <div class="container-fluid">
+{% endblock adminblock %}
+
+<!--<div class="container-fluid">
         <div class="row">
           <div class="col-sm-2  ">
             <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
@@ -38,9 +86,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
 
-{% endblock body %}
+
 
 {% block scripts %}
 <!-- CarouFredSel JavaScript Plugin -->
