@@ -12,5 +12,5 @@
 /admin/CredibilityCheck/<userid>	adminCredibilityCheckNGOPage.html
 /admin 					adminHomePage.html
 /home 					userHomePage.html
-					ngoHomePage.html
+						ngoHomePage.html
 						

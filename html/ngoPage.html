@@ -1,0 +1,271 @@
+{% extends "layout.html" %}
+
+{% block title %}Crowd Sourcing Report{% endblock title %}
+
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="text-right" style="padding: 20px 0px">
+			<strong>Share this on : </strong>
+			<i class="fa fa-facebook-square fa-2x" style="padding-left:2"></i>
+			<i class="fa fa-twitter-square fa-2x" style="padding-left:2"></i>
+			<i class="fa fa-google-plus-square fa-2x" style="padding-left:2"></i>
+			<i class="fa fa-pinterest-square fa-2x " style="padding-left:2"></i>
+		</div>
+	</div>
+	<div class="row"></div>
+	<div class="row">
+		<div class="row">
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<div class="col-md-4">
+						<div class="panel panelbody">
+							<div class="panel-body">
+								<img src="/Content/img/ngo_logo.jpg" class="col-md-12"/>
+							</div>
+						</div>
+						<h4 class="text-center">Demo NGO</h4>
+					</div>
+					<div class="col-md-6">
+						<div class="row" style="height:100%">
+								<ul id="ngoForm" class="nav nav-tabs">
+									<li class="active">
+										<a href="#basicInfo" data-toggle="tab">
+											Basic Info
+										</a>
+									</li>
+									<li>
+										<a href="#regDetails" data-toggle="tab">
+											Registration Details
+										</a>
+									</li>
+									<li>
+										<a href="#team" data-toggle="tab">
+											Team
+										</a>
+									</li>
+									<li>
+										<a href="#contactDetails" data-toggle="tab">
+											Contact Details
+										</a>
+									</li>
+								</ul>
+								<div id="ngoFormContent" class="tab-content">
+									<div class="tab-pane fade in active" id="basicInfo">
+											<fieldset>
+												<br>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>NGO Name: </strong></p>
+													</div>
+													<div class="col-md-8">
+														Demo NGO
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>States of operation: </strong></p>
+													</div>
+													<div class="col-md-8">Maharashtra, Goa, Gujrat</div>
+													
+												</div>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>Sector: </strong></p>
+													</div>
+													<div class="col-md-8">Healthcare, Child Welfare</div>
+												</div>
+												
+												<div class="row">
+													<div class="col-md-12">
+														<p>Description goes here.</p>
+													</div>
+												</div>
+												
+											</fieldset>
+									</div>
+									<div class="tab-pane fade" id="regDetails">
+											<fieldset>
+												<br>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>Registration No.: </strong></p>
+													</div>
+													<div class="col-md-8">
+														67867456467
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>Date of Registration: </strong></p>
+													</div>
+													<div class="col-md-8">
+														6 January 2014
+													</div>
+													
+												</div>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>State of Registration </strong></p>
+													</div>
+													<div class="col-md-8">Maharashtra</div>
+												</div>
+											</fieldset>
+									</div>
+									<div class="tab-pane fade" id="team">
+											<fieldset>
+												<br>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>Chairman: </strong></p>
+													</div>
+													<div class="col-md-8">
+														abcd
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>Chief Functionary: </strong></p>
+													</div>
+													<div class="col-md-8">wxyz</div>
+													
+												</div>		
+											</fieldset>
+									</div>
+									<div class="tab-pane fade" id="contactDetails">
+											<fieldset>
+												<br>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>Address: </strong></p>
+													</div>
+													<div class="col-md-8">
+														Mumbai, Maharashtra
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>Telephone No.: </strong></p>
+													</div>
+													<div class="col-md-8">
+														022-564674647
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>Email: </strong></p>
+													</div>
+													<div class="col-md-8">demo@ngo.com</div>
+													
+												</div>
+												<div class="row">
+													<div class="col-md-4">
+														<p><strong>Website: </strong></p>
+													</div>
+													<div class="col-md-8">www.ngo.com</div>
+												</div>		
+											</fieldset>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<p style="font-size:30px; text-align:right">#234</p>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="row">
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<h3>Projects by Demo NGO:</h3>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 1</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 2</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 3</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 4</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="row">
+		<div class="row">
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<h3>NGOs in related sectors:</h3>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/ngo_logo.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">NGO 1</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/ngo_logo.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">NGO 2</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/ngo_logo.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">NGO 3</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/ngo_logo.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">NGO 4</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+{% endblock body %}
+{% block scripts %}
+{% endblock scripts %}
+<p class="text-center"><a href="#"><img src="/Content/img/ngo_logo.jpg" width="2%" height="2%" style="border-width:1px; border-style:solid"/> NGO name with logo</a></p> 
