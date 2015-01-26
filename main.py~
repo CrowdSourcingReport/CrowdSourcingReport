@@ -96,11 +96,7 @@ class SearchHandler(BaseHandler):
 
 class ProjectPageHandler(BaseHandler):
     def get(self):
-        self.render("projectPage.html")		
-
-class ngoPageHandler(BaseHandler):
-	def get(self):
-                self.render('ngoPage.html')	
+        self.render("projectPage.html")			
 		
 
 app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler), ('/search', SearchHandler), ('/project', ProjectPageHandler),('/Signup', SignupHandler),('/Redirect', RedirectHandler),('/ngo', ngoPageHandler)],debug=True)
