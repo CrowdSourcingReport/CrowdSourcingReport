@@ -12,7 +12,7 @@ import re
 from google.appengine.ext import ndb
 import lib 
 from google.appengine.api import users
-from lib import NGO, BaseHandler, User, Project, TaskList
+from lib import NGO, BaseHandler, User, Project
 from time import sleep
 
 class ProposePage(BaseHandler):
