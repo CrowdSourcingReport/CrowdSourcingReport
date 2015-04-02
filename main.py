@@ -1,5 +1,6 @@
 #oggpnosn
 #hkhr
+from random import randint
 import webapp2
 from google.appengine.ext.webapp import template
 import random
@@ -18,8 +19,13 @@ class MainPageHandler(BaseHandler):
                         NGOauthenticationQuery = NGO.query(NGO.userid == userid).fetch(1)
                         if (not userAuthenticationQuery) and (not NGOauthenticationQuery) :
 				self.redirect("/signup/registration")
-		projects = Project.query().fetch(3)
-		parameter = {"projects" : projects }
+		projects = Project.query().fetch()
+		randProjects = []
+		for i in range(0,4):
+			randomInt = randint(0,len(projects)-1)
+			if projects[randomInt] not in randProjects:
+				randProjects.append(projects[randomInt])
+		parameter = {"projects" : randProjects }
 		self.render('frontPage.html', parameter)        
    
 
@@ -30,7 +36,23 @@ class SignupHandler(BaseHandler):
 
 class ExploreHandler(BaseHandler):
 	def get(self):
-                self.render('explore.html')        
+		parameter = {}
+		parameter["get"]=1
+		self.render('explore.html',parameter)        
+
+	def post(self):
+		parameter = {}
+		lat = self.request.get("lat")
+		lng = self.request.get("lng")
+		print lat, lng
+		projects = Project.query().fetch(50)
+		decorated = [(project,project.distance(lat,lng)) for project in projects if project.distance(lat,lng)<1.50]
+		closeProjects = sorted(decorated, key=lambda tup: tup[1])
+		parameter["projects"] = closeProjects
+		parameter["get"] = 0
+		parameter["search"] = self.request.get("address")
+		parameter["len"] = len(closeProjects)
+		self.render('explore.html',parameter)
 
 class AboutHandler(BaseHandler):
 	def get(self):
@@ -83,25 +105,61 @@ class RedirectHandler(BaseHandler):
 		self.render("Redirect.html")
 
 class SearchHandler(BaseHandler):
-	def post(self):
-		searchString = self.request.get("searchString")     
-		index = search.Index(name = "NGO")		
+	def get(self):
+		searchString = self.request.get("searchString")
+		q = ndb.gql("SELECT * FROM NGO WHERE name > :1 AND name < :2", searchString, unicode(searchString) + u"\ufffd").fetch(20)
 		try:
-			results = index.search(searchString)
 			parameter = {}
-			parameter["results"] = results
+			parameter["results"] = q
+			parameter["search"] = searchString
+			parameter["len"] = len(q)
 			self.render("search.html", parameter)
 		except search.Error:
 			logging.exception("Search Failed")
 
-class ProjectPageHandler(BaseHandler):
+class ProjectPageDemoHandler(BaseHandler):
     def get(self):
-        self.render("projectPage.html")		
+        self.render("projectPageDemo.html")		
+        
+class ProjectPageHandler(BaseHandler):
+    def get(self,urlParameter):
+		ngo, title = urlParameter.split("_")
+		q = Project.query(Project.title == title and Project.ngo == ngo).fetch(1)
+		funds = 0
+		print q
+		if q:
+			parameters = {}
+			for p in q:
+				parameters["project"] = p
+				ngoP = NGO.query(NGO.userid == p.ngo).fetch(1)
+				parameters["ngo"] = ngoP[0]
+			for task in parameters["project"].tasks:
+				funds = funds + int(task[2]);
+			projects = Project.query(Project.category == parameters["project"].category).fetch()
+			closeProjects = []
+			for i in range(0,4):
+				randomInt = randint(0,len(projects)-1)
+				if(projects[randomInt] not in closeProjects and projects[randomInt] != parameters["project"]):
+					closeProjects.append(projects[randomInt])
+			parameters["closeProjects"] = closeProjects
+			parameters["funds"] = funds
+			self.render("projectPage.html", parameters)
 
 class ngoPageHandler(BaseHandler):
-	def get(self):
-                self.render('ngoPage.html')	
+    def get(self, urlParameter):
+        q = NGO.query(NGO.userid == urlParameter).fetch(1)
+        if q:
+			parameters = {}
+			for p in q:
+				parameters["ngo"] = p
+			q = Project.query(Project.ngo == urlParameter).fetch(4)
+			parameters["projects"] = q
+			parameters["p_len"] = len(q)
+			q = NGO.query(NGO.userid != urlParameter and NGO.sectorOfOperation == parameters["ngo"].sectorOfOperation).fetch(4)
+			parameters["similarNGOs"] = q
+			parameters["n_len"] = len(q)
+			self.render('ngoPage.html',parameters)
 		
 
-app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler), ('/search', SearchHandler), ('/project', ProjectPageHandler),('/Signup', SignupHandler),('/Redirect', RedirectHandler),('/ngo', ngoPageHandler)],debug=True)
+app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler), ('/search', SearchHandler), ('/project', ProjectPageDemoHandler),('/Signup', SignupHandler),('/Redirect', RedirectHandler),('/ngo/([A-Za-z0-9]+)', ngoPageHandler),('/project/([A-Za-z0-9_]+)', ProjectPageHandler)],debug=True)
 

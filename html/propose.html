@@ -91,7 +91,7 @@
 								<fieldset>
 									<legend>Description</legend>
 										<div class="form-group">
-											<textarea id="desc" class="col-md-5" form="projectRegForm" name="shortDescription" cols="60" rows="4"></textarea>
+											<textarea class="col-md-5" form="projectRegForm" name="shortDescription" cols="60" rows="4"></textarea>
 										</div>
 								</fieldset>
 						</div>
@@ -127,28 +127,7 @@
 {% endblock body %}
 
 {% block scripts %}
-	<script type="text/javascript" src="/Content/js/tinymce/tinymce.min.js"></script>
 	
-	<script type="text/javascript">
-tinymce.init({
-	statusbar: false,
-	menubar: false,
-	width: "50%",
-	height: 200,
-    selector: "#desc",
-    theme: "modern",
-    plugins: [
-        "lists link",
-        "",
-        "table",
-        "paste textcolor colorpicker textpattern"
-    ],
-    toolbar1: "styleselect | headingsselect | bold italic underline strikethrough subscript superscript forecolor | bullist numlist | link table",
-    templates: [
-        {title: 'Test template 1', content: 'Test 1'},
-    ]
-});
-</script>
 <script src = "/Content/js/addTask.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script>

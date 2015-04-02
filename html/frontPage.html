@@ -80,53 +80,22 @@
     <!-- Top Projects Pane -->
     <h2 class="text-left">Top Projects</h2>
     <div class="row">
-        <div id="top_proj" class="col-md-8">                
-                <div id="#Sample1">
-                    <div class="panel panel-default panelbody">
-                        <div class="panel-body">
-                            {% for project in projects %}
-                                <h3>{{project.title}}</h3>
-                                <p>{{project.description}}</p>
-                            {% endfor %}    
-                        </div>
-                    </div>
-                </div>
-                <div id="#Sample2">
-                    <div class="panel panel-default panelbody">
-                        <div class="panel-body">
-                            <p>Sample 2</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="#Sample3">
-                    <div class="panel panel-default panelbody">
-                        <div class="panel-body">
-                            <p>Sample 3</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="#Sample4">
-                    <div class="panel panel-default panelbody">
-                        <div class="panel-body">
-                            <p>Sample 4</p>
-                        </div>
-                    </div>
-                </div>
+        <div id="top_proj" class="col-md-12" style="border:1px solid white; padding-top: 20px">                
+			{% for project in projects %}
+				<div class="col-md-3">
+					<div class="panel panelbody">
+						<div class="panel-body">
+							<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+							<p class="text-center"><a href="/project/{{project.ngo}}_{{project.title}}">{{project.title}}</a></p>
+							<p class="text-center"><i class="fa fa-tag"></i> {{project.category}}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+                
             
         </div>
-        <div class="col-md-4"> 
-            <div class="panel panel-default panelbody">
-                <div class="panel-body">
-                    <h3><strong>Categories</strong></h3>
-                    <ul class="menu list-unstyled">
-                        <li><a href="#Sample1"><span>Sample 1</span></a></li>
-                        <li><a href="#Sample2"><span>Sample 2</span></a></li>
-                        <li><a href="#Sample3"><span>Sample 3</span></a></li>
-                        <li><a href="#Sample4"><span>Sample 4</span></a></li>
-                    </ul>
-                </div>    
-            </div>
-        </div>
+        
     </div>
     <!-- Top Projects Pane ends -->
 </div>
@@ -135,6 +104,4 @@
 {% block scripts %}
 <!-- CarouFredSel JavaScript Plugin -->
 <script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" language="javascript" src="/Content/carousal/jquery.carouFredSel-6.2.1-packed.js"></script>
-<script type="text/javascript" language="javascript" src="/Content/js/slidingPanels.js"></script>
 {% endblock scripts %}

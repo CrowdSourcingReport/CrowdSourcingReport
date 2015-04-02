@@ -17,17 +17,21 @@ class HomePageHandler(BaseHandler):
 			ngoAuthentication = NGO.query(NGO.userid == userid).fetch(1)
 			if userAuthentication:
 				parameter = {}
-				ngos = NGO.query().fetch(3)
+				ngos = NGO.query().fetch(4)
 				userObject = userAuthentication[0]
                                 projectsIdentifier = userObject.projects[:3]
                                 userProjects = []
                                 for projectIdentifier in projectsIdentifier:
                                         key = ndb.Key("Project", projectIdentifier)
                                         userProjects.append(key.get())
-				projects = Project.query().fetch(3)
-                                parameter["projects"] = projects
+				projects = Project.query().fetch(100)
+				closeProjects = []
+				decorated = [(project,project.distance(userAuthentication[0].lat,userAuthentication[0].lng)) for project in projects]
+				closeProjects = sorted(decorated, key=lambda tup: tup[1])[0:4] 
+				parameter["projects"] = closeProjects
 				parameter["userProjects"] = userProjects 
 				parameter["ngos"] = ngos
+				parameter["currUser"] = userAuthentication[0]
 				self.render("userHomePage.html", parameter)
 			elif ngoAuthentication:
 				parameter={}
