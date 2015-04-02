@@ -5,6 +5,8 @@
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
+			<h3>Search Results for "{{search}}"</h3>
+			<p>Total {{len}} match{%if len>1 %}es{%endif%} found.</p>
 			{% for result in results %}
 				<div class="panel panel-default panelbody">
 					<div class="panel-body">
@@ -13,13 +15,13 @@
 								<img src="/Content/img/ngo_logo.jpg" class="col-md-12">
 							</div>
 							<div class="col-md-6">
-								<h3>{{result.fields[0].value}}</h3>
-								<p><i class="fa fa-map-marker"></i> {{result.fields[2].value}}</p>
+								<h3>{{result.name}}</h3>
+								<p><i class="fa fa-map-marker"></i> {{result.stateOfOperation}}</p>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<h4>Description: </h4>
-						<p>{{result.fields[1].value}}</p>
+						<p>{{result.description}}</p>
 						</div>
 						
 						

@@ -84,12 +84,13 @@ class RedirectHandler(BaseHandler):
 
 class SearchHandler(BaseHandler):
 	def get(self):
-		searchString = self.request.get("searchString")     
-		index = search.Index(name = "NGO")		
+		searchString = self.request.get("searchString")
+		q = ndb.gql("SELECT * FROM NGO WHERE name > :1 AND name < :2", searchString, unicode(searchString) + u"\ufffd").fetch(20)
 		try:
-			results = index.search(searchString)
 			parameter = {}
-			parameter["results"] = results
+			parameter["results"] = q
+			parameter["search"] = searchString
+			parameter["len"] = len(q)
 			self.render("search.html", parameter)
 		except search.Error:
 			logging.exception("Search Failed")
@@ -99,9 +100,20 @@ class ProjectPageHandler(BaseHandler):
         self.render("projectPage.html")		
 
 class ngoPageHandler(BaseHandler):
-	def get(self):
-                self.render('ngoPage.html')	
+    def get(self, urlParameter):
+        q = NGO.query(NGO.userid == urlParameter).fetch(1)
+        if q:
+			parameters = {}
+			for p in q:
+				parameters["ngo"] = p
+			q = Project.query(Project.ngo == urlParameter).fetch(4)
+			parameters["projects"] = q
+			parameters["p_len"] = len(q)
+			q = NGO.query(NGO.userid != urlParameter and NGO.sectorOfOperation == parameters["ngo"].sectorOfOperation).fetch(4)
+			parameters["similarNGOs"] = q
+			parameters["n_len"] = len(q)
+			self.render('ngoPage.html',parameters)
 		
 
-app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler), ('/search', SearchHandler), ('/project', ProjectPageHandler),('/Signup', SignupHandler),('/Redirect', RedirectHandler),('/ngo', ngoPageHandler)],debug=True)
+app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler), ('/search', SearchHandler), ('/project', ProjectPageHandler),('/Signup', SignupHandler),('/Redirect', RedirectHandler),('/ngo/([A-Za-z0-9]+)', ngoPageHandler)],debug=True)
 

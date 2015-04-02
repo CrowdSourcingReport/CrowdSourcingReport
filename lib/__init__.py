@@ -38,7 +38,7 @@ class NGO(ndb.Model):
 	chiefFunctionary = ndb.StringProperty(required = True)
 	chairman = ndb.StringProperty(required = True)
 	stateOfOperation = ndb.PickleProperty(required = True)
-	sectorOfOperation = ndb.PickleProperty(required = True)
+	sectorOfOperation = ndb.PickleProperty(required = True, indexed = True)
 	#logo = ndb.BlobProperty()
 	address = ndb.StringProperty(required = True)
 	telephone = ndb.PickleProperty(required = True)
