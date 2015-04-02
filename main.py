@@ -21,10 +21,13 @@ class MainPageHandler(BaseHandler):
 				self.redirect("/signup/registration")
 		projects = Project.query().fetch()
 		randProjects = []
-		for i in range(0,4):
-			randomInt = randint(0,len(projects)-1)
-			if projects[randomInt] not in randProjects:
-				randProjects.append(projects[randomInt])
+		try:
+			for i in range(0,4):
+				randomInt = randint(0,len(projects)-1)
+				if projects[randomInt] not in randProjects:
+					randProjects.append(projects[randomInt])
+		except:
+			pass
 		parameter = {"projects" : randProjects }
 		self.render('frontPage.html', parameter)        
    
@@ -137,10 +140,13 @@ class ProjectPageHandler(BaseHandler):
 				funds = funds + int(task[2]);
 			projects = Project.query(Project.category == parameters["project"].category).fetch()
 			closeProjects = []
-			for i in range(0,4):
-				randomInt = randint(0,len(projects)-1)
-				if(projects[randomInt] not in closeProjects and projects[randomInt] != parameters["project"]):
-					closeProjects.append(projects[randomInt])
+			try:
+				for i in range(0,4):
+					randomInt = randint(0,len(projects)-1)
+					if(projects[randomInt] not in closeProjects and projects[randomInt] != parameters["project"]):
+						closeProjects.append(projects[randomInt])
+			except:
+				pass
 			parameters["closeProjects"] = closeProjects
 			parameters["funds"] = funds
 			self.render("projectPage.html", parameters)
