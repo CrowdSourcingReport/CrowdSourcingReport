@@ -80,11 +80,15 @@ class BaseHandler(webapp2.RequestHandler):
                 parameter["user"] = user
                 projects = Project.query().fetch()
                 randProjects = []
-                for i in range(0,4):
-                    randomInt = randint(0,len(projects)-1)
-                    if projects[randomInt] not in randProjects:
-                        randProjects.append(projects[randomInt])
+                try:
+                    for i in range(0,4):
+                        randomInt = randint(0,len(projects)-1)
+                        if projects[randomInt] not in randProjects:
+                            randProjects.append(projects[randomInt])
+                except:
+                    pass
                 parameter["projects"] = randProjects
+                parameter["len"] = len(randProjects)
                 template = env.get_template(filename )
                 self.response.write(template.render(parameter))
 	def uniqueIdentifierProject(self, project):
