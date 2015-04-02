@@ -29,11 +29,11 @@ class ProposePage(BaseHandler):
                         self.redirect("/login")
                 
         def post(self):
-                print self.request.get("count")
-                print self.request.get("count")
                 count=int(self.request.get("count")) + 1
-                print count
                 category = self.request.get("category")
+                address = self.request.get("address")
+                lat = self.request.get("lat")
+                lng = self.request.get("lng")
                 title = self.request.get("title")
                 shortDescription = self.request.get("shortDescription")
                 print shortDescription
@@ -44,7 +44,11 @@ class ProposePage(BaseHandler):
                 projectObject.description = shortDescription
                 projectObject.category = category
                 projectObject.title = title 
+                projectObject.address = address 
+                projectObject.lat = lat 
+                projectObject.lng = lng 
                 projectObject.authenticity = False
+                projectObject.tasks = [] 
                 while count>0:
                     j=1
                     Counter=str(count-count+j)
@@ -53,7 +57,7 @@ class ProposePage(BaseHandler):
                     taskFund = self.request.get("taskFund"+Counter)
                     count=count-1
                     j=j-1
-                    projectObject.tasks = [TaskList(taskTitle = taskTitle, taskDescription = taskDescription, taskFund = taskFund)]
+                    projectObject.tasks.append([taskTitle, taskDescription, taskFund])
                 projectObject.put()
                 self.response.headers.add_header("Set-Cookie",str("title=%s"%title))
                 sleep(5)
