@@ -51,10 +51,16 @@ class UserRegistrationPage(BaseHandler):
 		name = self.request.get("name")	
 		userid = user.user_id()
 		gender = self.request.get("gender")
+		address = self.request.get("address")
+		lat = self.request.get("lat")
+		lng = self.request.get("lng")
 		userObject = User()
 		userObject.userid=userid
 		userObject.name = name
 		userObject.gender = gender
+		userObject.address = address
+		userObject.lat = lat
+		userObject.lng = lng
 		userObject.projects = []
 		userObject.put()
 		sleep(5)
@@ -124,7 +130,7 @@ class NGORegistration(BaseHandler):
 				except search.Error:
 					logging.exception("Put Failed")
 				sleep(5) #cheap trick but none the less it works!
-				self.redirect("/signup/ngoRegistration/proofOfRegistration")	
+				self.redirect("/home")	
 		else:
 			self.redirect("/login") 
 class ProofOfRegistration(BaseHandler):

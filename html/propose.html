@@ -5,21 +5,24 @@
 {% block body %}
 <div class="container">
 	<div class="row">
-		<ul class="nav nav-tabs" style="margin-bottom: 15px;">
-		  <li class="active"><a href="#basicInfo" data-toggle="tab">Basic Info</a></li>
-		  <li><a href="#description" data-toggle="tab">Description</a></li>
-		  <li><a href="#tasklist" data-toggle="tab">Task List</a></li>
-		  <li><a href="#rewards" data-toggle="tab">Rewards</a></li>
-		</ul>
-			
-		<div id="myTabContent" class="tab-content">
-		  <div class="tab-pane fade active in" id="basicInfo">
-		  	<form id="projectRegistrationForm" method="post">
-					<div class="form-group">
-						<label for="inputText" class="control-label">Title</label>
-						<input type="text" class="form-control" form= "projectRegistrationForm" id="inputText"  name="title" placeholder="Title" style="width:50%">
-					</div>
-			    	<div class="form-group">
+		<div class="col-md-12">
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<ul id="projectForm" class="nav nav-tabs">
+						<li class="active"><a href="#basicInfo" data-toggle="tab">Basic Info</a></li>
+						<li><a href="#description" data-toggle="tab">Description</a></li>
+						<li><a href="#tasklist" data-toggle="tab">Task List</a></li>
+					</ul>
+					<div id="projectFormContent" class="tab-content">
+						<div class="tab-pane fade in active" id="basicInfo">
+							<form id="projectRegForm" method="post">
+								<fieldset>
+									<legend>Basic Info</legend>
+									<div class="form-group">
+										<label for="inputText" class="control-label">Title*:</label>
+										<input type="text" class="form-control" form= "projectRegistrationForm" id="inputText"  name="title" placeholder="Title" style="width:50%" required>
+									</div>
+									<div class="form-group">
 										  <label for="select" class="control-label">State</label>
 											<select class="form-control" id="selectState" form= "projectRegistrationForm" name="stateOfOperation" style="width:50%">
 												  <option>Andaman and Nicobar Island </option>
@@ -59,7 +62,7 @@
 												  <option>West Bengal </option>
 											</select>
 									</div>
-							<div class="form-group">
+									<div class="form-group">
 								<fieldset>
 									<label for="select" class="control-label">Sector</label>
 									<select class="form-control" id="NGOsector" form= "projectRegistrationForm" name="sectorOfOperation" style="width:50%">
@@ -107,19 +110,43 @@
 										<option>Youth Affairs </option>
 									</select>	
 
+									</fieldset>
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane fade" id="description">
+								<fieldset>
+									<legend>Description</legend>
+										<div class="form-group">
+											<textarea id="desc" class="col-md-5" form="projectRegForm" name="shortDescription" cols="60" rows="4"></textarea>
+										</div>
 								</fieldset>
-						</div>				
+						</div>
+						<div class="tab-pane fade" id="tasklist">
+							<fieldset>
+								<legend>Add Tasks in Your Project:</legend>
+								<div id = "Tasklist"></div>
+								<br />
+								<input type="hidden" id="count" name="count"	value="0">
+								<input type ="button" class="btn btn-primary" onclick = "addTask()" value ="+ Add a task">
+					
+							</fieldset>
+						</div>
+						
+						
+					</div>
+				</div>
+			</div>
+			<div class="text-right">
+			<button type="submit" class="btn btn-primary" form ="projectRegForm">Submit</button>
+			</div>
+		</div>
+					
+			    	
+											
 					</form>    
 		  </div>
-		  <div class="tab-pane fade" id="description">
-		    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
-		  </div>
-		  <div class="tab-pane fade" id="tasklist">
-		    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
-		  </div>
-		  <div class="tab-pane fade" id="rewards">
-		    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
-		  </div>
+		  
 		</div>
 	</div>
 </div>	
@@ -127,6 +154,28 @@
 {% endblock body %}
 
 {% block scripts %}
-	<script src = "/Content/js/smoothScroll.js"></script>
+	<script type="text/javascript" src="/Content/js/tinymce/tinymce.min.js"></script>
+	
+	<script type="text/javascript">
+tinymce.init({
+	statusbar: false,
+	menubar: false,
+	width: "50%",
+	height: 200,
+    selector: "#desc",
+    theme: "modern",
+    plugins: [
+        "lists link",
+        "",
+        "table",
+        "paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "styleselect | headingsselect | bold italic underline strikethrough subscript superscript forecolor | bullist numlist | link table",
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+    ]
+});
+</script>
+<script src = "/Content/js/addTask.js"></script>
 {% endblock scripts %}
 

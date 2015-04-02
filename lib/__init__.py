@@ -17,6 +17,9 @@ class User(ndb.Model):
         userid=ndb.StringProperty(required = True)
         name=ndb.StringProperty(required = True)
         gender=ndb.StringProperty(required = True)
+        address=ndb.StringProperty(required = True)
+        lat=ndb.StringProperty(required = True)
+        lng=ndb.StringProperty(required = True)
 	projects =  ndb.PickleProperty(required = True)
 
 #data model for storing ngo data 
@@ -36,11 +39,11 @@ class NGO(ndb.Model):
 	chairman = ndb.StringProperty(required = True)
 	stateOfOperation = ndb.PickleProperty(required = True)
 	sectorOfOperation = ndb.PickleProperty(required = True)
-	logo = ndb.BlobProperty()
+	#logo = ndb.BlobProperty()
 	address = ndb.StringProperty(required = True)
 	telephone = ndb.PickleProperty(required = True)
 	registrationNumber = ndb.StringProperty(required = True)	
-	proofOfRegistration = ndb.BlobKeyProperty()
+	#proofOfRegistration = ndb.BlobKeyProperty()
 
 
 #data model for storing project data 
