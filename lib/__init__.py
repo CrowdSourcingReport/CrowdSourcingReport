@@ -3,6 +3,7 @@
 
 #library for essential and redundant function(templating)
 
+import math
 import jinja2
 import os
 import webapp2
@@ -20,7 +21,7 @@ class User(ndb.Model):
         address=ndb.StringProperty(required = True)
         lat=ndb.StringProperty(required = True)
         lng=ndb.StringProperty(required = True)
-	projects =  ndb.PickleProperty(required = True)
+        projects =  ndb.PickleProperty(required = True)
 
 #data model for storing ngo data 
 class NGO(ndb.Model):
@@ -59,6 +60,11 @@ class Project(ndb.Model):
 	lat = ndb.StringProperty()
 	lng = ndb.StringProperty()
 	#sectorOfOperation = ndb.StringProperty()
+	def distance(self, x, y):
+		print self.lat, self.lng
+		for a in self.lat:
+			print a
+		return math.sqrt((float(x)-float(self.lat))**2 + (float(y)-float(self.lng))**2)
 
 #data model for NGO Gov database
 class NGOGOV(ndb.Model):

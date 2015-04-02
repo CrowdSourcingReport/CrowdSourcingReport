@@ -41,10 +41,11 @@
           <label for="location" class="col-lg-2 control-label">Location*:</label>
           
           <div class="col-lg-10">
-			<input type="text" id="address"  name="address" disabled style="width:50%;display:inline;" required>
+			<input type="text" id="addr"  name="addr" disabled style="width:50%;display:inline;" required>
 			<p>Click the map to mark location. Double click to zoom.</p>
-          <input type="hidden" class="form-control" id="lat"  name="lat" disabled style="width:50%">
-          <input type="hidden" class="form-control" id="lng"  name="lng" disabled style="width:50%">
+          <input type="hidden" class="form-control" id="lat"  name="lat" style="width:50%">
+          <input type="hidden" class="form-control" id="address"  name="address" style="width:50%">
+          <input type="hidden" class="form-control" id="lng"  name="lng" style="width:50%">
             <div id="map-canvas" style="width:80%;height:400px;color:black;margin:10px"></div>
           </div>
         </div>
@@ -114,11 +115,13 @@
 		geocoder.geocode({'latLng': latlng}, function(results, status) {
 		  if (status == google.maps.GeocoderStatus.OK) {
 			  document.getElementById("address").value = results[0].formatted_address;
+			  document.getElementById("addr").value = results[0].formatted_address;
 			  document.getElementById("lat").value = lat;
 			  document.getElementById("lng").value = lng;
 		  } else {
 			alert("Geocoder failed due to: " + status);
 			document.getElementById("address").value = "";
+			document.getElementById("addr").value = "";
 			  document.getElementById("lat").value = "";
 			  document.getElementById("lng").value = "";
 		  }

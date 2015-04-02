@@ -30,7 +30,23 @@ class SignupHandler(BaseHandler):
 
 class ExploreHandler(BaseHandler):
 	def get(self):
-                self.render('explore.html')        
+		parameter = {}
+		parameter["get"]=1
+		self.render('explore.html',parameter)        
+
+	def post(self):
+		parameter = {}
+		lat = self.request.get("lat")
+		lng = self.request.get("lng")
+		print lat, lng
+		projects = Project.query().fetch(50)
+		decorated = [(project,project.distance(lat,lng)) for project in projects if project.distance(lat,lng)<1.50]
+		closeProjects = sorted(decorated, key=lambda tup: tup[1])
+		parameter["projects"] = closeProjects
+		parameter["get"] = 0
+		parameter["search"] = self.request.get("address")
+		parameter["len"] = len(closeProjects)
+		self.render('explore.html',parameter)
 
 class AboutHandler(BaseHandler):
 	def get(self):
