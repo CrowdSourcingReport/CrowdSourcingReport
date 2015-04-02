@@ -123,8 +123,9 @@ class NGORegistration(BaseHandler):
 				ngo.put()
 
 				index = search.Index(name = "NGO")		
-				document = search.Document(doc_id = userid, fields = [ search.AtomField(name = "name", value = name ),
-								       search.TextField(name = "description", value = description)])
+				document = search.Document(doc_id = userid, fields = [ search.TextField(name = "name", value = name ),
+								       search.TextField(name = "description", value = description),
+								       search.TextField(name = "state", value = stateOfRegistration)])
 				try:
 					index.put(document)
 				except search.Error:

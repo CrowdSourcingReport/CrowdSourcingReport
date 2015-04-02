@@ -83,7 +83,7 @@ class RedirectHandler(BaseHandler):
 		self.render("Redirect.html")
 
 class SearchHandler(BaseHandler):
-	def post(self):
+	def get(self):
 		searchString = self.request.get("searchString")     
 		index = search.Index(name = "NGO")		
 		try:
