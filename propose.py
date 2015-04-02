@@ -14,6 +14,7 @@ import lib
 from google.appengine.api import users
 from lib import NGO, BaseHandler, User, Project
 from time import sleep
+import time
 
 class ProposePage(BaseHandler):
         def get(self):
@@ -36,6 +37,8 @@ class ProposePage(BaseHandler):
                 lng = self.request.get("lng")
                 title = self.request.get("title")
                 shortDescription = self.request.get("shortDescription")
+                date = time.strtftime("%Y-%m-%d %H:%M:%S")
+                date = date.toString()
                 print shortDescription
                 user=users.get_current_user()
                 userid = user.user_id()
@@ -44,19 +47,19 @@ class ProposePage(BaseHandler):
                 projectObject.description = shortDescription
                 projectObject.category = category
                 projectObject.title = title 
+                projectObject.date = date 
                 projectObject.address = address 
                 projectObject.lat = lat 
                 projectObject.lng = lng 
                 projectObject.authenticity = False
                 projectObject.tasks = [] 
-                while count>0:
-                    j=1
-                    Counter=str(count-count+j)
+                j=0
+                while j<count:
+                    Counter=str(j)
                     taskTitle = self.request.get("taskTitle"+Counter)
                     taskDescription = self.request.get("taskDescription"+Counter)
                     taskFund = self.request.get("taskFund"+Counter)
-                    count=count-1
-                    j=j-1
+                    j=j+1
                     projectObject.tasks.append([taskTitle, taskDescription, taskFund])
                 projectObject.put()
                 self.response.headers.add_header("Set-Cookie",str("title=%s"%title))

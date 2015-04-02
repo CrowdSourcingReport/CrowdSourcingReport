@@ -3,6 +3,7 @@
 
 #library for essential and redundant function(templating)
 
+from random import randint
 import math
 import jinja2
 import os
@@ -57,6 +58,7 @@ class Project(ndb.Model):
 	tasks = ndb.PickleProperty()
 	#rewards = ndb.PickleProperty()
 	address = ndb.StringProperty()
+	date = ndb.StringProperty()
 	lat = ndb.StringProperty()
 	lng = ndb.StringProperty()
 	#sectorOfOperation = ndb.StringProperty()
@@ -76,6 +78,13 @@ class BaseHandler(webapp2.RequestHandler):
                 parameter["users"] = users
                 user = users.get_current_user()
                 parameter["user"] = user
+                projects = Project.query().fetch()
+                randProjects = []
+                for i in range(0,4):
+                    randomInt = randint(0,len(projects)-1)
+                    if projects[randomInt] not in randProjects:
+                        randProjects.append(projects[randomInt])
+                parameter["projects"] = randProjects
                 template = env.get_template(filename )
                 self.response.write(template.render(parameter))
 	def uniqueIdentifierProject(self, project):
