@@ -20,12 +20,12 @@
 									<legend>Basic Info</legend>
 									<div class="form-group">
 										<label for="inputText" class="control-label">Title*:</label>
-										<input type="text" class="form-control" form= "projectRegistrationForm" id="inputText"  name="title" placeholder="Title" style="width:50%" required>
+										<input type="text" class="form-control" id="inputText"  name="title" placeholder="Title" style="width:50%" required>
 									</div>
 									<div class="form-group">
 								<fieldset>
 									<label for="select" class="control-label">Category*:</label>
-									<select class="form-control" id="NGOsector" form= "projectRegistrationForm" name="category" style="width:50%">
+									<select class="form-control" id="NGOsector" name="category" style="width:50%">
 										<option>Aged/Elderly </option>
 										<option>Agriculture </option>
 										<option>Animal Husbandry, Dairying & Fisheries </option>
@@ -75,10 +75,11 @@
 									<div class="form-group">
 										<fieldset>
 										  <label for="address" class="control-label">Location*:</label>
-											<input type="text" form="projectRegForm" class="form-control" id="address"  name="address" disabled style="width:50%;background-color:white" required>
+											<input type="text" form="projectRegForm" class="form-control" id="addr"  disabled style="width:50%;background-color:white" required>
 												<p>Click the map to mark location. Double click to zoom.</p>
-											  <input type="hidden" form="projectRegForm" class="form-control" id="lat"  name="lat" disabled style="width:50%">
-											  <input type="hidden" form="projectRegForm" class="form-control" id="lng"  name="lng" disabled style="width:50%">
+											  <input type="hidden" form="projectRegForm" class="form-control" id="address"  name="address" style="width:50%">
+											  <input type="hidden" form="projectRegForm" class="form-control" id="lat"  name="lat" style="width:50%">
+											  <input type="hidden" form="projectRegForm" class="form-control" id="lng"  name="lng"  style="width:50%">
 												<div id="map-canvas" style="width:80%;height:400px;color:black;margin:10px"></div>
 											</fieldset>
 									</div>
@@ -196,11 +197,13 @@ tinymce.init({
 		geocoder.geocode({'latLng': latlng}, function(results, status) {
 		  if (status == google.maps.GeocoderStatus.OK) {
 			  document.getElementById("address").value = results[0].formatted_address;
+			  document.getElementById("addr").value = results[0].formatted_address;
 			  document.getElementById("lat").value = lat;
 			  document.getElementById("lng").value = lng;
 		  } else {
 			alert("Geocoder failed due to: " + status);
 			document.getElementById("address").value = "";
+			document.getElementById("addr").value = "";
 			  document.getElementById("lat").value = "";
 			  document.getElementById("lng").value = "";
 		  }
