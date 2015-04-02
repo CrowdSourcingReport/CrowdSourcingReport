@@ -54,9 +54,11 @@ class Project(ndb.Model):
 	category = ndb.StringProperty()	
 	description = ndb.TextProperty()
 	tasks = ndb.PickleProperty()
-	rewards = ndb.PickleProperty()
-	stateOfOperation = ndb.PickleProperty()
-	sectorOfOperation = ndb.StringProperty()
+	#rewards = ndb.PickleProperty()
+	address = ndb.StringProperty()
+	lat = ndb.StringProperty()
+	lng = ndb.StringProperty()
+	#sectorOfOperation = ndb.StringProperty()
 
 #data model for NGO Gov database
 class NGOGOV(ndb.Model):
