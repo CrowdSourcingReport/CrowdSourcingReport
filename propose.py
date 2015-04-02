@@ -24,22 +24,22 @@ class ProposePage(BaseHandler):
 			if not NGOauthenticationQuery :
 				self.redirect("/signup/registration")
 			else:
-                                self.render("propose.html")
+				self.render("propose.html")
 		else:
                         self.redirect("/login")
                 
         def post(self):
                 category = self.request.get("category")
-		title = self.request.get("title")
+                title = self.request.get("title")
                 user=users.get_current_user()
                 userid = user.user_id()
                 projectObject = Project()
                 projectObject.ngo = userid
                 projectObject.category = category
-		projectObject.title = title 
-		projectObject.authenticity = False
+                projectObject.title = title 
+                projectObject.authenticity = False
                 projectObject.put()
-		self.response.headers.add_header("Set-Cookie",str("title=%s"%title))
+                self.response.headers.add_header("Set-Cookie",str("title=%s"%title))
                 sleep(5)
                 self.redirect("/propose/project")
 
@@ -60,6 +60,7 @@ class ProjectDetailsPage(BaseHandler):
 
         def post(self):
                 shortDescription = self.request.get("shortDescription")
+                print shortDescription
 		user = users.get_current_user()
 		userid = user.user_id()
 		title = self.request.cookies.get("title", "")
