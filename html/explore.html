@@ -9,9 +9,9 @@
 				<div >
 					<div class="panel panel-default panelbody">
 				<div class="panel-body">
-					<form method="POST">
+					<form method="POST" onkeypress="{if(window.event.keyCode==13){window.event.preventDefault();}}">
 					  <div class="form-group col-md-4" >
-					    <input type="text" name="address" class="form-control" onFocus="geolocate()" style="display:inline" id="autocomplete" placeholder="Search by Area">
+					    <input type="text" name="address" class="form-control" onFocus="geolocate()" style="display:inline" id="autocomplete" placeholder="Search by Area" >
 					    <p>Enter location to to use location based searching.</p>
 					    <input type="hidden" id="lat" name="lat" required>
 					    <input type="hidden" id="lng" name="lng" required>
@@ -26,9 +26,9 @@
         	<div class="row">
 				{% if get == 0 %}
 					<h3>Search Results for "{{search}}"</h3>
-						<p>Total {{len}} match{%if len>1 %}es{%endif%} found.</p>
-						{% if len > 0 %}
-							{% for project in projects %}
+						<p>Total {{length}} match{%if len>1 %}es{%endif%} found.</p>
+						{% if length != 0 %}
+							{% for proj in closeProjects %}
 								<div class="panel panel-default panelbody">
 									<div class="panel-body">
 										<div class="col-md-6">
@@ -36,22 +36,19 @@
 												<img src="/Content/img/project_image.jpg" class="col-md-12">
 											</div>
 											<div class="col-md-6">
-												<h3><a href="/project/{{project[0].ngo}}_{{project[0].title}}">{{project[0].title}}</a></h3>
-												<p><i class="fa fa-tag"></i> {{project[0].category}}</p>
-												<p><i class="fa fa-map-marker"></i> {{project[0].address}}</p>
+												<h3><a href="/project/{{proj.ngo}}_{{proj.title}}">{{proj[0].title}}</a></h3>
+												<p><i class="fa fa-tag"></i> {{proj[0].category}}</p>
+												<p><i class="fa fa-map-marker"></i> {{proj[0].address}}</p>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<h4>Description: </h4>
-											<div>{{project[0].description}}</div>
+											<div>{{proj[0].description}}</div>
 										</div>								
-									</div>
-										</div>
-										<div class="col-md-1"></div>
 									</div>
 								</div>
 							{% endfor %}	
-						{% else %}
+						{% else  %}
 							<div class="panel panel-default panelbody">
 								<div class="panel-body">
 									<p  class="text-center">No Nearby Projects Found.</p>

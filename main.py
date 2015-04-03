@@ -48,13 +48,13 @@ class ExploreHandler(BaseHandler):
 		lat = self.request.get("lat")
 		lng = self.request.get("lng")
 		print lat, lng
-		projects = Project.query().fetch(50)
-		decorated = [(project,project.distance(lat,lng)) for project in projects if project.distance(lat,lng)<1.50]
+		projects = Project.query().fetch()
+		decorated = [(project,project.distance(lat,lng)) for project in projects if project.distance(lat,lng)<1.00]
 		closeProjects = sorted(decorated, key=lambda tup: tup[1])
-		parameter["projects"] = closeProjects
+		parameter["closeProjects"] = closeProjects
 		parameter["get"] = 0
 		parameter["search"] = self.request.get("address")
-		parameter["len"] = len(closeProjects)
+		parameter["length"] = len(parameter["closeProjects"])
 		self.render('explore.html',parameter)
 
 class AboutHandler(BaseHandler):
@@ -138,6 +138,17 @@ class ProjectPageHandler(BaseHandler):
 				parameters["ngo"] = ngoP[0]
 			for task in parameters["project"].tasks:
 				funds = funds + int(task[2]);
+			i=0
+			parameters["collected"] = 0
+			parameters["funding"] = []
+			while i < len(parameters["project"].funding):
+				user = User.query(User.userid == parameters["project"].funding[i][0]).fetch(1)
+				parameters["collected"] = parameters["collected"] + int(parameters["project"].funding[i][1])
+				parameters["funding"].append((user[0], parameters["project"].funding[i][1]))
+				i=i+1
+			print parameters["project"].funding
+			parameters["support"]=i
+			print parameters["support"]
 			projects = Project.query(Project.category == parameters["project"].category).fetch()
 			closeProjects = []
 			try:
@@ -153,8 +164,8 @@ class ProjectPageHandler(BaseHandler):
 
 class ngoPageHandler(BaseHandler):
     def get(self, urlParameter):
-        q = NGO.query(NGO.userid == urlParameter).fetch(1)
-        if q:
+		q = NGO.query(NGO.userid == urlParameter).fetch(1)
+		if q:
 			parameters = {}
 			for p in q:
 				parameters["ngo"] = p
@@ -165,7 +176,46 @@ class ngoPageHandler(BaseHandler):
 			parameters["similarNGOs"] = q
 			parameters["n_len"] = len(q)
 			self.render('ngoPage.html',parameters)
+
+class FundHandler(BaseHandler):
+	def get(self, urlParameter):
+		ngo, title = urlParameter.split("_")
+		q = Project.query(Project.title == title and Project.ngo == ngo).fetch(1)
+		if q:
+			parameters = {}
+			for p in q:
+				ngoP = NGO.query(NGO.userid == p.ngo).fetch(1)
+				parameters["ngo"] = ngoP[0]
+				parameters["project"] = p
+			self.render('fund.html',parameters)
+
+	def post(self,urlParameter):
+		flag = 0;
+		link = self.request.get("project")
+		user=users.get_current_user()
+		if user:
+			userid = user.user_id()
+			userAuth = User.query(User.userid == userid).fetch(1)
+			if userAuth:
+				funds = self.request.get("funds")
+				ngo, title = link.split("_")
+				q = Project.query(Project.title == title and Project.ngo == ngo).fetch(1)
+				for p in userAuth[0].projects:
+					if p[0] == link:
+						p[1] = p[1] + funds
+						flag = 1
+				if(flag == 0):
+					userAuth[0].projects.append([link,funds])
+				userAuth[0].put()
+				q[0].funding.append((userid,funds))
+				q[0].put()
+				parameter = {"message":"You Have Successfully Funded a Project."}
+			else:
+				parameter = {"message":"You Are Not Authorized to Fund a Project."}
+		else:
+			parameter = {"message":"Please Login to Fund a Project."}
+		self.render("message.html",parameter)
 		
 
-app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler), ('/search', SearchHandler), ('/project', ProjectPageDemoHandler),('/Signup', SignupHandler),('/Redirect', RedirectHandler),('/ngo/([A-Za-z0-9]+)', ngoPageHandler),('/project/([A-Za-z0-9_]+)', ProjectPageHandler)],debug=True)
+app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler), ('/search', SearchHandler), ('/project', ProjectPageDemoHandler),('/Signup', SignupHandler),('/Redirect', RedirectHandler),('/ngo/([A-Za-z0-9]+)', ngoPageHandler),('/project/([A-Za-z0-9_]+)', ProjectPageHandler),("/fund/([A-Za-z0-9_]+)",FundHandler)],debug=True)
 

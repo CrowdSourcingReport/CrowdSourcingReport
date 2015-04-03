@@ -76,16 +76,43 @@
 		</div>
 		<div class="col-md-4">
 			<div>
-				<a href="#" class="panel btn btn-success form-control" style="">Support This!</a>
+				<a href="/fund/{{project.ngo}}_{{project.title}}" class="panel btn btn-success form-control" style="">Support This!</a>
 			</div>
 			<div class="panel panelbody">
 				<div class="panel-body">
 					<div>
-						Total Required Funds:
+						Total No. of Supporters: 
 					</div>
 					<div style="font-size:30px">
-						&#8377; {{funds}}
+						{{support}}
 					</div>
+					<div>
+						Contributed Amount:
+					</div>
+					<div class="text-right">
+						&#8377; {{collected}}/&#8377; {{funds}}
+					</div>
+					<div class="progress progress-striped active">
+						{% if collected <= funds %}
+							<div class="progress-bar" style="width: {{collected/funds*100}}%"></div>
+						{%else%}
+							<div class="progress-bar" style="width: 100%"></div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<h3><strong>Top Contributors</strong></h3>
+					<ol>
+						{%for fund in funding%}
+						<li>
+							<a href="#">{{fund[0].name}}</a>
+							<br />
+							Funding: &#8377; {{fund[1]}}
+						</li>
+						{%endfor%}
+					</ol>
 				</div>
 			</div>
 			<div class="panel panelbody">
