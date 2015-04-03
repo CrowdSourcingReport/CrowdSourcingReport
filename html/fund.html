@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}In Media{% endblock title %}
+
+{% block body %}
+	<div class = "container">
+		<div class = "col-md-3"></div>
+		<div class = "col-md-6">
+			<form method="POST" class="form-inline">
+				<div class = "navigation panel panel-default panelbody">
+				<!--<div class = "navigation full-viewport" style = "border:2px solid white;">-->
+					<div class = "panel-body">
+						<h2 class=""><strong>Fund Project {{project.title}}</strong></h2>
+						<p>Please enter details of the funding.</p>
+						<input type="hidden" id="project" name ="project" required value="{{project.ngo}}_{{project.title}}">&nbsp;
+						<input type="text" id="funds" name ="funds" required class="form-control" placeholder="Funds" style="width:50%;">&nbsp;
+						<input type="submit"class="btn btn-primary" value="submit" style="">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class = "col-md-3"></div>
+		
+	</div>
+{% endblock body %}
+
+{% block scripts %}
+	<script src = "/Content/js/smoothScroll.js"></script>
+{% endblock scripts %}

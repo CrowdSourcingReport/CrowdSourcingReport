@@ -19,12 +19,13 @@ class HomePageHandler(BaseHandler):
 				parameter = {}
 				ngos = NGO.query().fetch(4)
 				userObject = userAuthentication[0]
-                                projectsIdentifier = userObject.projects[:3]
-                                userProjects = []
-                                for projectIdentifier in projectsIdentifier:
-                                        key = ndb.Key("Project", projectIdentifier)
-                                        userProjects.append(key.get())
+				userProjects = []
+				for p in userObject.projects:
+					ngo, title = p[0].split("_")
+					proj = Project.query(Project.ngo == ngo and Project.title == title).fetch(1)
+					userProjects.append(proj[0]);
 				projects = Project.query().fetch(100)
+				print userObject.projects
 				closeProjects = []
 				decorated = [(project,project.distance(userAuthentication[0].lat,userAuthentication[0].lng)) for project in projects]
 				closeProjects = sorted(decorated, key=lambda tup: tup[1])[0:4] 

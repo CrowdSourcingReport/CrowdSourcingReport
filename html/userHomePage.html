@@ -24,8 +24,8 @@
 							<div class="panel panelbody">
 								<div class="panel-body">
 									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
-									<p class="text-center"><a href="/project/{{project[0].ngo}}_{{project[0].title}}">{{project[0].title}}</a></p>
-									<p class="text-center"><i class="fa fa-tag"></i> {{project[0].category}}</p>
+									<p class="text-center"><a href="/project/{{project.ngo}}_{{project.title}}">{{project.title}}</a></p>
+									<p class="text-center"><i class="fa fa-tag"></i> {{project.category}}</p>
 								</div>
 							</div>
 						</div>
@@ -56,15 +56,14 @@
     		<h3 class="text-center">Your Project</h3>
     		<div class="panel panel-default panelbody">
 				<div class="panel-body">
-					{% for userProject in userProjects %}
-						<div class="col-md-4">
-							<div class="panel panel-primary">
-							  <div class="panel-heading">
-							    <h3 class="panel-title">{{userProject.title}}</h3>
-							  </div>
-							  <div class="panel-body">
-							    {{userProject.description}}
-							  </div>
+					{% for project in userProjects %}
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="/project/{{project.ngo}}_{{project.title}}">{{project.title}}</a></p>
+									<p class="text-center"><i class="fa fa-tag"></i> {{project.category}}</p>
+								</div>
 							</div>
 						</div>
 					{% endfor %}	

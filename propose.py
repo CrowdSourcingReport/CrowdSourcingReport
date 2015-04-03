@@ -14,7 +14,7 @@ import lib
 from google.appengine.api import users
 from lib import NGO, BaseHandler, User, Project
 from time import sleep
-import time
+import datetime
 
 class ProposePage(BaseHandler):
         def get(self):
@@ -37,8 +37,10 @@ class ProposePage(BaseHandler):
                 lng = self.request.get("lng")
                 title = self.request.get("title")
                 shortDescription = self.request.get("shortDescription")
-                date = time.strtftime("%Y-%m-%d %H:%M:%S")
-                date = date.toString()
+                #date = time.strtftime("%Y-%m-%d %H:%M:%S")
+                date =  datetime.date.today()
+                date = str(date)
+                funding = []
                 print shortDescription
                 user=users.get_current_user()
                 userid = user.user_id()
@@ -47,6 +49,7 @@ class ProposePage(BaseHandler):
                 projectObject.description = shortDescription
                 projectObject.category = category
                 projectObject.title = title 
+                projectObject.funding = funding 
                 projectObject.date = date 
                 projectObject.address = address 
                 projectObject.lat = lat 

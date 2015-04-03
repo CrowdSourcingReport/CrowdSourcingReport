@@ -61,6 +61,7 @@ class Project(ndb.Model):
 	date = ndb.StringProperty()
 	lat = ndb.StringProperty()
 	lng = ndb.StringProperty()
+	funding = ndb.PickleProperty()
 	#sectorOfOperation = ndb.StringProperty()
 	def distance(self, x, y):
 		print self.lat, self.lng
