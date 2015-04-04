@@ -72,8 +72,6 @@
 								<i class="fa fa-user"></i> {{user}} <span class="caret"></span>
 						    </a>
 							<ul class="dropdown-menu btn">
-								<li class="text-left"><a href="#"><i class="fa fa-user"></i> {{user}}</a></li>
-
 								<li class="text-left"><a href="/home"><i class="fa fa-home"></i> Home</a></li>
 								<li class="text-left"><a href="{{users.create_logout_url('/home')}}"><i class="fa fa-sign-out"></i> Sign Out</a></li>
 							</ul>
@@ -135,7 +133,7 @@
 	            					<h4>Projects</h4>
 							<ul class="list-unstyled footer">
 								{% for project in projects %}
-									<li><a href="/project/{{project.ngo}}_{{project.title}}" class="fhypertext">{{project.title}}</a></li>
+									<li><a href="/project/{{project.ngo}}_{{project.link}}" class="fhypertext">{{project.title}}</a></li>
 								{% endfor %}
 							</ul>
 	        				   </div>

@@ -151,19 +151,19 @@
 														{{ngo.telephone}}
 													</div>
 												</div>
-												<!--<div class="row">
+												<div class="row">
 													<div class="col-md-4">
 														<p><strong>Email: </strong></p>
 													</div>
-													<div class="col-md-8">demo@ngo.com</div>
+													<div class="col-md-8">{{ngo.email}}</div>
 													
 												</div>
 												<div class="row">
 													<div class="col-md-4">
 														<p><strong>Website: </strong></p>
 													</div>
-													<div class="col-md-8">www.ngo.com</div>
-												</div>-->		
+													<div class="col-md-8"><a href="{{ngo.website}}" target="_blank">{{ngo.website}}</a></div>
+												</div>
 											</fieldset>
 									</div>
 								</div>
@@ -188,7 +188,7 @@
 									<div class="panel panelbody">
 										<div class="panel-body">
 											<img src="/Content/img/project_image.jpg" class="col-md-12"/>
-											<p class="text-center"><a href="/project/{{project.ngo}}_{{project.title}}">{{project.title}}</a></p>
+											<p class="text-center"><a href="/project/{{project.ngo}}_{{project.link}}">{{project.title}}</a></p>
 										</div>
 									</div>
 								</div>
