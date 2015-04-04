@@ -22,8 +22,10 @@ class HomePageHandler(BaseHandler):
 				userProjects = []
 				for p in userObject.projects:
 					ngo, title = p[0].split("_")
-					proj = Project.query(Project.ngo == ngo and Project.title == title).fetch(1)
-					userProjects.append(proj[0]);
+					print p[0]
+					proj = ndb.gql("SELECT * FROM Project WHERE link = :1 AND ngo = :2", title,ngo).fetch(1)
+					if proj:
+						userProjects.append(proj[0]);
 				projects = Project.query().fetch(100)
 				print userObject.projects
 				closeProjects = []
@@ -36,15 +38,10 @@ class HomePageHandler(BaseHandler):
 				self.render("userHomePage.html", parameter)
 			elif ngoAuthentication:
 				parameter={}
-                                ngo = ngoAuthentication[0]
-                                projectsIdentifierList = ngo.projects
-                                ngoProjects = []
-				if projectsIdentifierList:
-                             		for projectIdentifier in projectsIdentifierList:
-                                	        ngo, title = self.stripProjectIdentifier(projectIdentifier)
-                                       	        projectObject = Project.query(Project.ngo == ngo, Project.title == title).fetch(1)[0]
-                                        	ngoProjects.append(projectObject)
-                                parameter["ngoProjects"] = ngoProjects
+				proj = Project.query(Project.ngo == ngoAuthentication[0].userid).fetch()
+                                parameter["ngoProjects"] = proj
+                                parameter["length"] = len(proj)
+                                parameter["ngo"]=ngoAuthentication[0]
 				self.render("ngoHomePage.html", parameter)
 			else:
 				self.redirect("/signup/registration")

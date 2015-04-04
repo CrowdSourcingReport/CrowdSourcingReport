@@ -1,11 +1,18 @@
 function selectById(picked_id){
 	var selectBox = document.getElementById(picked_id);
 	var outputBox = document.getElementById(picked_id + "_output");
-	var output = outputBox.innerHTML;
+	var outputDiv = document.getElementById(picked_id + "_output_show");
+	var output = outputBox.value;
 	var input = selectBox.options[selectBox.selectedIndex].text;
-	if(output.indexOf(input + "; ") == -1){
-		output = output.concat(input);
-		output = output.concat('; ');
-		outputBox.innerHTML = output;
+	var search = input + "; "
+	if(output.indexOf(search) == -1){
+		output = output + search;
+		outputBox.value = output;
+		outputDiv.innerHTML = output;
 	}
+}
+
+function clearById(picked_id){
+	document.getElementById(picked_id + "_output").value = "";
+	document.getElementById(picked_id + "_output_show").innerHTML = "";
 }

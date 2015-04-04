@@ -41,17 +41,18 @@
 								<fieldset>
 									<legend>Basic Info</legend>
 									<div class="form-group">
-										<label for="inputText" class="control-label">Name:</label>
-										<input type="text" class="form-control" id="inputText"  name="name" placeholder="Name" style="width:50%">
+										<label for="inputText" class="control-label">Name*:</label>
+										<input type="text" class="form-control" id="inputText"  name="name" placeholder="Name" style="width:50%" required>
 									</div>
 									<div class="form-group">
-										<label for="textArea" class="control-label">Description:</label>
-										<textarea class="form-control" rows="3" id="textArea" name= "description" style="width:50%"></textarea>
+										<label for="textArea" class="control-label">Description*:</label>
+										<textarea class="form-control" rows="3" id="textArea" name= "description" style="width:50%" required></textarea>
 									</div>
 									<div class="form-group">
-										  <label for="select" class="control-label">State of Operation</label>
-											<div id="selectState_output"></div><br />
-											<select class="form-control" id="selectState" name="stateOfOperation" style="width:50%">
+										  <label for="select" class="control-label">State of Operation*:</label>
+											<div id="selectState_output_show"></div>
+											<input type="hidden" id="selectState_output" name="stateOfOperation"><br />
+											<select class="form-control" id="selectState" name="selectState" style="width:50%;">
 												  <option>Andaman and Nicobar Island </option>
 												  <option>Andhra Pradesh </option>
 												  <option>Arunachal Pradesh </option>
@@ -87,8 +88,9 @@
 												  <option>Uttar Pradesh </option>
 												  <option>Uttarkhand </option>
 												  <option>West Bengal </option>
-											</select>
+											</select><br>
 											<a class="btn btn-primary" onclick="selectById('selectState')">Add</a>
+											<a class="btn btn-primary" onclick="clearById('selectState')">Clear</a>
 									</div>
 								</fieldset>
 							</form>
@@ -97,20 +99,22 @@
 								<fieldset>
 									<legend>Registration Details</legend>
 									<div class="form-group">
-										<label for="inputText" class="control-label">PAN Card Number</label>
-										<input type="text" class="form-control" form= "ngoRegForm" id="inputText"  name="pancardNumber" placeholder="Pan Card Number" style="width:50%">
+										<label for="inputText" class="control-label">PAN Card Number*:</label>
+										<input type="text" class="form-control" form= "ngoRegForm" id="inputText"  name="pancardNumber" placeholder="Pan Card Number" style="width:50%" required>
+										<div id="pancardNumber-error" style="color:yellow"></div>
 									</div>
 									<div class="form-group">
-										<label for="inputText" class="control-label">NGO Registration Number</label>
-										<input type="text" class="form-control" form= "ngoRegForm" id="inputText"  name="registrationNumber" placeholder="Registration Number" style="width:50%">
+										<label for="inputText" class="control-label">NGO Registration Number*:</label>
+										<input type="text" class="form-control" form= "ngoRegForm" id="inputText"  name="registrationNumber" placeholder="Registration Number" style="width:50%" required>
+										<div id="registrationNumber-error" style="color:yellow"></div>
 									</div>
 									<div class="form-group">
-										<label for="inputText" class="control-label">Date Of Registration(yyyy-MM-dd):</label>
-										<input type="date" class="form-control" form= "ngoRegForm" id="inputText"  name="dateOfRegistration" placeholder="Date Of Registration" style="width:50%">
+										<label for="inputText" class="control-label">Date Of Registration(yyyy-MM-dd)*:</label>
+										<input type="date" class="form-control" form= "ngoRegForm" id="inputText"  name="dateOfRegistration" placeholder="Date Of Registration" style="width:50%" required>
 									</div>
 									<div class="form-group">
-										<label for="inputText" class="control-label">State of Registration:</label>
-										<select class="form-control" id="selectStateReg" form= "ngoRegForm" name="stateOfRegistration" style="width:50%">
+										<label for="inputText" class="control-label">State of Registration*:</label>
+										<select class="form-control" id="selectStateReg" form= "ngoRegForm" name="stateOfRegistration" style="width:50%;" required>
 											  <option>Andaman and Nicobar Island </option>
 											  <option>Andhra Pradesh </option>
 											  <option>Arunachal Pradesh </option>
@@ -148,15 +152,15 @@
 											  <option>West Bengal </option>
 											</select>
 											<br />
-											<input type="button" class="btn btn-primary" onclick="copyState()" id="copyState"  value ="Same as State of Operation">
 										</div>
 								</fieldset>
 						</div>
 						<div class="tab-pane fade" id="sector">
 								<fieldset>
-									<legend>Sector</legend>
-									<div id="NGOsector_output"></div>
-									<select class="form-control" id="NGOsector" form= "ngoRegForm" name="sectorOfOperation" style="width:50%">
+									<legend>Sector*:</legend>
+									<input type="hidden" id="NGOsector_output" form= "ngoRegForm" name="sectorOfOperation">
+									<div id="NGOsector_output_show"></div>
+									<select class="form-control" id="NGOsector" form= "ngoRegForm" style="width:50%">
 										<option>Aged/Elderly </option>
 										<option>Agriculture </option>
 										<option>Animal Husbandry, Dairying & Fisheries </option>
@@ -199,8 +203,9 @@
 										<option>Water Resources </option>
 										<option>Women's Development & Empowerment </option>
 										<option>Youth Affairs </option>
-									</select>	
+									</select><br>
 									<a class="btn btn-primary" onclick="selectById('NGOsector')">Add</a>
+									<a class="btn btn-primary" onclick="clearById('NGOsector')">Clear</a>
 								</fieldset>
 						</div>
 						<div class="tab-pane fade" id="team">
@@ -220,20 +225,31 @@
 								<fieldset>
 									<legend>Contact Details</legend>
 									<div class="form-group">
-										<label for="inputText" class="control-label">Telephone/Mobile</label>
-										<input type="tel" form = "ngoRegForm" class="form-control" id="inputText"  name="telephone"  style="width:50%">
+										<label for="inputText" class="control-label">Telephone/Mobile*:</label>
+										<input type="tel" form = "ngoRegForm" class="form-control" id="inputText"  name="telephone"  style="width:50%" required>
+										<div id="telephone-error" style="color:yellow"></div>
 									</div>
 									<div class="form-group">
-										<label for="textArea" class="control-label">Address:</label>
-										<textarea class="form-control" form = "ngoRegForm" rows="3" id="textArea" name= "address" style="width:50%"></textarea>
+										<label for="inputText" class="control-label">Email*:</label>
+										<input type="email" form = "ngoRegForm" class="form-control" id="inputText"  name="email"  style="width:50%" required>
+										<div id="telephone-error" style="color:yellow"></div>
+									</div>
+									<div class="form-group">
+										<label for="textArea" class="control-label">Address*:</label>
+										<textarea class="form-control" form = "ngoRegForm" rows="3" id="textArea" name= "address" style="width:50%" required></textarea>
 									</div>		
+									<div class="form-group">
+										<label for="inputText" class="control-label">Website:</label>
+										<input type="text" form = "ngoRegForm" class="form-control" id="inputText"  name="website"  style="width:50%">
+										<div id="telephone-error" style="color:yellow"></div>
+									</div>
 								</fieldset>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="text-right">
-			<button type="submit" class="btn btn-primary" form ="ngoRegForm">Submit</button>
+			<button type="submit" class="btn btn-primary" form ="ngoRegForm" onclick="{validate(document.getElementById('ngoRegForm'),window.event)}">Submit</button>
 			</div>
 		</div>
 	</div>
@@ -245,4 +261,60 @@
 <!-- CarouFredSel JavaScript Plugin -->
 <script type="text/javascript" language="javascript" src="/Content/js/copyState.js"></script>
 <script type="text/javascript" language="javascript" src="/Content/js/selectmult.js"></script>
+<script>
+function validate(form,e){
+	var cond = true
+	var pancardNumber = document.getElementById("pancardNumber-error")
+	var registrationNumber = document.getElementById("registrationNumber-error")
+	var telephone = document.getElementById("telephone-error")
+	pancardNumber.innerHTML = ""
+	registrationNumber.innerHTML = ""
+	telephone.innerHTML = ""
+	
+	if(form.stateOfOperation.value == ""){
+		selectById("selectState")
+	}
+	
+	if(form.stateOfOperation.value == ""){
+		selectById("NGOsector")
+	}
+	
+	if(/[^0-9]/.test(form.pancardNumber.value)){
+		cond = false;
+		pancardNumber.innerHTML = "PAN card number should include only numeric characters."
+	}
+	
+	if(form.pancardNumber.value.length != 10){
+		cond = false;
+		pancardNumber.innerHTML = "PAN card number should 10 charactrs long."
+	}
+	
+	if(/[^0-9]/.test(form.registrationNumber.value)){
+		cond = false;
+		registrationNumber.innerHTML = "Registration number should include only numeric characters."
+	}
+	
+	if(form.registrationNumber.value.length != 10){
+		cond = false;
+		registrationNumber.innerHTML = "Registration number should 10 charactrs long."
+	}
+	
+	if(/[^0-9]/.test(form.telephone.value)){
+		cond = false;
+		registrationNumber.innerHTML = "Telephone number should include only numeric characters."
+	}
+	
+	if(form.telephone.value.length != 10){
+		cond = false;
+		telephone.innerHTML = "Telephone number should 10 charactrs long."
+	}
+	
+	if(!cond){
+		window.alert("There are errors found in your input")
+		e.preventDefault();
+		
+	}
+	
+}
+</script>
 {% endblock scripts %}

@@ -126,8 +126,9 @@ class ProjectPageDemoHandler(BaseHandler):
         
 class ProjectPageHandler(BaseHandler):
     def get(self,urlParameter):
+		print urlParameter
 		ngo, title = urlParameter.split("_")
-		q = Project.query(Project.title == title and Project.ngo == ngo).fetch(1)
+		q = ndb.gql("SELECT * FROM Project WHERE link = :1 AND ngo = :2", title,ngo).fetch(1)
 		funds = 0
 		print q
 		if q:
@@ -146,6 +147,7 @@ class ProjectPageHandler(BaseHandler):
 				parameters["collected"] = parameters["collected"] + int(parameters["project"].funding[i][1])
 				parameters["funding"].append((user[0], parameters["project"].funding[i][1]))
 				i=i+1
+			parameters["funding"].reverse()
 			print parameters["project"].funding
 			parameters["support"]=i
 			print parameters["support"]
@@ -180,7 +182,7 @@ class ngoPageHandler(BaseHandler):
 class FundHandler(BaseHandler):
 	def get(self, urlParameter):
 		ngo, title = urlParameter.split("_")
-		q = Project.query(Project.title == title and Project.ngo == ngo).fetch(1)
+		q = ndb.gql("SELECT * FROM Project WHERE link = :1 AND ngo = :2", title,ngo).fetch(1)
 		if q:
 			parameters = {}
 			for p in q:
@@ -199,13 +201,15 @@ class FundHandler(BaseHandler):
 			if userAuth:
 				funds = self.request.get("funds")
 				ngo, title = link.split("_")
-				q = Project.query(Project.title == title and Project.ngo == ngo).fetch(1)
+				print title
+				q = ndb.gql("SELECT * FROM Project WHERE link = :1 AND ngo = :2", title,ngo).fetch(1)
 				for p in userAuth[0].projects:
 					if p[0] == link:
 						p[1] = p[1] + funds
 						flag = 1
 				if(flag == 0):
 					userAuth[0].projects.append([link,funds])
+				userAuth[0].projects = sorted(userAuth[0].projects, key=lambda tup: tup[1])
 				userAuth[0].put()
 				q[0].funding.append((userid,funds))
 				q[0].put()
@@ -215,7 +219,36 @@ class FundHandler(BaseHandler):
 		else:
 			parameter = {"message":"Please Login to Fund a Project."}
 		self.render("message.html",parameter)
+
+class YourProjectHandler(BaseHandler):
+	def get(self):
+		user=users.get_current_user()
+		if user:
+			userid = user.user_id()
+			userAuth = User.query(User.userid == userid).fetch(1)
+			ngoAuth = NGO.query(NGO.userid == userid).fetch(1)
+			if userAuth:
+				userProj = []
+				link = userAuth[0].projects
+				for p in link:
+					ngo, title = p[0].split("_")
+					projects = ndb.gql("SELECT * FROM Project WHERE link = :1 AND ngo = :2", title,ngo).fetch(1)
+					if projects:
+						userProj.append((projects[0],p[1]));
+						print userProj
+				parameter = {"proj":userProj, "user": 1, "length":len(userProj)}
+				self.render("/userProjects.html",parameter)
+			elif ngoAuth:
+				ngoProjects = []
+				link = ngoAuth[0].projects
+				for p in link:
+					proj = Project.query(Project.ngo == p.userid).fetch(1)
+					ngoProjects.append(proj[0]);
+				parameter = {"projects":ngoProjects, "user": 0, "length":len(ngoProjects),"ngo":ngoAuth[0]}
+				self.render("/ngoProjects.html",parameter)
+		else:
+			self.render("/login.html")
 		
 
-app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler), ('/search', SearchHandler), ('/project', ProjectPageDemoHandler),('/Signup', SignupHandler),('/Redirect', RedirectHandler),('/ngo/([A-Za-z0-9]+)', ngoPageHandler),('/project/([A-Za-z0-9_]+)', ProjectPageHandler),("/fund/([A-Za-z0-9_]+)",FundHandler)],debug=True)
+app = webapp2.WSGIApplication([('/', MainPageHandler),('/features', FeatureHandler),('/about', AboutHandler),('/explore', ExploreHandler), ('/WhatWeDo', WhatWeDoHandler),('/PrivacyPolicy', PrivacyPolicyHandler),('/Faq', FaqHandler),('/TermsOfUse', TermsOfUseHandler),('/Media', MediaHandler),('/Customers', CustomersHandler), ('/login', LoginHandler), ('/search', SearchHandler), ('/project', ProjectPageDemoHandler),('/Signup', SignupHandler),('/Redirect', RedirectHandler),('/ngo/([A-Za-z0-9]+)', ngoPageHandler),('/project/([A-Za-z0-9_-]+)', ProjectPageHandler),("/fund/([A-Za-z0-9_-]+)",FundHandler),("/yourProjects",YourProjectHandler)],debug=True)
 

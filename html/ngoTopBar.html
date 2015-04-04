@@ -8,9 +8,9 @@
         <div class="col-md-2">
                         <ul class="nav nav-pills nav-stacked" style =" max-width = 300px">
                                 <li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                                <li><a href="home/UpdateProject"><i class="fa fa-bookmark"></i> Projects</a></li>
-                                <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+                                <li><a href="/ngo/{{ngo.userid}}"><i class="fa fa-user"></i> Profile</a></li>
+                                <li><a href="/yourProjects"><i class="fa fa-bookmark"></i> Your Projects</a></li>
+                                <li><a href="{{users.create_logout_url('/home')}}"><i class="fa fa-sign-out"></i> Sign Out</a></li>
                         </ul>
         </div>
 

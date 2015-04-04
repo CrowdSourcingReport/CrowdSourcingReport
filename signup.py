@@ -51,12 +51,14 @@ class UserRegistrationPage(BaseHandler):
 		name = self.request.get("name")	
 		userid = user.user_id()
 		gender = self.request.get("gender")
+		email = self.request.get("email")
 		address = self.request.get("address")
 		lat = self.request.get("lat")
 		lng = self.request.get("lng")
 		userObject = User()
 		userObject.userid=userid
 		userObject.name = name
+		userObject.email = email
 		userObject.gender = gender
 		userObject.address = address
 		userObject.lat = lat
@@ -97,6 +99,8 @@ class NGORegistration(BaseHandler):
 				chairman = self.request.get("chairman")
 				sectorOfOperation = self.request.get("sectorOfOperation")
 				stateOfOperation = self.request.get("stateOfOperation")
+				email = self.request.get("email")
+				website = self.request.get("website")
 				registrationNumber = self.request.get("registrationNumber")
 				dateOfRegistration = self.request.get("dateOfRegistration")
 				stateOfRegistration = self.request.get("stateOfRegistration")
@@ -109,6 +113,8 @@ class NGORegistration(BaseHandler):
 				ngo.credibility = False
 				ngo.description = description
 				ngo.pancardNumber = pancardNumber
+				ngo.email = email
+				ngo.website = website
 				ngo.chiefFunctionary = chiefFunctionary
 				ngo.chairman = chairman
 				ngo.sectorOfOperation = sectorOfOperation

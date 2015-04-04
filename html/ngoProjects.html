@@ -1,34 +1,13 @@
-{% extends "layout.html" %}
+{% extends "ngoTopBar.html" %}
 
 {% block title %}Explore{% endblock title %}
 
-{% block body %}
-		<div class="container full-viewport" onload="initialize();">
-			<h2>Explore</h2>
+{% block userblock %}
+		<div class="col-md-10 full-viewport" onload="initialize();">
 			<div class="row" style="margin-top:20px">
-				<div >
-					<div class="panel panel-default panelbody">
-				<div class="panel-body">
-					<form method="POST" onkeypress="{if(window.event.keyCode==13){window.event.preventDefault();}}">
-					  <div class="form-group col-md-4" >
-					    <input type="text" name="address" class="form-control" onFocus="geolocate()" style="display:inline" id="autocomplete" placeholder="Search by Area" >
-					    <p>Enter location to to use location based searching.</p>
-					    <input type="hidden" id="lat" name="lat" required>
-					    <input type="hidden" id="lng" name="lng" required>
-					  </div>
-					  <input type="submit" class="btn btn-primary" value="Search" style="display:inline">
-					</form>
-				</div>
-				</div>
-				</div>
-        	</div>
-        	<br>
-        	<div class="row">
-				{% if get == 0 %}
-					<h3>Search Results for "{{search}}"</h3>
-						<p>Total {{length}} match{%if len>1 %}es{%endif%} found.</p>
+						<h3>Projects Proposed By You:</h3>
 						{% if length != 0 %}
-							{% for proj in closeProjects %}
+							{% for proj in projects %}
 								<div class="panel panel-default panelbody">
 									<div class="panel-body">
 										<div class="col-md-6">
@@ -38,33 +17,26 @@
 											<div class="col-md-6">
 												<h3><a href="/project/{{proj.ngo}}_{{proj.link}}">{{proj[0].title}}</a></h3>
 												<p><i class="fa fa-tag"></i> {{proj[0].category}}</p>
-												<p><i class="fa fa-map-marker"></i> {{proj[0].address}}</p>
 											</div>
 										</div>
 										<div class="col-md-6">
-											<h4>Description: </h4>
+											<h4>Description : </h4>
 											<div>{{proj[0].description}}</div>
 										</div>								
 									</div>
 								</div>
 							{% endfor %}	
-						{% else  %}
+						{% else %}
 							<div class="panel panel-default panelbody">
 								<div class="panel-body">
-									<p  class="text-center">No Nearby Projects Found.</p>
+									<p  class="text-center">No Projects Found.</p>
 								</div>
 							</div>
 						{% endif %}
-					</div>
-				{% else %}
-					<div class="panel panel-default panelbody">
-						<div class="panel-body">
-							<p class="text-center">Enter a Location to explore current projects nearby.</p>
-						</div>
-					</div>
-				{% endif %}
 				</div>
-{% endblock body %}
+			</div>
+				
+{% endblock userblock %}
 
 {% block scripts %}
 	<script src = "/Content/js/smoothScroll.js"></script>
