@@ -110,15 +110,20 @@ class RedirectHandler(BaseHandler):
 class SearchHandler(BaseHandler):
 	def get(self):
 		searchString = self.request.get("searchString")
-		q = ndb.gql("SELECT * FROM NGO WHERE name > :1 AND name < :2", searchString, unicode(searchString) + u"\ufffd").fetch(20)
+		q = ndb.gql("SELECT * FROM NGO WHERE search > :1 AND search < :2", searchString.lower(), unicode(searchString).lower() + u"\ufffd").fetch(20)
+		p = ndb.gql("SELECT * FROM Project WHERE search > :1 AND search < :2", searchString.lower(), unicode(searchString).lower() + u"\ufffd").fetch(20)
 		try:
 			parameter = {}
-			parameter["results"] = q
+			parameter["results_ngo"] = q
+			parameter["results_proj"] = p
 			parameter["search"] = searchString
-			parameter["length"] = len(q)
+			parameter["n_ngo"] = len(q)
+			parameter["n_proj"] = len(p)
 			self.render("search.html", parameter)
 		except search.Error:
 			logging.exception("Search Failed")
+			parameter = {"message":"Search Failed.","title":"Error"}
+			self.render("message.html",parameter)
 
 class ProjectPageDemoHandler(BaseHandler):
     def get(self):

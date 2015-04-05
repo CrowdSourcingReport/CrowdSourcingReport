@@ -29,6 +29,7 @@ class User(ndb.Model):
 class NGO(ndb.Model):
 	userid = ndb.StringProperty(required = True)
 	name = ndb.StringProperty(required = True)
+	search = ndb.StringProperty(required = True)
 	credibility = ndb.BooleanProperty(required = True)
 	eightygRegistration = ndb.BlobKeyProperty()
 	description = ndb.TextProperty(required = True)
@@ -53,6 +54,7 @@ class NGO(ndb.Model):
 #data model for storing project data 
 class Project(ndb.Model):
 	title = ndb.StringProperty()
+	search = ndb.StringProperty()
 	ngo = ndb.StringProperty()
 	authenticity = ndb.BooleanProperty()	
 	category = ndb.StringProperty()	

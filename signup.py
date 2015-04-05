@@ -92,6 +92,7 @@ class NGORegistration(BaseHandler):
 				self.redirect("/home")
 			else:
 				name = self.request.get("name")	
+				Search = self.request.get("name").lower()
 				email = user.email()
 				description = self.request.get("description")
 				pancardNumber = self.request.get("pancardNumber")
@@ -111,6 +112,7 @@ class NGORegistration(BaseHandler):
 				ngo = NGO()
 				ngo.userid = userid
 				ngo.name = name
+				ngo.search = Search
 				ngo.credibility = False
 				ngo.description = description
 				ngo.pancardNumber = pancardNumber

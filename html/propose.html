@@ -78,7 +78,7 @@
 										  <label for="address" class="control-label">Location*:</label>
 											<input type="text" form="projectRegForm" class="form-control" id="addr"  disabled style="width:50%;background-color:white" required>
 												<p>Click the map to mark location. Double click to zoom.</p>
-											  <input type="hidden" form="projectRegForm" class="form-control" id="address"  name="address" style="width:50%" required>
+											  <input type="hidden" form="projectRegForm" class="form-control" id="address"  name="address" style="width:50%">
 											  <input type="hidden" form="projectRegForm" class="form-control" id="lat"  name="lat" style="width:50%">
 											  <input type="hidden" form="projectRegForm" class="form-control" id="lng"  name="lng"  style="width:50%">
 												<div id="map-canvas" style="width:80%;height:400px;color:black;margin:10px"></div>
@@ -102,6 +102,7 @@
 								<div id = "Tasklist"></div>
 								<br />
 								<input type="hidden" form="projectRegForm" id="count" name="count" value="0">
+								<div id="fund-error" style="color:yellow"></div>
 								<input type ="button" class="btn btn-primary" onclick = "addTask()" value ="+ Add a task">
 					
 							</fieldset>
@@ -194,10 +195,24 @@
 function validate(form,e){
 	var cond = true
 	var title = document.getElementById("title-error")
+	var fund = document.getElementById("fund-error")
 	title.innerHTML = ""
+	fund.innerHTML = ""
 	if(/[^a-zA-Z0-9\s]/.test(form.title.value)){
 		cond = false;
 		title.innerHTML = "Project name should include only alphanumeric and space characters."
+	}
+	
+	var count = parseInt(document.getElementById("count").value)
+	for(var i=0; i<=count;i++){
+		var taskFundtd = document.getElementById("taskFund" + i.toString())
+		if(/[^0-9.]/.test(document.getElementById("taskFund" + i.toString()).value)){
+			cond = false
+			taskFundtd.style.border="solid 3px yellow"
+			fund.innerHTML = "Funds should be a valid decimal number."
+			break;
+		}
+		taskFundtd.style.border=""
 	}
 	
 	if(!cond){
