@@ -101,6 +101,7 @@ class NGORegistration(BaseHandler):
 				stateOfOperation = self.request.get("stateOfOperation")
 				email = self.request.get("email")
 				website = self.request.get("website")
+				website = website.replace("http://","")
 				registrationNumber = self.request.get("registrationNumber")
 				dateOfRegistration = self.request.get("dateOfRegistration")
 				stateOfRegistration = self.request.get("stateOfRegistration")

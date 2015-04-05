@@ -115,7 +115,7 @@ class SearchHandler(BaseHandler):
 			parameter = {}
 			parameter["results"] = q
 			parameter["search"] = searchString
-			parameter["len"] = len(q)
+			parameter["length"] = len(q)
 			self.render("search.html", parameter)
 		except search.Error:
 			logging.exception("Search Failed")
@@ -174,9 +174,11 @@ class ngoPageHandler(BaseHandler):
 			q = Project.query(Project.ngo == urlParameter).fetch(4)
 			parameters["projects"] = q
 			parameters["p_len"] = len(q)
-			q = NGO.query(NGO.userid != urlParameter and NGO.sectorOfOperation == parameters["ngo"].sectorOfOperation).fetch(4)
-			parameters["similarNGOs"] = q
-			parameters["n_len"] = len(q)
+			q = NGO.query(NGO.sectorOfOperation == parameters["ngo"].sectorOfOperation).fetch(4)
+			p = [n for n in q if n.userid != parameters["ngo"].userid]
+			parameters["similarNGOs"] = p
+			print q
+			parameters["n_len"] = len(p)
 			self.render('ngoPage.html',parameters)
 
 class FundHandler(BaseHandler):
@@ -213,11 +215,11 @@ class FundHandler(BaseHandler):
 				userAuth[0].put()
 				q[0].funding.append((userid,funds))
 				q[0].put()
-				parameter = {"message":"You Have Successfully Funded a Project."}
+				parameter = {"message":"You Have Successfully Funded a Project.","title":"Successfully Funded"}
 			else:
-				parameter = {"message":"You Are Not Authorized to Fund a Project."}
+				parameter = {"message":"You Are Not Authorized to Fund a Project.","title":"Error"}
 		else:
-			parameter = {"message":"Please Login to Fund a Project."}
+			parameter = {"message":"Please Login to Fund a Project.","title":"Error"}
 		self.render("message.html",parameter)
 
 class YourProjectHandler(BaseHandler):

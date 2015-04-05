@@ -6,7 +6,7 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<h3>Search Results for "{{search}}"</h3>
-			<p>Total {{len}} match{%if len>1 %}es{%endif%} found.</p>
+			<p>Total {{length}} match{%if length != 1 %}es{%endif%} found.</p>
 			{% for result in results %}
 				<div class="panel panel-default panelbody">
 					<div class="panel-body">
