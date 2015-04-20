@@ -5,6 +5,7 @@
 {% block body %}
 		<div class="container full-viewport" onload="initialize();">
 			<h2>Explore</h2>
+			<div class="Odistance" style="display:none">{{lat}},{{lng}}</div>
 			<div class="row" style="margin-top:20px">
 				<div >
 					<div class="panel panel-default panelbody">
@@ -35,10 +36,12 @@
 											<div class="col-md-6">
 												<img src="/Content/img/project_image.jpg" class="col-md-12">
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-6 text-left">
 												<h3><a href="/project/{{proj[0].ngo}}_{{proj[0].link}}">{{proj[0].title}}</a></h3>
-												<p><i class="fa fa-tag"></i> {{proj[0].category}}</p>
-												<p><i class="fa fa-map-marker"></i> {{proj[0].address}}</p>
+												<p class="distance text-left"><i class="fa fa-car"></i> {{proj[1]}} km from the location</p>
+												<p class="text-left"><i class="fa fa-tag"></i> {{proj[0].category}}</p>
+												<p class="text-left"><i class="fa fa-map-marker"></i> {{proj[0].address}}</p>
+												
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -69,6 +72,7 @@
 {% block scripts %}
 	<script src = "/Content/js/smoothScroll.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+	
     <script>
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
@@ -142,5 +146,7 @@ function codeAddress() {
 }
 
 document.addEventListener("load", initialize());
+
+
 </script>
 {% endblock scripts %}

@@ -8,11 +8,19 @@ import jinja2
 import os
 from google.appengine.ext import ndb
 from google.appengine.api import users
-from lib import User,BaseHandler, NGO, Project
+from lib import HitCount, User,BaseHandler, NGO, Project
 from google.appengine.api import search
 class MainPageHandler(BaseHandler):
 	def get(self):
 		user=users.get_current_user()
+		try:
+			hitCount = HitCount.query().fetch(1)[0]
+			hits = int(hitCount.hitCount) + 1
+		except:
+			hits = 0
+			hitCount = HitCount()
+		hitCount.hitCount = str(hits)
+		hitCount.put()
 		if user:
 			userid = user.user_id()
  	    		userAuthenticationQuery = User.query(User.userid == userid).fetch(1)	 	    	      
@@ -28,7 +36,7 @@ class MainPageHandler(BaseHandler):
 					randProjects.append(projects[randomInt])
 		except:
 			pass
-		parameter = {"projects" : randProjects }
+		parameter = {"projects" : randProjects, "hits":hits}
 		self.render('frontPage.html', parameter)        
    
 
@@ -49,10 +57,12 @@ class ExploreHandler(BaseHandler):
 		lng = self.request.get("lng")
 		print lat, lng
 		projects = Project.query().fetch()
-		decorated = [(project,project.distance(lat,lng)) for project in projects if project.distance(lat,lng)<1.00]
+		decorated = [(project,project.distance(lat,lng)) for project in projects if project.distance(lat,lng)<50]
 		closeProjects = sorted(decorated, key=lambda tup: tup[1])
 		parameter["closeProjects"] = closeProjects
 		parameter["get"] = 0
+		parameter["lat"] = lat
+		parameter["lat"] = lng
 		parameter["search"] = self.request.get("address")
 		parameter["length"] = len(parameter["closeProjects"])
 		self.render('explore.html',parameter)
@@ -247,11 +257,12 @@ class YourProjectHandler(BaseHandler):
 				self.render("/userProjects.html",parameter)
 			elif ngoAuth:
 				ngoProjects = []
-				link = ngoAuth[0].projects
-				for p in link:
+				ngoAuth
+				for p in ngoAuth:
 					proj = Project.query(Project.ngo == p.userid).fetch(1)
 					ngoProjects.append(proj[0]);
-				parameter = {"projects":ngoProjects, "user": 0, "length":len(ngoProjects),"ngo":ngoAuth[0]}
+				print ngoAuth[0]
+				parameter = {"ngoProjects":ngoProjects, "user": 0, "length":len(ngoProjects),"ngo":ngoAuth[0]}
 				self.render("/ngoProjects.html",parameter)
 		else:
 			self.render("/login.html")

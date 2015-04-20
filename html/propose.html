@@ -76,8 +76,9 @@
 									<div class="form-group">
 										<fieldset>
 										  <label for="address" class="control-label">Location*:</label>
-											<input type="text" form="projectRegForm" class="form-control" id="addr"  disabled style="width:50%;background-color:white" required>
+											<input type="text" form="projectRegForm" class="form-control" id="addr" name="addr" disabled style="width:50%;background-color:white" required>
 												<p>Click the map to mark location. Double click to zoom.</p>
+												<div id="addr-error" style="color:yellow"></div>
 											  <input type="hidden" form="projectRegForm" class="form-control" id="address"  name="address" style="width:50%">
 											  <input type="hidden" form="projectRegForm" class="form-control" id="lat"  name="lat" style="width:50%">
 											  <input type="hidden" form="projectRegForm" class="form-control" id="lng"  name="lng"  style="width:50%">
@@ -93,6 +94,7 @@
 									<legend>Description*:</legend>
 										<div class="form-group">
 											<textarea class="col-md-5" form="projectRegForm" name="shortDescription" cols="60" rows="4" required></textarea>
+											<div id="shortDescription-error" style="color:yellow"></div>
 										</div>
 								</fieldset>
 						</div>
@@ -195,21 +197,58 @@
 function validate(form,e){
 	var cond = true
 	var title = document.getElementById("title-error")
+	var addr = document.getElementById("addr-error")
+	var shortDescription = document.getElementById("shortDescription-error")
 	var fund = document.getElementById("fund-error")
 	title.innerHTML = ""
 	fund.innerHTML = ""
+	
+	if(form.title.value == ""){
+		cond = false;
+		name.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.addr.value == ""){
+		cond = false;
+		name.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.shortDescription.value == ""){
+		cond = false;
+		name.innerHTML += " This is Mandatory Field."
+	}
+	
 	if(/[^a-zA-Z0-9\s]/.test(form.title.value)){
 		cond = false;
-		title.innerHTML = "Project name should include only alphanumeric and space characters."
+		title.innerHTML += " Project name should include only alphanumeric and space characters."
 	}
 	
 	var count = parseInt(document.getElementById("count").value)
-	for(var i=0; i<=count;i++){
+	
+	for(var i =0; i<=count; i++){
+		if(document.getElementById("taskTitle" + i.toString())==""){
+			cond = false;
+			fund.innerHTML += " Task List cannot be Empty."
+			break;
+		}
+		else if(document.getElementById("taskDescription" + i.toString())==""){
+			cond = false;
+			fund.innerHTML += " Task List cannot be Empty."
+			break
+		}
+		else if(document.getElementById("taskFund" + i.toString())==""){
+			cond = false;
+			fund.innerHTML += " Task List cannot be Empty."
+			break;
+		}
+	}
+	
+	for(i=0; i<=count;i++){
 		var taskFundtd = document.getElementById("taskFund" + i.toString())
 		if(/[^0-9.]/.test(document.getElementById("taskFund" + i.toString()).value)){
 			cond = false
 			taskFundtd.style.border="solid 3px yellow"
-			fund.innerHTML = "Funds should be a valid decimal number."
+			fund.innerHTML += " Funds should be a valid decimal number."
 			break;
 		}
 		taskFundtd.style.border=""
@@ -221,6 +260,8 @@ function validate(form,e){
 		return false
 	}
 }
+
+
  </script>
 {% endblock scripts %}
 

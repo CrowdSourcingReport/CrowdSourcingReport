@@ -29,7 +29,7 @@ class HomePageHandler(BaseHandler):
 				projects = Project.query().fetch(100)
 				print userObject.projects
 				cProjects = []
-				decorated = [(project,project.distance(userAuthentication[0].lat,userAuthentication[0].lng)) for project in projects if project.distance(userAuthentication[0].lat,userAuthentication[0].lng)<1.50]
+				decorated = [(project,project.distance(userAuthentication[0].lat,userAuthentication[0].lng)) for project in projects if project.distance(userAuthentication[0].lat,userAuthentication[0].lng)<50]
 				print decorated
 				cProjects = sorted(decorated, key=lambda tup: tup[1])[0:4] 
 				parameter["cProjects"] = cProjects

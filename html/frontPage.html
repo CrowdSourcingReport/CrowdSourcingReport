@@ -106,7 +106,20 @@
         
     </div>
     <!-- Top Projects Pane ends -->
+    <hr />
+    <div class="row">
+		<div class="col-md-12" style="padding-top: 20px">                
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<p class="text-center"><strong>
+						You are {{hits}}{% if hits%10 == 1 and hits%100 != 11 %}st{% elif hits%10 == 2 and hits%100 != 12 %}nd{% elif hits%10 == 3 and hits%100 != 13 %}rd{% else %}th{% endif %} visitor</p>
+					</strong></p>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
 {% endblock body %}
 
 {% block scripts %}

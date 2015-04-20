@@ -43,10 +43,12 @@
 									<div class="form-group">
 										<label for="inputText" class="control-label">Name*:</label>
 										<input type="text" class="form-control" id="inputText"  name="name" placeholder="Name" style="width:50%" required>
+										<div id="name-error" style="color:yellow"></div>
 									</div>
 									<div class="form-group">
 										<label for="textArea" class="control-label">Description*:</label>
 										<textarea class="form-control" rows="3" id="textArea" name= "description" style="width:50%" required></textarea>
+										<div id="description-error" style="color:yellow"></div>
 									</div>
 									<div class="form-group">
 										  <label for="select" class="control-label">State of Operation*:</label>
@@ -111,6 +113,7 @@
 									<div class="form-group">
 										<label for="inputText" class="control-label">Date Of Registration(yyyy-MM-dd)*:</label>
 										<input type="date" class="form-control" form= "ngoRegForm" id="inputText"  name="dateOfRegistration" placeholder="Date Of Registration" style="width:50%" required>
+										<div id="dateOfRegistration-error" style="color:yellow"></div>
 									</div>
 									<div class="form-group">
 										<label for="inputText" class="control-label">State of Registration*:</label>
@@ -159,7 +162,7 @@
 								<fieldset>
 									<legend>Sector*:</legend>
 									<input type="hidden" id="NGOsector_output" form= "ngoRegForm" name="sectorOfOperation">
-									<div id="NGOsector_output_show"></div>
+									<div id="NGOsector_output_show"></div><br />
 									<select class="form-control" id="NGOsector" form= "ngoRegForm" style="width:50%">
 										<option>Aged/Elderly </option>
 										<option>Agriculture </option>
@@ -232,16 +235,17 @@
 									<div class="form-group">
 										<label for="inputText" class="control-label">Email*:</label>
 										<input type="email" form = "ngoRegForm" class="form-control" id="inputText"  name="email"  style="width:50%" required>
-										<div id="telephone-error" style="color:yellow"></div>
+										<div id="email-error" style="color:yellow"></div>
 									</div>
 									<div class="form-group">
 										<label for="textArea" class="control-label">Address*:</label>
 										<textarea class="form-control" form = "ngoRegForm" rows="3" id="textArea" name= "address" style="width:50%" required></textarea>
+										<div id="address-error" style="color:yellow"></div>
 									</div>		
 									<div class="form-group">
 										<label for="inputText" class="control-label">Website:</label>
 										<input type="text" form = "ngoRegForm" class="form-control" id="inputText"  name="website"  style="width:50%">
-										<div id="telephone-error" style="color:yellow"></div>
+										<div id="website-error" style="color:yellow"></div>
 									</div>
 								</fieldset>
 						</div>
@@ -264,49 +268,104 @@
 <script>
 function validate(form,e){
 	var cond = true
+	var name = document.getElementById("name-error")
+	var description = document.getElementById("description-error")
+	var dateOfRegistration = document.getElementById("dateOfRegistration-error")
+	var email = document.getElementById("email-error")
+	var address = document.getElementById("address-error")
 	var pancardNumber = document.getElementById("pancardNumber-error")
 	var registrationNumber = document.getElementById("registrationNumber-error")
 	var telephone = document.getElementById("telephone-error")
+	name.innerHTML = ""
+	description.innerHTML = ""
+	dateOfRegistration.innerHTML = ""
+	email.innerHTML = ""
+	address.innerHTML = ""
 	pancardNumber.innerHTML = ""
 	registrationNumber.innerHTML = ""
 	telephone.innerHTML = ""
+	
+	if(form.name.value == ""){
+		cond = false;
+		name.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.description.value == ""){
+		cond = false;
+		description.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.dateOfRegistration.value == ""){
+		cond = false;
+		dateOfRegistration.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.email.value == ""){
+		cond = false;
+		email.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.address.value == ""){
+		cond = false;
+		address.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.pancardNumber.value == ""){
+		cond = false;
+		pancardNumber.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.registrationNumber.value == ""){
+		cond = false;
+		registrationNumber.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.telephone.value == ""){
+		cond = false;
+		telephone.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.email.value.indexOf("@") == -1){
+		cond = false;
+		email.innerHTML += " This is not valid Email address."
+	}
 	
 	if(form.stateOfOperation.value == ""){
 		selectById("selectState")
 	}
 	
-	if(form.stateOfOperation.value == ""){
+	if(form.sectorOfOperation.value == ""){
 		selectById("NGOsector")
 	}
 	
 	if(/[^0-9]/.test(form.pancardNumber.value)){
 		cond = false;
-		pancardNumber.innerHTML = "PAN card number should include only numeric characters."
+		pancardNumber.innerHTML += " PAN card number should include only numeric characters."
 	}
 	
 	if(form.pancardNumber.value.length != 10){
 		cond = false;
-		pancardNumber.innerHTML = "PAN card number should 10 charactrs long."
+		pancardNumber.innerHTML += " PAN card number should be 10 characters long."
 	}
 	
 	if(/[^0-9]/.test(form.registrationNumber.value)){
 		cond = false;
-		registrationNumber.innerHTML = "Registration number should include only numeric characters."
+		registrationNumber.innerHTML += " Registration number should include only numeric characters."
 	}
 	
 	if(form.registrationNumber.value.length != 10){
 		cond = false;
-		registrationNumber.innerHTML = "Registration number should 10 charactrs long."
+		registrationNumber.innerHTML += " Registration number should be 10 charactrs long."
 	}
 	
 	if(/[^0-9]/.test(form.telephone.value)){
 		cond = false;
-		registrationNumber.innerHTML = "Telephone number should include only numeric characters."
+		registrationNumber.innerHTML += " Telephone number should include only numeric characters."
 	}
 	
 	if(form.telephone.value.length != 10){
 		cond = false;
-		telephone.innerHTML = "Telephone number should 10 charactrs long."
+		telephone.innerHTML += " Telephone number should 10 charactrs long."
 	}
 	
 	if(!cond){
