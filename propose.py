@@ -36,6 +36,7 @@ class ProposePage(BaseHandler):
                 lat = self.request.get("lat")
                 lng = self.request.get("lng")
                 title = self.request.get("title")
+                search = self.request.get("title").lower()
                 link = title.replace(" ", "-")
                 shortDescription = self.request.get("shortDescription")
                 #date = time.strtftime("%Y-%m-%d %H:%M:%S")
@@ -51,6 +52,7 @@ class ProposePage(BaseHandler):
                 projectObject.description = shortDescription
                 projectObject.category = category
                 projectObject.title = title 
+                projectObject.search = search 
                 projectObject.funding = funding 
                 projectObject.date = date 
                 projectObject.address = address 

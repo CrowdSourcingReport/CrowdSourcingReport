@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Crowd Sourcing Report{% endblock title %}
+{% block title %}{{project.title}} by {{ngo.name}}{% endblock title %}
 
 {% block body %}
 <div class="container">
@@ -9,10 +9,11 @@
 		<p class="text-center"><a href="/ngo/{{ngo.userid}}"><img src="/Content/img/ngo_logo.jpg" width="2%" height="2%" style="border-width:1px; border-style:solid"/> {{ngo.name}}</a></p>
 		<div class="text-right">
 			<strong>Share this on : </strong>
-			<i class="fa fa-facebook-square fa-2x" style="padding-left:2"></i>
-			<i class="fa fa-twitter-square fa-2x" style="padding-left:2"></i>
-			<i class="fa fa-google-plus-square fa-2x" style="padding-left:2"></i>
-			<i class="fa fa-pinterest-square fa-2x " style="padding-left:2"></i>
+			<span class='st_facebook_large' displayText='Facebook'></span>
+			<span class='st_twitter_large' displayText='Tweet'></span>
+			<span class='st_linkedin_large' displayText='LinkedIn'></span>
+			<span class='st_googleplus_large' displayText='Google +'></span>
+			
 		</div> 
 		<hr />
 	</div>
@@ -136,4 +137,7 @@
 </div>
 {% endblock body %}
 {% block scripts %}
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "56e96fb1-522a-4d4a-a7ab-7543caa8ac92", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 {% endblock scripts %}

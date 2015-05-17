@@ -9,13 +9,13 @@ function addTask(){
 		document.getElementById('Tasklist').appendChild(table);
 	}
 	counter++;
-	titleid = "taskTitle" + no; 
-	descrid = "taskDescription" + no;
-	fundsid= "taskFund" + no;
+	titleid = "taskTitle" + no.toString(); 
+	descrid = "taskDescription" + no.toString();
+	fundsid= "taskFund" + no.toString();
 	var row = document.createElement('tr');
 	row.setAttribute("id","row"+no.toString());
 	row.setAttribute("class","text-center");
-	var string = "<td class='srno' style='padding:5px; vertical-align:middle;'>"+(no+1).toString()+"</td><td style='padding:5px; vertical-align:middle;'><input type = 'text' form='projectRegForm' class='form-control title' name = " + titleid + " /></td><td style='padding:5px;'><textarea form='projectRegForm' class='form-control descr' cols='80' rows='1' name =" + descrid + " ></textarea></td><td style='padding:5px; vertical-align:middle;'><input type = 'text' form='projectRegForm' class='form-control fund' name =" + fundsid + " /></td><td style='padding:5px; text-align:center; vertical-align:middle;'><a class='btn btn-primary form-control' href='#' id=" + counter + " onclick = 'removeTask(this.id)'>-</a></td>"
+	var string = "<td class='srno' style='margin:5px; vertical-align:middle;'>"+(no+1).toString()+"</td><td style='padding:5px; vertical-align:middle;'><input type = 'text' form='projectRegForm' class='form-control title' name = " + titleid + " /></td><td style='padding:5px;'><textarea form='projectRegForm' class='form-control descr' cols='80' rows='1' name =" + descrid + " ></textarea></td><td id='td-"+fundsid+"' style='margin:5px; padding:5px; vertical-align:middle;'><input type = 'text' form='projectRegForm' class='form-control fund' name =" + fundsid + " id =" + fundsid + " /></td><td style='padding:5px; text-align:center; vertical-align:middle;'><a class='btn btn-primary form-control' href='#' id=" + counter + " onclick = 'removeTask(this.id)'>-</a></td>"
 	row.innerHTML = string;
 	console.log(document.getElementById("count").value)
 	document.getElementById("count").value=no.toString();

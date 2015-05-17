@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}In Media{% endblock title %}
+{% block title %}{{title}}{% endblock title %}
 
 {% block body %}
 	<div class = "container">
@@ -10,7 +10,7 @@
 				<div class = "navigation panel panel-default panelbody">
 				<!--<div class = "navigation full-viewport" style = "border:2px solid white;">-->
 					<div class = "panel-body">
-						<h2 class=""><strong>Status</strong></h2>
+						<h2 class=""><strong>{{title}}</strong></h2>
 						<p>{{message}}</p>
 					</div>
 				</div>

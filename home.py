@@ -28,10 +28,11 @@ class HomePageHandler(BaseHandler):
 						userProjects.append(proj[0]);
 				projects = Project.query().fetch(100)
 				print userObject.projects
-				closeProjects = []
-				decorated = [(project,project.distance(userAuthentication[0].lat,userAuthentication[0].lng)) for project in projects]
-				closeProjects = sorted(decorated, key=lambda tup: tup[1])[0:4] 
-				parameter["projects"] = closeProjects
+				cProjects = []
+				decorated = [(project,project.distance(userAuthentication[0].lat,userAuthentication[0].lng)) for project in projects if project.distance(userAuthentication[0].lat,userAuthentication[0].lng)<50]
+				print decorated
+				cProjects = sorted(decorated, key=lambda tup: tup[1])[0:4] 
+				parameter["cProjects"] = cProjects
 				parameter["userProjects"] = userProjects 
 				parameter["ngos"] = ngos
 				parameter["currUser"] = userAuthentication[0]

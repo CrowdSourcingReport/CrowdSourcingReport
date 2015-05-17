@@ -1,7 +1,7 @@
 {% extends "userTopBar.html" %}
 
 
-{% block title %}Crowd Sourcing Report{% endblock title %}
+{% block title %}Dashboard{% endblock title %}
 
 {% block userblock %}
 	<div class="col-md-10 ">
@@ -9,9 +9,14 @@
 			<h2 class="text-center">User Dashboard</h2>
 			<div class="panel panel-default panelbody">
 				<div class="panel-body">
-					<p class="text-center">
+					<p class="text-left">
 						Welcome {{currUser.name}}, This is the portal to all your social serving needs. Please go through the list of Top Projects specially tailored for you. As you start donating for NGO projects, they will appear in Project Update section for your follow-up.
 					</p>
+					{% if userProjects %}
+						<p class="text-left">
+							You haven't funded any project yet. Why don't you <a href="/explore">explore some projects</a>?
+						</p>
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -19,17 +24,21 @@
     		<h3 class="text-center">Projects At Your Location: </h3>
     		<div class="panel panel-default panelbody">
 				<div class="panel-body">
-					{% for project in projects %}
+				{% if cProjects %}
+					{% for cproject in cProjects %}
 						<div class="col-md-3">
 							<div class="panel panelbody">
 								<div class="panel-body">
 									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
-									<p class="text-center"><a href="/project/{{project.ngo}}_{{project.link}}">{{project.title}}</a></p>
-									<p class="text-center"><i class="fa fa-tag"></i> {{project.category}}</p>
+									<p class="text-center"><a href="/project/{{cproject[0].ngo}}_{{cproject[0].link}}">{{cproject[0].title}}</a></p>
+									<p class="text-center"><i class="fa fa-tag"></i> {{cproject[0].category}}</p>
 								</div>
 							</div>
 						</div>
 					{% endfor %}	
+				{% else %}
+					<p class="text-center">No Projects at your location</p>
+				{%endif%}
 				</div>
 			</div>
     	</div>
@@ -37,6 +46,7 @@
     		<h3 class="text-center">Top NGOs</h3>
     		<div class="panel panel-default panelbody">
 				<div class="panel-body">
+				{% if ngos %}
 					{% for ngo in ngos %}
 						<div class="col-md-3">
 							<div class="panel panelbody">
@@ -44,11 +54,13 @@
 									<img src="/Content/img/ngo_logo.jpg" class="col-md-12"/>
 									<p class="text-center"><a href="/ngo/{{ngo.userid}}">{{ngo.name}}</a></p>
 									<p class="text-center"><i class="fa fa-map-marker"></i> {{ngo.stateOfRegistration}}</p>
-									<p class="text-center"><i class="fa fa-tag"></i> {{ngo.sectorOfOperation}}</p>
 								</div>
 							</div>
 						</div>
 					{% endfor %}	
+				{% else %}
+					<p class="text-center">No NGOs found</p>
+				{%endif%}	
 				</div>
 			</div>
     	</div>
@@ -56,6 +68,7 @@
     		<h3 class="text-center">Your Project</h3>
     		<div class="panel panel-default panelbody">
 				<div class="panel-body">
+				{% if userProjects %}
 					{% for project in userProjects %}
 						<div class="col-md-3">
 							<div class="panel panelbody">
@@ -67,6 +80,9 @@
 							</div>
 						</div>
 					{% endfor %}	
+				{% else %}
+					<p class="text-center">You haven't funded any project.</p>
+				{%endif%}
 				</div>
 			</div>
     	</div>

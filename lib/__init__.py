@@ -15,6 +15,9 @@ from datetime import datetime
 env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'..','html')), extensions=['jinja2.ext.autoescape'], autoescape=True)
 
 #data model for storing user data
+class HitCount(ndb.Model):
+        hitCount=ndb.StringProperty(required = True)
+
 class User(ndb.Model):
         userid=ndb.StringProperty(required = True)
         name=ndb.StringProperty(required = True)
@@ -29,6 +32,7 @@ class User(ndb.Model):
 class NGO(ndb.Model):
 	userid = ndb.StringProperty(required = True)
 	name = ndb.StringProperty(required = True)
+	search = ndb.StringProperty(required = True)
 	credibility = ndb.BooleanProperty(required = True)
 	eightygRegistration = ndb.BlobKeyProperty()
 	description = ndb.TextProperty(required = True)
@@ -53,6 +57,7 @@ class NGO(ndb.Model):
 #data model for storing project data 
 class Project(ndb.Model):
 	title = ndb.StringProperty()
+	search = ndb.StringProperty()
 	ngo = ndb.StringProperty()
 	authenticity = ndb.BooleanProperty()	
 	category = ndb.StringProperty()	
@@ -67,10 +72,19 @@ class Project(ndb.Model):
 	funding = ndb.PickleProperty()
 	#sectorOfOperation = ndb.StringProperty()
 	def distance(self, x, y):
-		print self.lat, self.lng
-		for a in self.lat:
-			print a
-		return math.sqrt((float(x)-float(self.lat))**2 + (float(y)-float(self.lng))**2)
+		radlat1 = math.pi * float(x)/180
+		radlat2 = math.pi * float(self.lat)/180
+		radlon1 = math.pi * float(y)/180
+		radlon2 = math.pi * float(self.lng)/180
+		theta = float(y) - float(self.lng)
+		radtheta = math.pi * theta / 180
+		dist = math.sin(radlat1) * math.sin(radlat2) + math.cos(radlat1) * math.cos(radlat2) * math.cos(radtheta);
+		dist = math.acos(dist)
+		dist = dist * 180/math.pi
+		dist = dist * 60 * 1.1515
+		dist = dist * 1.609344
+		return float("{0:.2f}".format(dist))
+
 
 #data model for NGO Gov database
 class NGOGOV(ndb.Model):
