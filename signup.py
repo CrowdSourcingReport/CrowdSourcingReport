@@ -10,109 +10,179 @@ import os
 import cgi
 import re
 from google.appengine.ext import ndb
+import lib 
+from google.appengine.api import users
+from lib import User, BaseHandler, NGO
+from time import sleep
+from google.appengine.ext import blobstore
+from google.appengine.ext.webapp import blobstore_handlers
+from google.appengine.api import search
 
-#initializing jinja2 template 	
-env=jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),extensions=['jinja2.ext.autoescape'],autoescape=True)
-
-#standard string definition
-emailAlertMessage="Kindly Enter a valid email!"	
-passwordAlertMessage="Password can cointain a-z, A-Z, 0-9, _ and - only, and a length in between 6 and 20"
-usernameAlertMessage="Username can cointain a-z, A-Z, 0-9, _ and - only, and a length in between 6 and 20"
-confirmPasswordAlertMessage="Password Dint Match!"
-usernameAvailibilityAlertMessage="Username wasnt available"
-inputWarning="inputWarning"
-
-#initializing regular expression checker for email,password and username
-USER_RE = re.compile(r"^[a-zA-Z0-9_-]{6,20}$")
-PASS_RE=re.compile(r"^[a-zA-Z0-9_-]{6,20}$")
-EMAIL_RE=re.compile(r"^[\S]+@[\S]+\.[\S]+$")
-
-
-#implementing password confirmation check
-def verify_password(password,verify):
-	if password==verify:
-		return True
-	else:
-		return False
-
-#implementing check for validity of password
-def valid_password(password):
-	ret=PASS_RE.match(password)
-	if ret==None:
-		return False
-	else:
-		return True
-
-#implementing check for validity of username
-def valid_username(username):
-	ret=USER_RE.match(username)
-	if ret==None:
-                return False
-        else:
-                return True
-
-#implementing check for validity of email
-def valid_email(email):
-        ret= EMAIL_RE.match(email)
-	if ret==None:
-                return False
-        else:
-                return True
-
-#checking availibility of username
-def username_availibility(username):
-	#implementation left to Onuja :-}(a simple query!)
-	return True
-
-#data model for storing user data
-class User(ndb.Model):
-	name=ndb.StringProperty(required=True)
-	username=ndb.StringProperty(required=True)
-	password=ndb.StringProperty(required=True)
-	email=ndb.StringProperty(required=True)
-
-#main handler for /signup page
-class SignUp(webapp2.RequestHandler):
+class RegistrationHandler(BaseHandler):
 	def get(self):
-		template=env.get_template("Content/signup.html")	
-		self.response.write(template.render())
-	def post(self):
-		template=env.get_template("Content/signup.html")	
-		name=self.request.get("name")
-		username=self.request.get("username")
-		password=self.request.get("password")
-		confirmPassword=self.request.get("confirmPassword")
-		emailId=self.request.get("emailId")
-		#boolean to store validity of email,password and username
-		emailValidity=valid_email(emailId)
-		passwordValidity=valid_password(password)
-		usernameValidity=valid_username(username)
-		confirmPasswordValidity=verify_password(password,confirmPassword)
-		usernameAvailibility=username_availibility(username)
-		#if all the validity condition are passed then move on to storing data 
-		if emailValidity and passwordValidity and usernameValidity and confirmPasswordValidity and usernameAvailibility:
-			user=User()
-			user.name=name
-			user.username=username
-			user.password=password
-			user.email=emailId
-			user.put()
-			self.response.write("success!")
+		user = users.get_current_user()
+		if user:
+			self.render("registration.html")
 		else:
-		#otherwise generate appropriate error message to help user through registration process
-			alertMessage={}
-			if not emailValidity:
-				alertMessage["emailAlertMessage"]=emailAlertMessage
-			if not usernameValidity:
-				alertMessage["usernameAlertMessage"]=usernameAlertMessage
-			elif not usernameAvailibility:
-				alertMessage["usernameAlertMessage"]=usernameAvailibilityAlertMessage
-			if not passwordValidity:
-				alertMessage["passwordAlertMessage"]=passwordAlertMessage
-			if not confirmPasswordValidity:
-				alertMessage["confirmPasswordAlertMessage"]=confirmPasswordAlertMessage
-			alertMessage["inputWarningPassword"]=inputWarning	
-			self.response.write(template.render(alertMessage))	
+			self.redirect("/")
+	def post(self):
+		userChoice = self.request.get("userChoice")
+		if userChoice=="ngo":
+			self.redirect("/signup/ngoRegistration")
+		else:
+			self.redirect("/signup/userRegistration")
 
-application=webapp2.WSGIApplication([('/signup',SignUp)],debug=True)	
+	
+class UserRegistrationPage(BaseHandler):
+	def get(self):
+		user=users.get_current_user()
+		if user:
+			userid = user.user_id()
+ 			authenticationUser = User.query(User.userid == userid).fetch(1)
+			if  not authenticationUser:
+				self.render("userRegistration.html")
+			else:
+				self.redirect("/home")
+		else:
+			self.redirect("/signup")
+	
+	def post(self):
+		user= users.get_current_user()
+		name = self.request.get("name")	
+		userid = user.user_id()
+		gender = self.request.get("gender")
+		email = self.request.get("email")
+		address = self.request.get("address")
+		lat = self.request.get("lat")
+		lng = self.request.get("lng")
+		userObject = User()
+		userObject.userid=userid
+		userObject.name = name
+		userObject.email = email
+		userObject.gender = gender
+		userObject.address = address
+		userObject.lat = lat
+		userObject.lng = lng
+		userObject.projects = []
+		userObject.put()
+		sleep(5)
+		self.redirect("/home")
+
+class NGORegistration(BaseHandler):
+	def get(self):
+		user=users.get_current_user()
+		if user:
+			userid = user.user_id()
+ 			authenticationUser = NGO.query(NGO.userid == userid).fetch(1)
+			if  not authenticationUser:
+				
+				self.render("ngoRegistration.html")
+			else:
+				self.redirect("/home")
+		else:
+			self.redirect("/login")
+	
+	def post(self):
+		user= users.get_current_user()
+		if user:
+			userid = user.user_id()
+			authenticationUser = User.query(User.userid == userid).fetch(1)
+			authenticationNgo = NGO.query(NGO.userid == userid).fetch(1)
+			if authenticationUser or authenticationNgo:
+				self.redirect("/home")
+			else:
+				name = self.request.get("name")	
+				Search = self.request.get("name").lower()
+				email = user.email()
+				description = self.request.get("description")
+				pancardNumber = self.request.get("pancardNumber")
+				chiefFunctionary = self.request.get("chiefFunctionary")
+				chairman = self.request.get("chairman")
+				sectorOfOperation = self.request.get("sectorOfOperation")
+				stateOfOperation = self.request.get("stateOfOperation")
+				email = self.request.get("email")
+				website = self.request.get("website")
+				website = website.replace("http://","")
+				registrationNumber = self.request.get("registrationNumber")
+				dateOfRegistration = self.request.get("dateOfRegistration")
+				stateOfRegistration = self.request.get("stateOfRegistration")
+				telephone = self.request.get("telephone")	
+				address = self.request.get("address")
+				dateOfRegistration  =  self.date(dateOfRegistration)
+				ngo = NGO()
+				ngo.userid = userid
+				ngo.name = name
+				ngo.search = Search
+				ngo.credibility = False
+				ngo.description = description
+				ngo.pancardNumber = pancardNumber
+				ngo.email = email
+				ngo.website = website
+				ngo.chiefFunctionary = chiefFunctionary
+				ngo.chairman = chairman
+				ngo.sectorOfOperation = sectorOfOperation
+				ngo.stateOfOperation = stateOfOperation
+				ngo.registrationNumber = registrationNumber
+				ngo.dateOfRegistration = dateOfRegistration
+				ngo.stateOfRegistration = stateOfRegistration 
+				ngo.telephone = telephone 
+				ngo.projects = []
+				ngo.address = address 
+				ngo.email = email
+				ngo.put()
+
+				index = search.Index(name = "NGO")		
+				document = search.Document(doc_id = userid, fields = [ search.TextField(name = "name", value = name ),
+								       search.TextField(name = "description", value = description),
+								       search.TextField(name = "state", value = stateOfRegistration)])
+				try:
+					index.put(document)
+				except search.Error:
+					logging.exception("Put Failed")
+				sleep(5) #cheap trick but none the less it works!
+				self.redirect("/home")	
+		else:
+			self.redirect("/login") 
+class ProofOfRegistration(BaseHandler):
+	def get(self):
+		user = users.get_current_user()
+		if user:
+			userid = user.user_id()
+			ngo = NGO.query(NGO.userid == userid).fetch(1)[0]
+			if ngo:
+				name = ngo.name
+				description = ngo.description
+				panCardNumber = ngo.pancardNumber
+				if name and description and panCardNumber:
+					upload_url = blobstore.create_upload_url("/signup/upload")
+					parameter = {'upload_url':upload_url}
+					self.render("ngoRegistrationUpload.html",parameter)
+				else:
+					self.redirect("/signup/ngoRegistration")
+			else:
+				self.redirect("/signup/ngoRegistration")
+
+		else:
+			self.redirect("/login")
+
+class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
+	def post(self):
+		user = users.get_current_user()
+		if user:
+			ngo = NGO.query(NGO.userid == user.user_id()).fetch(1)[0]
+			if ngo:
+				eightygRegistration = self.get_uploads("eightygRegistration")
+				proofOfRegistration = self.get_uploads("proofOfRegistration")
+				if not ngo.eightygRegistration:
+					ngo.eightygRegistration = eightygRegistration[0].key() 
+				if not ngo.proofOfRegistration:
+					ngo.proofOfRegistration = proofOfRegistration[0].key()	
+				ngo.put()
+			else: 
+				self.redirect("/signup/registration")
+		else:
+			self.redirect("/login")
+		
+				
+app = webapp2.WSGIApplication([('/signup/userRegistration',UserRegistrationPage), ('/signup/ngoRegistration',NGORegistration),('/signup/registration',RegistrationHandler),('/signup/ngoRegistration/proofOfRegistration', ProofOfRegistration ),('/signup/upload',UploadHandler)],debug=True)	
 

@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}FAQ{% endblock title %}
+
+{% block body %}
+	<div class = "container">
+		<div class = "col-md-12">
+			<div class = "row">
+				<h2><strong>Frequently Asked Questions</strong></h2><br />
+				<ol>
+					<li><a href="#1">I want to ask Question 1</a></li>
+					<li><a href="#2">I want to ask Question 2</a></li>
+					<li><a href="#3">I want to ask Question 3</a></li>
+				</ol>
+			</div>
+			<hr />
+			<div class = "row">
+				<a id = "1"></a>
+				<h3>I want to ask Question 1</h3>
+				<p>This is the answer for question 1</p>
+				<p class = "text-right"><a href = "#top">^ Back to Top</a></p>
+
+			</div>
+			<hr />
+			<div class = "row">
+				<a id = "2"></a>
+                                <h3>I want to ask Question 2</h3>
+                                <p>This is the answer for question 2</p>
+				<p class = "text-right"><a href = "#top">^ Back to Top</a></p>
+                        </div>
+			<hr />
+			<div class = "row">
+				<a id = "3"></a>
+                                <h3>I want to ask Question 3</h3>
+                                <p>This is the answer for question 3</p>
+				<p class = "text-right"><a href = "#top">^ Back to Top</a></p>
+                        </div>
+					</div>
+		</div>
+		
+		<hr />
+	</div>
+{% endblock body %}
+
+{% block scripts %}
+	<script src = "/Content/js/smoothScroll.js"></script>
+{% endblock scripts %}

@@ -16,17 +16,30 @@ libraries:
 
 
 handlers:
-- url: /signup
-  script: signup.application
 - url: /Content/js
   static_dir: Content/js
-- url: /Content/html
-  static_dir: Content/html
 - url: /Content/fonts
   static_dir: Content/fonts
 - url: /Content/css
   static_dir: Content/css
 - url: /Content/carousal
   static_dir: Content/carousal
+- url: /Content/img
+  static_dir: Content/img
+- url: /propose
+  script: propose.app
+- url: /propose/.*
+  script: propose.app
+- url: /signup/.*
+  script: signup.app
+- url: /home
+  script: home.app
+- url: /home/.*
+  script: home.app
+- url: /admin
+  script: admin.app
+- url: /admin/.*
+  script: admin.app
 - url: /.*
-  script: homepage.application
+  script: main.app
+

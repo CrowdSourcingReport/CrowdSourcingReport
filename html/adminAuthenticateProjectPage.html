@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block body %}
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-2  ">
+            <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+            <li ><a href="/admin">Home</a></li>
+            <li class="active"><a href="/admin/Authenticate">Authenticate</a></li>
+            <li><a href="/admin/CredibilityCheck">Credibility Check</a></li>
+            </ul>
+          </div>
+                     
+      <div class="col-sm-10 ">
+	<form method="post" class="form-horizontal">
+	  <fieldset>
+		
+			<h1>{{project.title}}</h1>
+
+			<div class="checkbox">
+			<h3>Description</h3>
+			 <p>{{project.description}}</p>	
+          		<label>
+		            <input type="checkbox" name = "descriptionAuthenticity"> Authenticate
+         		 </label>
+        		</div>
+		
+			<div class="form-group">
+      				<div class="col-lg-10 col-lg-offset-2">
+		        		<button class="btn btn-default">Cancel</button>
+			        	<button type="submit" class="btn btn-primary">Submit</button>
+			      </div>
+    			</div>	
+			
+	  </fieldset>
+        </form>
+      </div>
+    </div>
+    </div>
+
+{% endblock body %}
+
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+{% endblock scripts %}
+

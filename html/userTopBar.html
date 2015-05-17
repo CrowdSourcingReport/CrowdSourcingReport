@@ -1,0 +1,23 @@
+
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block body %}
+<div class = "container">
+        <div class="col-md-2">
+                        <ul class="nav nav-pills nav-stacked" style =" max-width = 300px">
+                                <li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
+                                <li><a href="/explore"><i class="fa fa-search"></i> Search Projects</a></li>
+                                <li><a href="/yourProjects"><i class="fa fa-bookmark"></i> Your Projects</a></li>
+                                <li><a href="{{users.create_logout_url('/home')}}"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+                                <!--<li><a href="/home/ProjectUpdate"><i class="fa fa-bookmark"></i> Project Updates</a></li>
+                                <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>-->
+                        </ul>
+        </div>
+
+                {% block userblock %}
+                {% endblock userblock %}
+</div>
+{% endblock body %}
+

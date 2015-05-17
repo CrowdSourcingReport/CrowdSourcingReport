@@ -1,0 +1,137 @@
+{% extends "adminTopBar.html" %}
+
+{% block adminblock %}
+<div class="col-sm-10 ">
+	<div class="row text-center">
+		<h3>
+			Admin Console
+		</h3>
+		<div class="panel panel-default panelbody">
+			<div class="panel-body">
+				<p class="text-left">
+					Welcome {{user}}, you have:
+					<ul>
+						<li>
+							<p>45 unverified NGOs</p>
+						</li>
+						<li>
+							<p>67 unverified projects</p>
+						</li>
+					</ul>
+				</p>
+			</div>
+		</div>
+      </div>
+      <div class="row">
+		<h3 class="text-center">
+			Quick Links
+		</h3>
+		<div class="panel panel-default panelbody">
+			<div class="panel-body">
+				<p class="text-left">
+					<ul>
+						<li><a href="/home/UpdateProject">Credibility verification for NGOs</a></li>
+						<li><a href="#">Authenticate Projects</a></li>
+					</ul>
+				</p>
+			</div>
+		</div>
+		<div class="text-center">
+			<h3>
+				Unverified NGOs
+			</h3>
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/ngo_logo.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">NGO 1</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/ngo_logo.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">NGO 2</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/ngo_logo.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">NGO 3</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/ngo_logo.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">NGO 4</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="text-center">
+			<h3>
+				Unverified Projects
+			</h3>
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 1</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 2</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 3</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 4</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+      
+
+{% endblock adminblock %}

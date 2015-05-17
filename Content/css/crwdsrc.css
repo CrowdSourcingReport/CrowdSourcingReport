@@ -1,10 +1,46 @@
 h1{
 	font-size: 50px;
-	color: white;
 }
 
 h2{
 	font-size: 30px;
+}
+
+hr{
+	color:yellow;
+	background-color:yellow;
+}
+
+a:link{
+	color:white;
+	font-weight:bold;
+	text-decoration: none;
+}
+
+a:visited{
+	color:white;
+	font-weight:bold;
+	text-decoration: none;
+}
+
+a:hover{
+	font-weight:bold;
+	color:#FFCC99;
+	text-decoration: none;
+}
+
+a:active{
+	color:white;
+	font-weight:bold;
+	text-decoration: none;
+}
+
+a.nav:hover{
+	color:white;
+}
+
+.bigtext{
+	font-size: 40px;
 }
 
 .logo{
@@ -17,8 +53,15 @@ h4.fbold{
 	color: white;
 }
 
+p.subheading{
+	font-size=20px;
+}
+
 h3{
 	font-size: 20px;
+}
+p{
+	text-align: justify;
 }
 
 a.fhypertext:link{
@@ -40,30 +83,120 @@ a.fhypertext:active {
 	color:white;
 	text-decoration:none;
 }
-div.footer{
-	background-color: #333333;
+
+.vc-viewport{
+	position:relative;
+	padding-top: 50vh;
+}
+
+.vhc-viewport{
+        position:relative;
+        padding-top: 25vh;
+}
+
+
+div.full-viewport{
+	height: 100vh;
+}
+
+div.half-viewport{
+        height: 50vh;
+}
+
+div.panelbody{
+	background-color: black;
+	border-color: white;
+	border-style: solid;
 }
 
 body{
-	background-color: #CCFFCC;
+	background-image: url("/Content/img/bg.png");
+	background-attachment: fixed;
+}
 
 p.moderate{
 	font-size: 20px;
 }
 
-div.homeslide{
-	width: 500px;
-	height: 500px;
+img.homeslide{
 	display: block;
-	float: left;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.homeslide{
+	text-align:center;
 }
 
 .footer{
-	font-size:15px;
+	color:#fff
+}
+
+footer h3{
+	margin-bottom:30px
+}
+
+footer.footer-above{
+	padding-top:50px;
+	background-color:#2c3e50;
+}
+
+footer .footer-col{
+	margin-bottom:20px
+}
+
+footer .footer-below{
+	padding:25px 0;
+	background-color:#233140
+}
+
+div.footer{
+	background-color: #202020;
 }
 
 #home_slider{
 	overflow: hidden;
 }
 
+img.middle{
+	vertical-align: text-center;
+}
+
+#customBtn {
+      display: inline-block;
+      background: #dd4b39;
+      color: white;
+     
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+    #customBtn:hover {
+      background: #e74b37;
+      cursor: hand;
+    }
+    span.label {
+      font-weight: bold;
+    }
+    span.icon {
+      background: url('https://google-developers.appspot.com/+/images/branding/btn_red_32.png') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 35px;
+      height: 35px;
+      border-right: #bb3f30 1px solid;
+    }
+    span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left:8px;
+      padding-right:8px;
+      font-size: 14px;
+      font-weight: bold;
+      /* Use the Roboto font that is loaded in the <head> */
+      font-family: 'Roboto',arial,sans-serif;
+    }
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
 

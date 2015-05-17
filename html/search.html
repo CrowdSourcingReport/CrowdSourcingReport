@@ -1,0 +1,68 @@
+<!--oggpnosn hkhr -->
+{% extends "layout.html" %}
+{% block title %}Search{% endblock title %}
+{% block body %}
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<h3>NGO Search Results for "{{search}}"</h3>
+			<p>Total {{n_ngo}} match{% if n_ngo != 1 %}es{%endif%} found.</p>
+			{% for result in results_ngo %}
+				<div class="panel panel-default panelbody">
+					<div class="panel-body">
+						<div class="col-md-6">
+							<div class="col-md-6">
+								<img src="/Content/img/ngo_logo.jpg" class="col-md-12">
+							</div>
+							<div class="col-md-6">
+								<h3><a href="/ngo/{{result.userid}}">{{result.name}}</a></h3>
+								<p><i class="fa fa-map-marker"></i> {{result.stateOfOperation}}</p>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<h4>Description: </h4>
+						<p>{{result.description}}</p>
+						</div>
+					</div>
+				</div>	
+			{% endfor %}	
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<h3>Project Search Results for "{{search}}"</h3>
+			<p>Total {{n_proj}} match{% if n_proj != 1 %}es{%endif%} found.</p>
+			{% for resultP in results_proj %}
+				<div class="panel panel-default panelbody">
+					<div class="panel-body">
+						<div class="col-md-6">
+							<div class="col-md-6">
+								<img src="/Content/img/project_image.jpg" class="col-md-12">
+							</div>
+							<div class="col-md-6">
+								<h3><a href="/project/{{resultP.ngo}}_{{resultP.link}}">{{resultP.title}}</a></h3>
+								<p><i class="fa fa-tag"></i> {{resultP.category}}</p>
+								<p><i class="fa fa-map-marker"></i> {{resultP.address}}</p>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<h4>Description: </h4>
+							<p>{{resultP.description}}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+{% endblock body %}
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/js/slidingPanels.js"></script>
+{% endblock scripts %}
+

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block body %}
+
+<div class = "container">
+	<div class="col-md-2">
+          		<ul class="nav nav-pills nav-stacked" style =" max-width = 300px">
+            			<li><a href="/admin"><i class="fa fa-home"></i> Home</a></li>
+            			<li><a href="/admin/Authenticate"><i class="fa fa-check"></i> Authenticate</a></li>
+            			<li><a href="/admin/CredibilityCheck"><i class="fa fa-key"></i> Credibility Check</a></li>
+           		</ul>
+	</div>
+
+		{% block adminblock %}
+		{% endblock adminblock %}
+</div>
+{% endblock body %}

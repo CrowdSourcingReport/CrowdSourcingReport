@@ -1,0 +1,118 @@
+{% extends "ngoTopBar.html" %}
+
+{% block title %}Proposed Projects{% endblock title %}
+
+{% block userblock %}
+		<div class="col-md-10 full-viewport" onload="initialize();">
+			<div class="row" style="margin-top:20px">
+						<h3>Projects Proposed By You:</h3>
+						{% if length != 0 %}
+							{% for proj in ngoProjects %}
+								<div class="panel panel-default panelbody">
+									<div class="panel-body">
+										<div class="col-md-6">
+											<div class="col-md-6">
+												<img src="/Content/img/project_image.jpg" class="col-md-12">
+											</div>
+											<div class="col-md-6">
+												<h3><a href="/project/{{proj.ngo}}_{{proj.link}}">{{proj.title}}</a></h3>
+												<p><i class="fa fa-tag"></i> {{proj.category}}</p>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<h4>Description : </h4>
+											<div>{{proj.description}}</div>
+										</div>								
+									</div>
+								</div>
+							{% endfor %}	
+						{% else %}
+							<div class="panel panel-default panelbody">
+								<div class="panel-body">
+									<p  class="text-center">No Projects Found.</p>
+								</div>
+							</div>
+						{% endif %}
+				</div>
+			</div>
+				
+{% endblock userblock %}
+
+{% block scripts %}
+	<script src = "/Content/js/smoothScroll.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    <script>
+// This example displays an address form, using the autocomplete feature
+// of the Google Places API to help users fill in the information.
+var geocoder = new google.maps.Geocoder();
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
+function initialize() {
+	console.log("hello")
+  // Create the autocomplete object, restricting the search
+  // to geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+      { types: ['geocode'] });
+  // When the user selects an address from the dropdown,
+  // populate the address fields in the form.
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+	  console.log("hi")
+    fillInAddress();
+    codeAddress();
+  });
+}
+
+// [START region_fillform]
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+/*
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
+
+  }
+*/
+  // Get each component of the address from the place details
+  // and fill the corresponding field on the form.
+  
+}
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = new google.maps.LatLng(
+          position.coords.latitude, position.coords.longitude);
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}
+function codeAddress() {
+  var address = document.getElementById('autocomplete').value;
+  console.log(address)
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      console.log(results[0].geometry.location);
+      document.getElementById('lat').value = results[0].geometry.location.lat();
+      document.getElementById('lng').value = results[0].geometry.location.lng();
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+document.addEventListener("load", initialize());
+</script>
+{% endblock scripts %}

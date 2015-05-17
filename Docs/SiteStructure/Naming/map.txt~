@@ -1,0 +1,16 @@
+/WhatWeDo				WhatWeDo.html
+/Customers				Customer.html
+/Media					Media.html
+/Faq					Faq.html
+/TermsOfUse				TermsOfUse.html
+/PrivacyPolicy				PrivacyPolicy.html
+/features				features.html
+/about 					aboutUs.html
+/propose				propose.html
+/explore				explore.html
+/admin/CredibilityCheck			adminCredibilityCheck.html
+/admin/CredibilityCheck/<userid>	adminCredibilityCheckNGOPage.html
+/admin 					adminHomePage.html
+/home 					userHomePage.html
+						ngoHomePage.html
+						

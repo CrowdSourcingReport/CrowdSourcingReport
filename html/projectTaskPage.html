@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}Crowd Sourcing Report{% endblock title %}
+
+{% block body %}
+<div class="container">
+	<div class="row">
+		<form class="form-horizontal" method="post">
+			<fieldset>
+				<legend>Add Tasks in Your Project:</legend>
+					<div id = "tasklist"></div>
+					<br />
+					<input type="hidden" id="count" name="count"	value="0">
+					<input type ="button" class="btn btn-primary" onclick = "addTask()" value ="+ Add a task">
+					<input type = "submit" class="btn btn-primary" method = "post" value ="Submit" />
+				</fieldset>
+		</form>
+	</div>
+</div>
+{% endblock body %}
+
+{% block scripts %}
+		<script src = "/Content/js/addTask.js"></script>
+{% endblock scripts %}

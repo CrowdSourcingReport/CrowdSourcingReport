@@ -1,0 +1,379 @@
+{% extends "layout.html" %}
+
+{% block title %}NGO Registration{% endblock title %}
+
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panelbody">
+				<div class="panel-body">
+					<ul id="ngoForm" class="nav nav-tabs">
+						<li class="active">
+							<a href="#basicInfo" data-toggle="tab">
+								Basic Info
+							</a>
+						</li>
+						<li>
+							<a href="#regDetails" data-toggle="tab">
+								Registration Details
+							</a>
+						</li>
+						<li>
+							<a href="#sector" data-toggle="tab">
+								Sector
+							</a>
+						</li>
+						<li>
+							<a href="#team" data-toggle="tab">
+								Team
+							</a>
+						</li>
+						<li>
+							<a href="#contactDetails" data-toggle="tab">
+								Contact Details
+							</a>
+						</li>
+					</ul>
+					<div id="ngoFormContent" class="tab-content">
+						<div class="tab-pane fade in active" id="basicInfo">
+							<form id="ngoRegForm" method="post">
+								<fieldset>
+									<legend>Basic Info</legend>
+									<div class="form-group">
+										<label for="inputText" class="control-label">Name*:</label>
+										<input type="text" class="form-control" id="inputText"  name="name" placeholder="Name" style="width:50%" required>
+										<div id="name-error" style="color:yellow"></div>
+									</div>
+									<div class="form-group">
+										<label for="textArea" class="control-label">Description*:</label>
+										<textarea class="form-control" rows="3" id="textArea" name= "description" style="width:50%" required></textarea>
+										<div id="description-error" style="color:yellow"></div>
+									</div>
+									<div class="form-group">
+										  <label for="select" class="control-label">State of Operation*:</label>
+											<div id="selectState_output_show"></div>
+											<input type="hidden" id="selectState_output" name="stateOfOperation"><br />
+											<select class="form-control" id="selectState" name="selectState" style="width:50%;">
+												  <option>Andaman and Nicobar Island </option>
+												  <option>Andhra Pradesh </option>
+												  <option>Arunachal Pradesh </option>
+												  <option>Assam </option>
+												  <option>Bihar </option>
+												  <option>Chandigarh </option>
+												  <option>Chhattisgarh </option>
+												  <option>Dadra and Nagar Haveli </option>
+												  <option>Daman and Diu </option>
+												  <option>Delhi </option>
+												  <option>Goa </option>
+												  <option>Gujarat </option>
+												  <option>Haryana </option>
+												  <option>Himachal Pradesh </option>
+												  <option>Jammu and Kashmir </option>
+												  <option>Jharkhand </option>
+												  <option>Karnataka </option>
+												  <option>Kerala </option>
+												  <option>Lakshadweep </option>
+												  <option>Madhya Pradesh </option>
+												  <option>Maharashtra </option>
+												  <option>Manipur </option>
+												  <option>Meghalaya </option>
+												  <option>Mizoram </option>
+												  <option>Nagaland </option>
+												  <option>Orissa </option>
+												  <option>Puducherry </option>
+												  <option>Punjab </option>
+												  <option>Rajasthan </option>
+												  <option>Sikkim </option>
+												  <option>Tamil Nadu </option>
+												  <option>Tripura </option>
+												  <option>Uttar Pradesh </option>
+												  <option>Uttarkhand </option>
+												  <option>West Bengal </option>
+											</select><br>
+											<a class="btn btn-primary" onclick="selectById('selectState')">Add</a>
+											<a class="btn btn-primary" onclick="clearById('selectState')">Clear</a>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+						<div class="tab-pane fade" id="regDetails">
+								<fieldset>
+									<legend>Registration Details</legend>
+									<div class="form-group">
+										<label for="inputText" class="control-label">PAN Card Number*:</label>
+										<input type="text" class="form-control" form= "ngoRegForm" id="inputText"  name="pancardNumber" placeholder="Pan Card Number" style="width:50%" required>
+										<div id="pancardNumber-error" style="color:yellow"></div>
+									</div>
+									<div class="form-group">
+										<label for="inputText" class="control-label">NGO Registration Number*:</label>
+										<input type="text" class="form-control" form= "ngoRegForm" id="inputText"  name="registrationNumber" placeholder="Registration Number" style="width:50%" required>
+										<div id="registrationNumber-error" style="color:yellow"></div>
+									</div>
+									<div class="form-group">
+										<label for="inputText" class="control-label">Date Of Registration(yyyy-MM-dd)*:</label>
+										<input type="date" class="form-control" form= "ngoRegForm" id="inputText"  name="dateOfRegistration" placeholder="Date Of Registration" style="width:50%" required>
+										<div id="dateOfRegistration-error" style="color:yellow"></div>
+									</div>
+									<div class="form-group">
+										<label for="inputText" class="control-label">State of Registration*:</label>
+										<select class="form-control" id="selectStateReg" form= "ngoRegForm" name="stateOfRegistration" style="width:50%;" required>
+											  <option>Andaman and Nicobar Island </option>
+											  <option>Andhra Pradesh </option>
+											  <option>Arunachal Pradesh </option>
+											  <option>Assam </option>
+											  <option>Bihar </option>
+											  <option>Chandigarh </option>
+											  <option>Chhattisgarh </option>
+											  <option>Dadra and Nagar Haveli </option>
+											  <option>Daman and Diu </option>
+											  <option>Delhi </option>
+											  <option>Goa </option>
+											  <option>Gujarat </option>
+											  <option>Haryana </option>
+											  <option>Himachal Pradesh </option>
+											  <option>Jammu and Kashmir </option>
+											  <option>Jharkhand </option>
+											  <option>Karnataka </option>
+											  <option>Kerala </option>
+											  <option>Lakshadweep </option>
+											  <option>Madhya Pradesh </option>
+											  <option>Maharashtra </option>
+											  <option>Manipur </option>
+											  <option>Meghalaya </option>
+											  <option>Mizoram </option>
+											  <option>Nagaland </option>
+											  <option>Orissa </option>
+											  <option>Puducherry </option>
+											  <option>Punjab </option>
+											  <option>Rajasthan </option>
+											  <option>Sikkim </option>
+											  <option>Tamil Nadu </option>
+											  <option>Tripura </option>
+											  <option>Uttar Pradesh </option>
+											  <option>Uttarkhand </option>
+											  <option>West Bengal </option>
+											</select>
+											<br />
+										</div>
+								</fieldset>
+						</div>
+						<div class="tab-pane fade" id="sector">
+								<fieldset>
+									<legend>Sector*:</legend>
+									<input type="hidden" id="NGOsector_output" form= "ngoRegForm" name="sectorOfOperation">
+									<div id="NGOsector_output_show"></div><br />
+									<select class="form-control" id="NGOsector" form= "ngoRegForm" style="width:50%">
+										<option>Aged/Elderly </option>
+										<option>Agriculture </option>
+										<option>Animal Husbandry, Dairying & Fisheries </option>
+										<option>Any Other </option>
+										<option>Art & Culture </option>
+										<option>Biotechnology </option>
+										<option>Children </option>
+										<option>Civic Issues </option>
+										<option>Dalit Upliftment </option>
+										<option>Differently Abled </option>
+										<option>Disaster Management </option>
+										<option>Drinking Water </option>
+										<option>Education & Literacy </option>
+										<option>Environment & Forests </option>
+										<option>Food Processing </option>
+										<option>Health & Family Welfare </option>
+										<option>HIV/AIDS </option>
+										<option>Housing </option>
+										<option>Human Rights </option>
+										<option>Information & Communication Technology </option>
+										<option>Labour & Employment </option>
+										<option>Land Resources </option>
+										<option>Legal Awareness & Aid </option>
+										<option>Micro Finance </option>
+										<option>Micro Small & Medium Enterprises </option>
+										<option>Minority Issues </option>
+										<option>New & Renewable Energy </option>
+										<option>Nutrition </option>
+										<option>Panchayati Raj </option>
+										<option>Prisoner's Issues </option>
+										<option>Right to Information & Advocacy </option>
+										<option>Rural Development & Poverty Alleviation </option>
+										<option>Science & Technology </option>
+										<option>Scientific & Industrial Research </option>
+										<option>Sports </option>
+										<option>Tourism </option>
+										<option>Tribal Affairs </option>
+										<option>Urban Development & Poverty Alleviation </option>
+										<option>Vocational Training </option>
+										<option>Water Resources </option>
+										<option>Women's Development & Empowerment </option>
+										<option>Youth Affairs </option>
+									</select><br>
+									<a class="btn btn-primary" onclick="selectById('NGOsector')">Add</a>
+									<a class="btn btn-primary" onclick="clearById('NGOsector')">Clear</a>
+								</fieldset>
+						</div>
+						<div class="tab-pane fade" id="team">
+								<fieldset>
+									<legend>Team</legend>
+									<div class="form-group">
+										<label for="inputText" class="control-label">Chairman:</label>
+										<input type="text" class="form-control" id="inputText"  name="chairman" placeholder="Chairman" form = "ngoRegForm" style="width:50%">
+									</div>
+									<div class="form-group">
+										<label for="inputText" class="control-label">Chief Functionary:</label>
+										<input type="text" form = "ngoRegForm" class="form-control" id="inputText"  name="chiefFunctionary" placeholder="Chief" style="width:50%">
+									</div>		
+								</fieldset>
+						</div>
+						<div class="tab-pane fade" id="contactDetails">
+								<fieldset>
+									<legend>Contact Details</legend>
+									<div class="form-group">
+										<label for="inputText" class="control-label">Telephone/Mobile*:</label>
+										<input type="tel" form = "ngoRegForm" class="form-control" id="inputText"  name="telephone"  style="width:50%" required>
+										<div id="telephone-error" style="color:yellow"></div>
+									</div>
+									<div class="form-group">
+										<label for="inputText" class="control-label">Email*:</label>
+										<input type="email" form = "ngoRegForm" class="form-control" id="inputText"  name="email"  style="width:50%" required>
+										<div id="email-error" style="color:yellow"></div>
+									</div>
+									<div class="form-group">
+										<label for="textArea" class="control-label">Address*:</label>
+										<textarea class="form-control" form = "ngoRegForm" rows="3" id="textArea" name= "address" style="width:50%" required></textarea>
+										<div id="address-error" style="color:yellow"></div>
+									</div>		
+									<div class="form-group">
+										<label for="inputText" class="control-label">Website:</label>
+										<input type="text" form = "ngoRegForm" class="form-control" id="inputText"  name="website"  style="width:50%">
+										<div id="website-error" style="color:yellow"></div>
+									</div>
+								</fieldset>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="text-right">
+			<button type="submit" class="btn btn-primary" form ="ngoRegForm" onclick="{validate(document.getElementById('ngoRegForm'),window.event)}">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+				
+{% endblock body %}
+
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/js/copyState.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/js/selectmult.js"></script>
+<script>
+function validate(form,e){
+	var cond = true
+	var name = document.getElementById("name-error")
+	var description = document.getElementById("description-error")
+	var dateOfRegistration = document.getElementById("dateOfRegistration-error")
+	var email = document.getElementById("email-error")
+	var address = document.getElementById("address-error")
+	var pancardNumber = document.getElementById("pancardNumber-error")
+	var registrationNumber = document.getElementById("registrationNumber-error")
+	var telephone = document.getElementById("telephone-error")
+	name.innerHTML = ""
+	description.innerHTML = ""
+	dateOfRegistration.innerHTML = ""
+	email.innerHTML = ""
+	address.innerHTML = ""
+	pancardNumber.innerHTML = ""
+	registrationNumber.innerHTML = ""
+	telephone.innerHTML = ""
+	
+	if(form.name.value == ""){
+		cond = false;
+		name.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.description.value == ""){
+		cond = false;
+		description.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.dateOfRegistration.value == ""){
+		cond = false;
+		dateOfRegistration.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.email.value == ""){
+		cond = false;
+		email.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.address.value == ""){
+		cond = false;
+		address.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.pancardNumber.value == ""){
+		cond = false;
+		pancardNumber.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.registrationNumber.value == ""){
+		cond = false;
+		registrationNumber.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.telephone.value == ""){
+		cond = false;
+		telephone.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.email.value.indexOf("@") == -1){
+		cond = false;
+		email.innerHTML += " This is not valid Email address."
+	}
+	
+	if(form.stateOfOperation.value == ""){
+		selectById("selectState")
+	}
+	
+	if(form.sectorOfOperation.value == ""){
+		selectById("NGOsector")
+	}
+	
+	if(/[^0-9]/.test(form.pancardNumber.value)){
+		cond = false;
+		pancardNumber.innerHTML += " PAN card number should include only numeric characters."
+	}
+	
+	if(form.pancardNumber.value.length != 10){
+		cond = false;
+		pancardNumber.innerHTML += " PAN card number should be 10 characters long."
+	}
+	
+	if(/[^0-9]/.test(form.registrationNumber.value)){
+		cond = false;
+		registrationNumber.innerHTML += " Registration number should include only numeric characters."
+	}
+	
+	if(form.registrationNumber.value.length != 10){
+		cond = false;
+		registrationNumber.innerHTML += " Registration number should be 10 charactrs long."
+	}
+	
+	if(/[^0-9]/.test(form.telephone.value)){
+		cond = false;
+		registrationNumber.innerHTML += " Telephone number should include only numeric characters."
+	}
+	
+	if(form.telephone.value.length != 10){
+		cond = false;
+		telephone.innerHTML += " Telephone number should 10 charactrs long."
+	}
+	
+	if(!cond){
+		window.alert("There are errors found in your input")
+		e.preventDefault();
+		
+	}
+	
+}
+</script>
+{% endblock scripts %}

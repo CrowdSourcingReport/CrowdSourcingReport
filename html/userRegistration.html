@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+
+{% block title %}User Registration{% endblock title %}
+
+{% block body %}
+<div class="cointainer full-viewport">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <form class="form-horizontal" method="post" id="userRegForm">
+    <div class="col-md-8">
+      <div class="well">
+    
+      <fieldset>
+        <legend>Register</legend>
+        <div class="form-group">
+          <label for="inputText" class="col-lg-2 control-label">Name*:</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" id="inputText"  name="name" placeholder="Name" style="width:50%" required>
+            <div id="name-error" style="color:yellow"></div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputText" class="col-lg-2 control-label">Email*:</label>
+          <div class="col-lg-10">
+            <input type="email" class="form-control" id="email"  name="email" placeholder="Email" style="width:50%" required>
+            <div id="email-error" style="color:yellow"></div>
+          </div>
+        </div>
+        
+       
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Gender*:</label>
+          <div class="col-lg-10">
+            <div class="radio">
+              <label>
+                <input type="radio" name="gender" id="optionsRadios1" value="male" checked="">
+                Male
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="gender" id="optionsRadios2" value="female">
+                Female
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="location" class="col-lg-2 control-label">Location*:</label>
+          
+          <div class="col-lg-10">
+			<input type="text" id="addr"  name="addr" disabled style="width:50%;display:inline;">
+			<div id="addr-error" style="color:yellow"></div>
+			<p>Click the map to mark location. Double click to zoom.</p>
+          <input type="hidden" class="form-control" id="lat"  name="lat" style="width:50%">
+          <input type="hidden" class="form-control" id="address"  name="address" style="width:50%" required>
+          <input type="hidden" class="form-control" id="lng"  name="lng" style="width:50%">
+            <div id="map-canvas" style="width:80%;height:400px;color:black;margin:10px"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-primary" onclick="{validate(document.getElementById('userRegForm'),window.event)}">Submit</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+</div>
+{% endblock body %}
+
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery.carouFredSel-6.2.1-packed.js"></script>
+<script type="text/javascript" language="javascript" src="/Content/js/slidingPanels.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script>
+	var map;
+	var marker;
+	var markers;
+	var geocoder = new google.maps.Geocoder();
+	function initialize() {
+	  var haightAshbury = new google.maps.LatLng(23.2500, 77.4167);
+	  var mapOptions = {
+		zoom: 4,
+		center: haightAshbury,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
+	  map = new google.maps.Map(document.getElementById('map-canvas'),
+		  mapOptions);
+
+	  // This event listener will call addMarker() when the map is clicked.
+	  google.maps.event.addListener(map, 'click', function(event) {
+		console.log(event.latLng);
+		addMarker(event.latLng);
+	  });
+
+	}
+
+	// Add a marker to the map and push to the array.
+	function addMarker(location) {
+		codeLatLng(location.lat(), location.lng());
+		if(marker){
+			clearMarkers();
+		}
+	  marker = new google.maps.Marker({
+		position: location,
+		map: map
+	  });
+	}
+
+
+	// Removes the markers from the map, but keeps them in the array.
+	function clearMarkers() {
+	  marker.setMap(null);
+	}
+	
+	function codeLatLng(lat, lng) {
+		var latlng = new google.maps.LatLng(lat, lng);
+		geocoder.geocode({'latLng': latlng}, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+			  document.getElementById("address").value = results[0].formatted_address;
+			  document.getElementById("addr").value = results[0].formatted_address;
+			  document.getElementById("lat").value = lat;
+			  document.getElementById("lng").value = lng;
+		  } else {
+			alert("Geocoder failed due to: " + status);
+			document.getElementById("address").value = "";
+			document.getElementById("addr").value = "";
+			  document.getElementById("lat").value = "";
+			  document.getElementById("lng").value = "";
+		  }
+		});
+  }
+
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+
+function validate(form,e){
+	var cond = true
+	var name = document.getElementById("name-error")
+	var email = document.getElementById("email-error")
+	var addr = document.getElementById("addr-error")
+	name.innerHTML = ""
+	email.innerHTML = ""
+	addr.innerHTML = ""
+	
+	if(form.name.value == ""){
+		cond = false;
+		name.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.email.value == ""){
+		cond = false;
+		email.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.addr.value == ""){
+		cond = false;
+		addr.innerHTML += " This is Mandatory Field."
+	}
+	
+	if(form.email.value.indexOf("@") == -1){
+		cond = false;
+		email.innerHTML += " This is not valid Email address."
+	}
+	
+	if(!cond){
+		window.alert("There are errors found in your input")
+		e.preventDefault();
+		
+	}
+	
+}
+</script>
+{% endblock scripts %}

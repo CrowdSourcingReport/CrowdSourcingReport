@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block body %}
+	<div class = "container">
+		<div class = "col-md-3"></div>
+		<div class = "col-md-6">
+			<form method="POST" class="form-inline">
+				<div class = "navigation panel panel-default panelbody">
+				<!--<div class = "navigation full-viewport" style = "border:2px solid white;">-->
+					<div class = "panel-body">
+						<h2 class=""><strong>{{title}}</strong></h2>
+						<p>{{message}}</p>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class = "col-md-3"></div>
+		
+	</div>
+{% endblock body %}
+
+{% block scripts %}
+	<script src = "/Content/js/smoothScroll.js"></script>
+{% endblock scripts %}

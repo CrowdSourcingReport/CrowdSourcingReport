@@ -1,0 +1,97 @@
+{% extends "adminTopBar.html" %}
+
+{% block adminblock %}
+<div class="col-sm-10 ">
+	<div class="row text-center">
+		<h2 class="text-left">Authenticate Projects</h2>
+<div class="panel panelbody">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 1</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 2</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 3</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="panel panelbody">
+								<div class="panel-body">
+									<img src="/Content/img/project_image.jpg" class="col-md-12"/>
+									<p class="text-center"><a href="#">Project 4</a></p>
+									<button href="#" class="btn btn-success">Authenticate</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>
+
+{% endblock adminblock %}
+
+<!--<div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-2  ">
+            <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+            <li ><a href="/admin">Home</a></li>
+            <li class="active"><a href="/admin/Authenticate">Authenticate</a></li>
+            <li><a href="/admin/CredibilityCheck">Credibility Check</a></li>
+            </ul>
+          </div>
+                       
+          <div class="col-sm-10 ">
+          	<h2>List Of Project</h2>
+            <div class="col-sm-12">
+              <div class="list-group">
+                <div class="row">
+
+              	{% for project in projectList %}
+                      <div class="col-md-4">
+                        <div class="panel panel-primary">
+                        <div class="panel-heading">
+                          <a href="/admin/Authenticate/{{project.ngo}}_{{project.title}}">
+                          <h3 class="panel-title">
+                            {{project.title}}</h3></a>
+                        </div>    
+                          <div class="panel-body">
+                            {{project.shortDescription}}
+                          </div>
+                        </div> 
+                      </div>
+              	{% endfor %}
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+
+
+
+{% block scripts %}
+<!-- CarouFredSel JavaScript Plugin -->
+<script type="text/javascript" language="javascript" src="/Content/carousal/jquery-1.8.2.min.js"></script>
+{% endblock scripts %}
+
